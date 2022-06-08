@@ -1,3 +1,5 @@
+import { SocialMedia } from "./social_media.interface"
+
 export interface Shelter{
     id: number
     name: string
