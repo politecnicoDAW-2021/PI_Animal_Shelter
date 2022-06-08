@@ -1,9 +1,9 @@
 export interface User{
-    id:number
-    username:string
-    email:string
+    id: number
+    username: string
+    email: string
     rol: string
-    city:string
-    id_shelter:Shelter
-    picture:string
+    city: string
+    picture: string
+    id_shelter: Shelter
 }
