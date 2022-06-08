@@ -1,4 +1,5 @@
-import { Shelter } from "./shelter.interface"
+
+import { Shelter } from "src/modules/shelters/interfaces/shelter.interface"
 import { Specie } from "./specie.interface"
 
 export interface Animal{
