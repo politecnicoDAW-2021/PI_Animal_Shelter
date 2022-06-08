@@ -1,3 +1,5 @@
+import { Shelter } from "./shelter.interface"
+
 export interface User{
     id: number
     username: string

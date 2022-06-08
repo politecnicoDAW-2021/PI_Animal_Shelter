@@ -1,3 +1,6 @@
+import { Shelter } from "./shelter.interface"
+import { Specie } from "./specie.interface"
+
 export interface Animal{
     id: number
     name: string
