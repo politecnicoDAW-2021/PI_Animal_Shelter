@@ -1,0 +1,14 @@
+version: '3.3'
+services:
+  front:
+    build:
+      dockerfile: Dockerfile
+      context: ./front/
+      target: development
+    volumes: 
+      - ./front:/src/app
+      - /front/src/app/node_modules
+
+    ports:
+      - 4200:4200 
+          
