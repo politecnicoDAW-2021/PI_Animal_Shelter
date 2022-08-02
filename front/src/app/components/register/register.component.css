@@ -1,0 +1,7 @@
+.main-wrapper{
+    height: 450px;
+    width: 450px;
+    /*transform: translate(50%, 50%);*/
+    transform: translateX(700px);
+    margin-top: 250px;
+}
