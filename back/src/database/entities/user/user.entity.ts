@@ -5,13 +5,16 @@ import {
   OneToMany,
   ManyToMany,
   ManyToOne,
-} from 'typeorm';
+} 
+from 'typeorm';
+
 import { WishlistEntity } from '../common/wishlist.entity';
 import { ShelterEntity } from '../shelter/shelter.entity';
-
 import { CreditCardEntity } from './credit_card.entity';
 import { PasswordEntity } from './password.entity';
 export type UserRol = 'admin' | 'user' | 'shelter';
+
+
 @Entity('user')
 export class UserEntity {
   @PrimaryGeneratedColumn()
@@ -19,6 +22,12 @@ export class UserEntity {
 
   @Column()
   name: string;
+
+  @Column()
+  surname: string;
+
+  @Column()
+  username: string;
 
   @Column()
   email: string;
@@ -38,10 +47,13 @@ export class UserEntity {
   
   @OneToMany(() => PasswordEntity, (password) => password.id)
   password: PasswordEntity;
+
   @OneToMany(() => WishlistEntity, (wishlist) => wishlist.id)
   wishlist: WishlistEntity;
+
   @OneToMany(() => CreditCardEntity, (creditCard) => creditCard.id)
   creditCard: CreditCardEntity;
+
   @ManyToOne(() => ShelterEntity, (shelter) => shelter.id)
   shelter: ShelterEntity;
 }
