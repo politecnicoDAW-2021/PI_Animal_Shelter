@@ -9,6 +9,42 @@
         
         <mat-card-content>
             <form [formGroup]="registerForm" autocomplete="off">
+
+                <div>
+                    <mat-form-field appearance="legacy">
+                        <mat-label>
+                            Name
+                        </mat-label>
+
+                        <input 
+                            matInput 
+                            type="text"
+                            id="name"
+                            formControlName="name"
+                            name="name"
+                            placeholder="Name" 
+                        >
+                    </mat-form-field>
+                </div>
+
+
+                <div>
+                    <mat-form-field appearance="legacy">
+                        <mat-label>
+                            Lastname
+                        </mat-label>
+
+                        <input 
+                            matInput 
+                            type="text"
+                            id="lastname"
+                            formControlName="lastname"
+                            name="lastname"
+                            placeholder="Lastname" 
+                        >
+                    </mat-form-field>
+                </div>
+
                 <div>
                     <mat-form-field appearance="legacy">
                         <mat-label>
@@ -75,7 +111,7 @@
                 </div>
     
                 <div>
-                    <button mat-raised-button color="primary" type="submit" >Register</button>
+                    <button mat-raised-button color="primary" type="submit">Register</button>
                 </div>
     
             </form>
