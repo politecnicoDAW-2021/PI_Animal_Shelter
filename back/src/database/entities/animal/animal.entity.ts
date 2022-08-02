@@ -28,6 +28,9 @@ export class AnimalEntity {
   gender: Gender;
 
   @Column()
+  weight: number
+
+  @Column()
   dewormed: boolean;
 
   @Column({
