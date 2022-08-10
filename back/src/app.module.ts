@@ -12,6 +12,10 @@ import { WishlistEntity } from './database/entities/common/wishlist.entity';
 import { UserEntity } from './database/entities/user/user.entity';
 import { SocialMediaEntity } from './database/entities/shelter/social_media.entity';
 import { MediaEntity } from './database/entities/animal/media.entity';
+
+import { AuthModule } from './auth/jwt/auth.module';
+import { UserModule } from './modules/users/user.module';
+
 @Module({
   imports: [
     TypeOrmModule.forRoot(typeOrmConfig),
@@ -26,6 +30,8 @@ import { MediaEntity } from './database/entities/animal/media.entity';
       SpecieEntity,
       MediaEntity,
     ]),
+    UserModule,
+    AuthModule, 
   ],
   controllers: [AppController],
   providers: [AppService],
