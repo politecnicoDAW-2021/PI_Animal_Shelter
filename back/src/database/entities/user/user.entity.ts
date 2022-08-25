@@ -45,15 +45,23 @@ export class UserEntity {
   @Column()
   picture: string;
   
-  @OneToMany(() => PasswordEntity, (password) => password.id)
+  @OneToMany(() => PasswordEntity, (password) => password.id , {
+    onDelete: 'CASCADE'
+  })
   password: PasswordEntity;
 
-  @OneToMany(() => WishlistEntity, (wishlist) => wishlist.id)
+  @OneToMany(() => WishlistEntity, (wishlist) => wishlist.id , {
+    onDelete: 'CASCADE'
+  })
   wishlist: WishlistEntity;
 
-  @OneToMany(() => CreditCardEntity, (creditCard) => creditCard.id)
+  @OneToMany(() => CreditCardEntity, (creditCard) => creditCard.id, {
+    onDelete: 'CASCADE'
+  })
   creditCard: CreditCardEntity;
 
-  @ManyToOne(() => ShelterEntity, (shelter) => shelter.id)
+  @ManyToOne(() => ShelterEntity, (shelter) => shelter.id, {
+    onDelete: 'CASCADE'
+  })
   shelter: ShelterEntity;
 }

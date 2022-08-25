@@ -18,7 +18,9 @@ export class CreditCardEntity {
   @Column({nullable:true})
   cardholder: string;
 
-  @ManyToOne(() => UserEntity, (user) => user.id)
+  @ManyToOne(() => UserEntity, (user) => user.id, {
+    onDelete: 'CASCADE'
+  })
   user: UserEntity;
 
 }

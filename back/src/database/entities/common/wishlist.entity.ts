@@ -6,10 +6,13 @@ import { UserEntity } from "../user/user.entity";
 
 @Entity('wishlist')
 export class WishlistEntity {
-    @PrimaryGeneratedColumn()
-    id: number
 
-    @ManyToOne(() => UserEntity, (user) => user.id)
+  @PrimaryGeneratedColumn()
+  id: number
+
+  @ManyToOne(() => UserEntity, (user) => user.id, {
+    onDelete: 'CASCADE'
+  })
   user: UserEntity;
 
   @ManyToOne(() => AnimalEntity, (animal) => animal.id)
