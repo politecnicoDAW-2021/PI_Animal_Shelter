@@ -45,10 +45,8 @@ export class UserEntity {
   @Column()
   picture: string;
   
-  @OneToMany(() => PasswordEntity, (password) => password.id , {
-    onDelete: 'CASCADE'
-  })
-  password: PasswordEntity;
+  /* @OneToMany(() => PasswordEntity, (password) => password.id)
+  password: PasswordEntity; */
 
   @OneToMany(() => WishlistEntity, (wishlist) => wishlist.id , {
     onDelete: 'CASCADE'

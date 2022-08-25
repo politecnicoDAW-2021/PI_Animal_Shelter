@@ -18,11 +18,10 @@ export class PasswordEntity {
   @Column({nullable:true})
   jwt_tk: string;
 
-  @ManyToOne(() => UserEntity, (user) => user.id, {
-    onDelete: 'CASCADE',
-    onUpdate:  'CASCADE'
-  })
-  user: UserEntity;
+  /* @ManyToOne(() => UserEntity, (user) => user.id)
+  user: UserEntity; */
+  @Column({nullable: true})
+  userId: number
 
   @BeforeInsert()
   async hashPassword() {
