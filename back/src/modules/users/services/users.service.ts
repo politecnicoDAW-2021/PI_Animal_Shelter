@@ -14,7 +14,11 @@ export class UsersService {
         return await this.userRepository.save(user)
     }
 
-    async findOne(condition: any){
-        return await this.userRepository.findOneBy({name: condition})
+    async findOneByEmail(condition: any): Promise<UserEntity>{
+        return await this.userRepository.findOneBy({email: condition})
+    }
+
+    async findId(condition: any) {
+        return await this.userRepository.getId(condition)
     }
 }
