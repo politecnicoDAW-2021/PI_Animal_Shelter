@@ -1,23 +1,21 @@
 import { Injectable } from "@nestjs/common";
 import { User } from "src/modules/users/interfaces/user.interface";
+import { PasswordService } from "src/modules/users/services/password.service";
 import { UsersService } from "src/modules/users/services/users.service";
 
 @Injectable()
 export class AuthService {
     constructor(
         private userService: UsersService,
+        private passwordService: PasswordService
     ) {}
-    
 
-    async register(user: User){
-
-
-        console.log('email', user.email);
+    async register(user: any){       
         
-        const existsUser = await this.userService.findOne(user.email)
+        const existsUser = await this.userService.findOneByEmail(user.email)
 
-        if(!existsUser) 
-            return this.userService.create({
+        if(!existsUser){
+            const userToRegister = await this.userService.create({
                 name: user.name,
                 surname: user.surname,
                 username: user.username,
@@ -25,7 +23,20 @@ export class AuthService {
                 rol: user.rol,
                 city: user.city,
                 picture: user.picture
-            }) 
+            })
+
+            const password = await this.passwordService.create({
+                password: user.password,
+                google_tk: null,
+                twitter_tk: null,
+                jwt_tk: null,
+                userId: userToRegister.id
+            })
+
+            return [userToRegister, password]
+        }
+            
+            
 
         throw new Error('usuario ya existe')
     }   
