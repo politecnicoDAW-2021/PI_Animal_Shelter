@@ -2,6 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { User } from "src/modules/users/interfaces/user.interface";
 import { PasswordService } from "src/modules/users/services/password.service";
 import { UsersService } from "src/modules/users/services/users.service";
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthService {
@@ -26,23 +27,21 @@ export class AuthService {
             })
 
             const password = await this.passwordService.create({
-                password: user.password,
+                password: await bcrypt.hash(user.password, await bcrypt.genSalt()),
                 google_tk: null,
                 twitter_tk: null,
                 jwt_tk: null,
                 userId: userToRegister.id
             })
 
-            return [userToRegister, password]
+            return userToRegister
         }
-            
-            
 
         throw new Error('usuario ya existe')
     }   
 
     async login(user: any){
-
+        
     }
 
 } 
