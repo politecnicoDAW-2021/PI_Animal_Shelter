@@ -37,9 +37,9 @@
                         <input 
                             matInput 
                             type="text"
-                            id="lastname"
-                            formControlName="lastname"
-                            name="lastname"
+                            id="surname"
+                            formControlName="surname"
+                            name="surname"
                             placeholder="Lastname" 
                         >
                     </mat-form-field>
@@ -101,6 +101,9 @@
                         <input 
                             matInput
                             type="password"
+                            id="password"
+                            formControlName="password"
+                            name="password"
                             placeholder="Enter your password"
                             >
                         <mat-error>Name is required</mat-error>
@@ -111,7 +114,7 @@
                 </div>
     
                 <div>
-                    <button mat-raised-button color="primary" type="submit">Register</button>
+                    <button mat-raised-button color="primary" type="submit" (click)="register()">Register</button>
                 </div>
     
             </form>

@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 import { RegisterComponent } from './register.component';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 @NgModule({
@@ -19,6 +20,8 @@ import { RegisterComponent } from './register.component';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule
-  ]
+  ],
+  providers: [AuthService],
+
 })
 export class RegisterModule { }
