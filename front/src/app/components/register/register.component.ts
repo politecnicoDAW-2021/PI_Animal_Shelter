@@ -31,12 +31,10 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  register(){
-    console.log(this.registerForm.value);
+  register(){    
+    this.authService.register(this.registerForm.value).subscribe()
     
-    this.authService.register(this.registerForm.value)
-      .subscribe(data => this.router.navigate(['home']))
-    
+    this.registerForm.reset()
   }
 
 }
