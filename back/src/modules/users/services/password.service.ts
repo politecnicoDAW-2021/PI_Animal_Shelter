@@ -9,12 +9,16 @@ export class PasswordService {
         @InjectRepository(PasswordEntity)
         private readonly passwordRepository: Repository<PasswordEntity>
     ) {}
-
-    async create(password: any): Promise<PasswordEntity>{
-
-        console.log(await this.passwordRepository.save(password));
-        
+    
+    async create(password: any): Promise<PasswordEntity>{        
         return await this.passwordRepository.save(password)
     }
+
+    async findOne(condition: any): Promise<PasswordEntity | any> {
+        return await this.passwordRepository.findOneBy({
+            password: condition
+        })
+    }
+
 
 }

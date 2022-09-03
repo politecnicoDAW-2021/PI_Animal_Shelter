@@ -21,4 +21,8 @@ export class UsersService {
     async findId(condition: any) {
         return await this.userRepository.getId(condition)
     }
+
+    async findUserById(condition: any){
+        return this.userRepository.findOneBy({ id: condition })
+    }
 }
