@@ -15,4 +15,8 @@ export class AuthService {
   register(user: any){
     return this.http.post(`${this.endpoint}/register`, user)
   }
+
+  login(user: any){
+    return this.http.post(`${this.endpoint}/login`, user)
+  }
 }
