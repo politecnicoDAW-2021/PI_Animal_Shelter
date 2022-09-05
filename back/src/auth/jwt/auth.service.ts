@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, UnauthorizedException } from "@nestjs/common";
 import { User } from "src/modules/users/interfaces/user.interface";
 import { PasswordService } from "src/modules/users/services/password.service";
 import { UsersService } from "src/modules/users/services/users.service";
@@ -48,6 +48,12 @@ export class AuthService {
         const userId = await this.userService.findOneByEmail(user.email)
         const payload = { email: user.email, sub: userId.id }
 
+        const success = await this.validateUser(user.email, user.password)
+
+        if(!success){            
+            throw new UnauthorizedException('credenciales no validos')
+        }
+
         return {
             username: user.email,
             id: userId.id,
@@ -56,8 +62,8 @@ export class AuthService {
     }
 
     async validateUser(email: any, password: any): Promise<any> {
-        const user = this.userService.findOneByEmail(email)
-        const pass = this.passwordService.findOne(password)
+        const user = await this.userService.findOneByEmail(email)
+        const pass = await this.passwordService.findOne(password.pass)
 
         if(user && await this.passwordsAreEqual((await pass).password, password)) {
             return {
