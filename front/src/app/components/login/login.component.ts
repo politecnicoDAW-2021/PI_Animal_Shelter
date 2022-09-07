@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { first } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -24,10 +25,16 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  
+
   login(){
-    this.authService.login(this.loginForm.value).subscribe(
-      data => this.router.navigate(['/home'])
-    )
+    return this.authService.login(this.loginForm.value)
+      .pipe(first())
+      .subscribe(
+        data => {
+          this.router.navigate(['/home'])
+        }
+      )
   }
 
 }
