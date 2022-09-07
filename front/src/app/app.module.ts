@@ -4,25 +4,21 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
-import { RegisterModule } from './components/register/register.module';
-import { AboutMeModule } from './components/about-me/about-me.module';
-import { LoginModule } from './components/login/login.module';
+import { AnimalIndividualComponent } from './components/animal-individual/animal-individual.component';
+
+
+
+
 
 @NgModule({
-  declarations:
-  [
-    AppComponent
+  declarations: [
+    AppComponent,
+    AnimalIndividualComponent
   ],
-  imports: 
-  [
+  imports: [
     BrowserModule,
     AppRoutingModule,
-    NoopAnimationsModule,
-    HttpClientModule,
-    RegisterModule,
-    AboutMeModule,
-    LoginModule
+    NoopAnimationsModule,    
   ],
   providers: [],
   bootstrap: [AppComponent]
