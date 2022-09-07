@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RegisterModule } from './components/register/register.module';
 import { AboutMeModule } from './components/about-me/about-me.module';
 import { LoginModule } from './components/login/login.module';
+import { LandingPageModule } from './components/landing-page/landing-page.module';
 
 @NgModule({
   declarations:
@@ -22,7 +23,8 @@ import { LoginModule } from './components/login/login.module';
     HttpClientModule,
     RegisterModule,
     AboutMeModule,
-    LoginModule
+    LoginModule,
+    LandingPageModule
   ],
   providers: [],
   bootstrap: [AppComponent]

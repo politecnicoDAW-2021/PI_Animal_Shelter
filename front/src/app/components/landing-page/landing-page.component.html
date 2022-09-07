@@ -16,7 +16,12 @@
 
 
 <div fxLayout="row" fxLayoutGap="10px" class="container">
-  <div fxLayoutAlign="center center">
+  <div 
+    fxLayout="row wrap"
+    fxLayout.lt-sm="column"
+    fxLayoutGap="32px"
+    fxLayoutAlign="flex-start"
+  >
     <mat-card class="example-card">
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
@@ -103,6 +108,8 @@
       </mat-card-actions>
     </mat-card>
   </div>
+
+  
 
   
 
