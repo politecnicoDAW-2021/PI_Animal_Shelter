@@ -1,66 +1,101 @@
 <div>
   <mat-toolbar>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <button
+      mat-icon-button
+      class="example-icon"
+      aria-label="Example icon-button with menu icon"
+    >
       <mat-icon>menu</mat-icon>
     </button>
     <span>MoonPets</span>
     <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    <button
+      mat-icon-button
+      class="example-icon favorite-icon"
+      aria-label="Example icon-button with heart icon"
+    >
       <mat-icon>favorite</mat-icon>
     </button>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+    <button
+      mat-icon-button
+      class="example-icon"
+      aria-label="Example icon-button with share icon"
+    >
       <mat-icon>share</mat-icon>
     </button>
   </mat-toolbar>
 </div>
+<div class="searcher">a</div>
+<div class="container"><ngu-carousel
+  #myCarousel
+  [inputs]="carouselTileConfig"
+  [dataSource]="carouselTileItems$ | async"
+>
+  <ngu-tile *nguCarouselDef="let item; let i = index; let ani = animate">
+    <!-- [@slider]="ani" PLease this animation to this tile to see animation. stackblitz have error with animations -->
+    <div class="tile" [style.background]="'url(' + item + ')'">
+      <h1>{{ i + 1 }}</h1>
+    </div>
+  </ngu-tile>
 
-
-<div class="demo-carousel" [style.height]="parentHeight">
-  <mat-carousel
-    #matCarousel
-    [timings]="timings"
-    [autoplay]="autoplay"
-    [interval]="interval"
-    [loop]="loop"
-    [hideArrows]="hideArrows"
-    [hideIndicators]="hideIndicators"
-    [color]="color"
-    [maxWidth]="maxWidth"
-    [proportion]="proportion"
-    [useKeyboard]="useKeyboard"
-    [useMouseWheel]="useMouseWheel"
-    [orientation]="orientation"
-    [slides]="slides"
-    [maintainAspectRatio]="maintainAspectRatio"
-    [slideHeight]="slideHeight"
-    (change)="onChange($event)"
+  <button
+    NguCarouselPrev
+    class="leftRs"
+    [style.opacity]="myCarousel.isFirst ? 0.5 : 1"
   >
-    <mat-carousel-slide
-      #matCarouselSlide
-      *ngFor="let slide of slidesList; let i = index"
-      image="assets/demo.png"
-      [overlayColor]="overlayColor"
-      [hideOverlay]="hideOverlay"
-    >
-      <ng-container *ngIf="showContent">
-        <div
-          style="width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center"
-        >
-          <h1>{{ i }}</h1>
-          <p>disabled: {{ matCarouselSlide.disabled }}</p>
-          <button
-            mat-flat-button
-            (click)="
-              matCarouselSlide.disabled = !matCarouselSlide.disabled
-            "
-          >
-            Click me!
-          </button>
-        </div>
-      </ng-container>
-    </mat-carousel-slide>
-  </mat-carousel>
-</div>
+    &lt;
+  </button>
+  <button
+    NguCarouselNext
+    class="rightRs"
+    [style.opacity]="myCarousel.isLast ? 0.5 : 1"
+  >
+    &gt;
+  </button>
+
+  <ul class="myPoint" NguCarouselPoint>
+    <li
+      *ngFor="let i of myCarousel.pointNumbers; let k = index"
+      [class.active]="i == myCarousel.activePoint"
+      (click)="myCarousel.moveTo(i)"
+    ></li>
+  </ul>
+</ngu-carousel></div>
+<div class="container"><ngu-carousel
+  #myCarousel
+  [inputs]="carouselTileConfig"
+  [dataSource]="carouselTileItems$ | async"
+>
+  <ngu-tile *nguCarouselDef="let item; let i = index; let ani = animate">
+    <!-- [@slider]="ani" PLease this animation to this tile to see animation. stackblitz have error with animations -->
+    <div class="tile" [style.background]="'url(' + item + ')'">
+      <h1>{{ i + 1 }}</h1>
+    </div>
+  </ngu-tile>
+
+  <button
+    NguCarouselPrev
+    class="leftRs"
+    [style.opacity]="myCarousel.isFirst ? 0.5 : 1"
+  >
+    &lt;
+  </button>
+  <button
+    NguCarouselNext
+    class="rightRs"
+    [style.opacity]="myCarousel.isLast ? 0.5 : 1"
+  >
+    &gt;
+  </button>
+
+  <ul class="myPoint" NguCarouselPoint>
+    <li
+      *ngFor="let i of myCarousel.pointNumbers; let k = index"
+      [class.active]="i == myCarousel.activePoint"
+      (click)="myCarousel.moveTo(i)"
+    ></li>
+  </ul>
+</ngu-carousel></div>
 <!-- 
   <div fxLayoutAlign="center center">
     <mat-card class="example-card">
