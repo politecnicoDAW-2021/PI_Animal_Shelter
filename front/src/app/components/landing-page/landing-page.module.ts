@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { LandingPageRoutingModule } from './landing-page-routing.module';
 import { LandingPageComponent } from './landing-page.component';
 import { MaterialModule } from 'src/app/shared/material/material.module';
-import { MatCarouselModule } from '@ngbmodule/material-carousel';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -24,7 +23,6 @@ import { NguCarouselModule } from '@ngu/carousel';
     CommonModule,
     LandingPageRoutingModule,
     MaterialModule,
-    MatCarouselModule.forRoot(),
     MatExpansionModule,
     MatIconModule,
     MatInputModule,
