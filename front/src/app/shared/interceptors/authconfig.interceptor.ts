@@ -1,5 +1,5 @@
 
-import {Injectable} from "@angular/core";
+import {Inject, Injectable} from "@angular/core";
 import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpStatusCode} from "@angular/common/http";
 import { AuthService } from "src/app/services/auth.service";
 import { catchError, Observable, throwError } from "rxjs";
@@ -7,17 +7,20 @@ import { Router } from "@angular/router";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor{
+    
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
     ) {
   }
 
   intercept(
     req: HttpRequest<any>, 
-    next: HttpHandler, ): any {
-        const authToken = sessionStorage.getItem('token')
-        console.log('authToken', authToken);
+    next: HttpHandler, ): any {        
+        const authToken = this.authService.getToken()
+        console.log('authToken', authToken);   
+        console.log('otken joder', this.getToken());
+        
 
         if (authToken) {
         req = req.clone({
@@ -37,7 +40,13 @@ export class AuthInterceptor implements HttpInterceptor{
             return throwError(err);
         })
         )
-    } 
+    }
 
+    getToken(){
+        setTimeout(() => {
+            let token = localStorage.getItem('token')
+            return token
+        }, 5000)
+    }
     
 }
