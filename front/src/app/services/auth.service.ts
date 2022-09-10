@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { map, pipe } from 'rxjs';
-import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
 
 
 @Injectable({
@@ -15,7 +14,6 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    @Inject(SESSION_STORAGE) private storage: StorageService
   ) { }
 
   register(user: any){
