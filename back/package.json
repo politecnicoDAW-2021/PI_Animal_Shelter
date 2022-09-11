@@ -37,6 +37,7 @@
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0",
     "typeorm": "^0.3.7",
+    "typeorm-seeding": "^1.6.1",
     "webpack": "^5.74.0"
   },
   "devDependencies": {
