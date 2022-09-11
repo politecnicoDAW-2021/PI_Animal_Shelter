@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
-import { Inject, Injectable } from '@angular/core';
+import { HttpBackend, HttpClient } from '@angular/common/http';
+import { Inject, Injectable, SkipSelf } from '@angular/core';
 import { Router } from '@angular/router';
 import { map, pipe } from 'rxjs';
 
@@ -8,28 +8,33 @@ import { map, pipe } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-
+private httpLogin: HttpClient
   endpoint: string = 'http://localhost:3000'
 
   constructor(
+    httpBack: HttpBackend,
     private http: HttpClient,
     private router: Router,
-  ) { }
+  ) { this.httpLogin=new HttpClient(httpBack); }
 
   register(user: any){
     return this.http.post(`${this.endpoint}/register`, user)
   }
 
   login(user: any) {
-    return this.http
+      console.log(user);
+    return this.httpLogin
       .post<any>(`${this.endpoint}/login`, user)
       .pipe(
         map(async (user) => {
           if (user && user.access_token) { 
             await (this.saveToken(user.access_token))
+            console.log(user.access_token);
           }
         })
       );
+
+    
   }
 
   saveToken(access_token: string){
