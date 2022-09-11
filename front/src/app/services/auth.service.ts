@@ -8,33 +8,35 @@ import { map, pipe } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-private httpLogin: HttpClient
+
+  private httpLogin: HttpClient
   endpoint: string = 'http://localhost:3000'
 
   constructor(
-    httpBack: HttpBackend,
+    private httpBack: HttpBackend,
     private http: HttpClient,
     private router: Router,
-  ) { this.httpLogin=new HttpClient(httpBack); }
+  ) 
+  { 
+    this.httpLogin = new HttpClient(this.httpBack); 
+  }
 
   register(user: any){
     return this.http.post(`${this.endpoint}/register`, user)
   }
 
   login(user: any) {
-      console.log(user);
     return this.httpLogin
       .post<any>(`${this.endpoint}/login`, user)
       .pipe(
         map(async (user) => {
           if (user && user.access_token) { 
-            await (this.saveToken(user.access_token))
-            console.log(user.access_token);
+            this.saveToken(user.access_token)
+            this.saveId(user.id)
+            this.saveUser(user.username)
           }
         })
-      );
-
-    
+      );    
   }
 
   saveToken(access_token: string){
