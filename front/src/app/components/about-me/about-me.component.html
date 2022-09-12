@@ -1,1 +1,43 @@
-<p>about-me works!</p>
+
+<mat-toolbar>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>MoonPets | Personal information</span>
+  <span class="example-spacer"></span>
+  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    <span>Logout</span>
+  </button>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+    <mat-icon>share</mat-icon>
+  </button>
+</mat-toolbar>
+
+
+ <mat-drawer-container class="example-container">
+  <mat-drawer class="side-nav" mode="side" opened>
+    <mat-list>
+      <mat-list-item>User profile</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>Item 2</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>Item 3</mat-list-item>
+    </mat-list>
+  </mat-drawer>
+  <mat-drawer-content>
+    <mat-card class="example-card">
+      <mat-card-title-group>
+        <img class="pic" mat-card-xl-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" >
+        <mat-card-title>Bienvenido</mat-card-title>
+        <mat-card-subtitle>Nombre: </mat-card-subtitle>
+        <mat-card-subtitle>Apellidos: </mat-card-subtitle>
+        <mat-card-subtitle>Email: </mat-card-subtitle>
+        <mat-card-subtitle>Ciudad: </mat-card-subtitle>
+
+        
+      </mat-card-title-group>
+      <mat-card-content>
+      </mat-card-content>
+    </mat-card>
+  </mat-drawer-content>
+</mat-drawer-container>
