@@ -1,5 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
+import Connection from "mysql2/typings/mysql/lib/Connection";
 import { UserEntity } from "src/database/entities/user/user.entity";
 import { Repository } from "typeorm";
 
@@ -23,6 +24,6 @@ export class UsersService {
     }
 
     async findUserById(condition: any){
-        return this.userRepository.findOneBy({ id: condition })
-    }
+        return await this.userRepository.findOneByOrFail({id: condition})
+    }   
 }
