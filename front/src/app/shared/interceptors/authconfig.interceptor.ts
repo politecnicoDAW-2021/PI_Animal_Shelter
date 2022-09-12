@@ -5,7 +5,9 @@ import { AuthService } from "src/app/services/auth.service";
 import { catchError, Observable, throwError } from "rxjs";
 import { Router } from "@angular/router";
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class AuthInterceptor implements HttpInterceptor{
     
   constructor(
@@ -19,8 +21,6 @@ export class AuthInterceptor implements HttpInterceptor{
     next: HttpHandler, ): any {        
         const authToken = this.authService.getToken()
         console.log('authToken', authToken);   
-        console.log('otken joder', this.getToken());
-        
 
         if (authToken) {
         req = req.clone({
@@ -40,13 +40,6 @@ export class AuthInterceptor implements HttpInterceptor{
             return throwError(err);
         })
         )
-    }
-
-    getToken(){
-        setTimeout(() => {
-            let token = localStorage.getItem('token')
-            return token
-        }, 5000)
     }
     
 }
