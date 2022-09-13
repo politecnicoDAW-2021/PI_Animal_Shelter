@@ -1,4 +1,6 @@
+import { getLocaleFirstDayOfWeek } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/users/user.service';
 
 @Component({
   selector: 'app-about-me',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AboutMeComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private userService: UserService
+  ) { }
+
+  public user?: any
 
   ngOnInit(): void {
+   this.user = this.getUserInfo()
+   
+  }
+
+  getUserInfo(){
+    const id = localStorage.getItem('id')
+
+    return this.userService.findById(id)
+        .subscribe(data => this.user = data)
   }
 
 }

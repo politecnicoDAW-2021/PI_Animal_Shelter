@@ -28,12 +28,11 @@
     <mat-card class="example-card">
       <mat-card-title-group>
         <img class="pic" mat-card-xl-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" >
-        <mat-card-title>Bienvenido</mat-card-title>
-        <mat-card-subtitle>Nombre: </mat-card-subtitle>
-        <mat-card-subtitle>Apellidos: </mat-card-subtitle>
-        <mat-card-subtitle>Email: </mat-card-subtitle>
-        <mat-card-subtitle>Ciudad: </mat-card-subtitle>
-
+        <mat-card-title>Bienvenido {{user.username}}</mat-card-title>
+        <mat-card-subtitle>Nombre:  {{user.name}}</mat-card-subtitle>
+        <mat-card-subtitle>Apellidos: {{user.surname}}</mat-card-subtitle>
+        <mat-card-subtitle>Email: {{user.email}}</mat-card-subtitle>
+        <mat-card-subtitle>Ciudad: {{user.city}}</mat-card-subtitle>
         
       </mat-card-title-group>
       <mat-card-content>
