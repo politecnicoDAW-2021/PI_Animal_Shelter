@@ -7,15 +7,14 @@ import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private authService: AuthService,
-  ) { }
+    private authService: AuthService
+  ) {}
 
   registerForm = this.fb.group({
     name: [''],
@@ -23,18 +22,16 @@ export class RegisterComponent implements OnInit {
     username: [''],
     email: [''],
     city: [''],
-    picture: '',
-    password: ['']
+    picture: 'default.jpg',
+    password: [''],
     //file: []
-  })
+  });
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  register() {
+    this.authService.register(this.registerForm.value).subscribe();
+
+    this.registerForm.reset();
   }
-
-  register(){    
-    this.authService.register(this.registerForm.value).subscribe()
-    
-    this.registerForm.reset()
-  }
-
 }
