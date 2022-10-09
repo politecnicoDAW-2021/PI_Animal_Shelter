@@ -1,170 +1,18 @@
-<div>
-  <mat-toolbar>
-    <button
-      mat-icon-button
-      class="example-icon"
-      aria-label="Example icon-button with menu icon"
-    >
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span>MoonPets</span>
-    <span class="example-spacer"></span>
-    <button
-      mat-icon-button
-      class="example-icon favorite-icon"
-      aria-label="Example icon-button with heart icon"
-    >
-      <mat-icon>favorite</mat-icon>
-    </button>
-    <button
-      mat-icon-button
-      class="example-icon"
-      aria-label="Example icon-button with share icon"
-    >
-      <mat-icon>share</mat-icon>
-    </button>
-  </mat-toolbar>
+
+  <ngx-slick-carousel class="carousel" 
+  #slickModal="slick-carousel" 
+  [config]="slideConfig" 
+  (init)="slickInit($event)"
+  (breakpoint)="breakpoint($event)"
+  (afterChange)="afterChange($event)"
+  (beforeChange)="beforeChange($event)">
+<div ngxSlickItem *ngFor="let slide of slides" class="slide">
+<img src="{{ slide.img }}" alt="" width="100%" height="200px">
+<div class="name">{{ slide.name }}</div>
+<div class="place">{{ slide.place }}</div>
+<button (click)="animalCard()">Ver perfil</button>
 </div>
-<div class="searcher">a</div>
-<div class="container"><ngu-carousel
-  #myCarousel
-  [inputs]="carouselTileConfig"
-  [dataSource]="carouselTileItems$ | async"
->
-  <ngu-tile *nguCarouselDef="let item; let i = index; let ani = animate">
-    <!-- [@slider]="ani" PLease this animation to this tile to see animation. stackblitz have error with animations -->
-    <div class="tile" [style.background]="'url(' + item + ')'">
-      <h1>{{ i + 1 }}</h1>
-    </div>
-  </ngu-tile>
+</ngx-slick-carousel>
 
-  <button
-    NguCarouselPrev
-    class="leftRs"
-    [style.opacity]="myCarousel.isFirst ? 0.5 : 1"
-  >
-    &lt;
-  </button>
-  <button
-    NguCarouselNext
-    class="rightRs"
-    [style.opacity]="myCarousel.isLast ? 0.5 : 1"
-  >
-    &gt;
-  </button>
-
-  <ul class="myPoint" NguCarouselPoint>
-    <li
-      *ngFor="let i of myCarousel.pointNumbers; let k = index"
-      [class.active]="i == myCarousel.activePoint"
-      (click)="myCarousel.moveTo(i)"
-    ></li>
-  </ul>
-</ngu-carousel></div>
-<div class="container"><ngu-carousel
-  #myCarousel
-  [inputs]="carouselTileConfig"
-  [dataSource]="carouselTileItems$ | async"
->
-  <ngu-tile *nguCarouselDef="let item; let i = index; let ani = animate">
-    <!-- [@slider]="ani" PLease this animation to this tile to see animation. stackblitz have error with animations -->
-    <div class="tile" [style.background]="'url(' + item + ')'">
-      <h1>{{ i + 1 }}</h1>
-    </div>
-  </ngu-tile>
-
-  <button
-    NguCarouselPrev
-    class="leftRs"
-    [style.opacity]="myCarousel.isFirst ? 0.5 : 1"
-  >
-    &lt;
-  </button>
-  <button
-    NguCarouselNext
-    class="rightRs"
-    [style.opacity]="myCarousel.isLast ? 0.5 : 1"
-  >
-    &gt;
-  </button>
-
-  <ul class="myPoint" NguCarouselPoint>
-    <li
-      *ngFor="let i of myCarousel.pointNumbers; let k = index"
-      [class.active]="i == myCarousel.activePoint"
-      (click)="myCarousel.moveTo(i)"
-    ></li>
-  </ul>
-</ngu-carousel></div>
-<!-- 
-  <div fxLayoutAlign="center center">
-    <mat-card class="example-card">
-      <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>Shiba Inu</mat-card-title>
-        <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-      </mat-card-header>
-      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-      <mat-card-content>
-        <p>
-          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-          A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-          bred for hunting.
-        </p>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-button>LIKE</button>
-        <button mat-button>SHARE</button>
-      </mat-card-actions>
-    </mat-card>
-  </div>
-  
-  <div fxLayoutAlign="center center">
-    <mat-card class="example-card">
-      <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>Shiba Inu</mat-card-title>
-        <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-      </mat-card-header>
-      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-      <mat-card-content>
-        <p>
-          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-          A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-          bred for hunting.
-        </p>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-button>LIKE</button>
-        <button mat-button>SHARE</button>
-      </mat-card-actions>
-    </mat-card>
-  </div>
-
-  <div fxLayoutAlign="center center">
-    <mat-card class="example-card">
-      <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>Shiba Inu</mat-card-title>
-        <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-      </mat-card-header>
-      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-      <mat-card-content>
-        <p>
-          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-          A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-          bred for hunting.
-        </p>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-button>LIKE</button>
-        <button mat-button>SHARE</button>
-      </mat-card-actions>
-    </mat-card>
-  </div>
-
-  
-
-  
-
-</div> -->
+<button (click)="addSlide()">Add</button>
+<button (click)="removeSlide()">Remove</button>

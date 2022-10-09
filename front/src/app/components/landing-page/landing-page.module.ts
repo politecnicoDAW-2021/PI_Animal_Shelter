@@ -16,6 +16,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { NguCarouselModule } from '@ngu/carousel';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 @NgModule({
   declarations: [LandingPageComponent],
@@ -31,7 +32,7 @@ import { NguCarouselModule } from '@ngu/carousel';
     MatSnackBarModule,
     MatToolbarModule,
     MatTooltipModule, MatCardModule,
-    MatCheckboxModule,[NguCarouselModule]
+    MatCheckboxModule,[NguCarouselModule],SlickCarouselModule
   ],
 })
 export class LandingPageModule {}

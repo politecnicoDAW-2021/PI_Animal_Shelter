@@ -14,7 +14,7 @@ import { LoginModule } from './components/login/login.module';
 import { LandingPageModule } from './components/landing-page/landing-page.module';
 import { AuthInterceptor } from './shared/interceptors/authconfig.interceptor';
 import { AuthService } from './services/auth.service';
-
+import 'hammerjs';
 @NgModule({
   declarations: [
     AppComponent,
