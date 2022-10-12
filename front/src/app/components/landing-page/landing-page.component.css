@@ -1,16 +1,63 @@
 .slick-slider {
-  width: 88%;
   margin: auto;
   background: rgb(210, 18, 18);
 }
-.carousel{
-  margin: calc();
+.carousel {
+  margin: 0px calc((100% - 1200px) / 2);
+  width: 1200px;
+  background-color: var(--blue2);
+  padding: 25px;
+  border-radius: 15px;
 }
-body .slick-prev, 
-body .slick-next {
-  height: 45px;
-  width: 40px;
-  background: grey !important;
-  z-index: 100;
+.carousel .slide {
+  margin: 0 10px;
+  background-color: var(--white);
+  width: 350px;
+  border-radius: 10px;
+  height: 340px;
 }
 
+.carousel .slide .info {
+  display: flex;
+  align-items: center;
+  margin-left: 25px;
+  margin-top: -9px;
+}
+.carousel .slide .info .name {
+  font-family: var(--font2);
+  color: var(--gray);
+  font-size: 24px;
+  font-weight: bold;
+}
+.carousel .slide .info .place {
+  font-family: var(--font2);
+  color: var(--gray);
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 6px;
+}
+.carousel .slide button {
+  width: 150px;
+  height: 40px;
+  border-radius: 5px;
+  border: none;
+  background: var(--blue);
+  margin: 46px calc((100% - 150px) / 2);
+  font-family: var(--font2);
+  font-weight: 600;
+  cursor: pointer;
+}
+.carousel .slide button:hover {
+  background: var(--darkblue);
+  transition: all 0.75s;
+}
+.carousel .slide img {
+  width: 220px;
+  height: 160px;
+  margin: 20px calc((100% - 220px px) / 2);
+  border-radius: 4px;
+}
+
+.slick-next {
+  right: 100px !important;
+}

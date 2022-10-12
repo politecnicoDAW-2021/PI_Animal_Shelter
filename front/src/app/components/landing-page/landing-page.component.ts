@@ -1,65 +1,57 @@
-
-
-import { Component, Input, OnInit, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  ChangeDetectorRef,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { Observable, interval } from 'rxjs';
 import { startWith, take, map } from 'rxjs/operators';
 import { NguCarouselConfig } from '@ngu/carousel';
 
-
-
 @Component({
   selector: 'app-landing-page',
-templateUrl: './landing-page.component.html',
- styleUrls: ['./landing-page.component.css'],
-
+  templateUrl: './landing-page.component.html',
+  styleUrls: ['./landing-page.component.css'],
 })
-
-export class LandingPageComponent  {
-
+export class LandingPageComponent {
   slides = [
-    {img: "assets/gato1.jpg",
-     name:"toby",
-     place: "Tarragona"},
-    {img: "assets/perro1.png",
-    name:"toby",
-    place: "Tarragona"},
-    {img: "assets/gato2.jpeg",
-    name:"toby",
-    place: "Tarragona"},
-    {img: "assets/perro2.jpg",
-    name:"toby",
-    place: "Tarragona"},
+    { img: 'assets/gato1.jpg', name: 'Toby', place: 'Tarragona' },
+    { img: 'assets/perro1.png', name: 'Toby', place: 'Tarragona' },
+    { img: 'assets/gato2.jpeg', name: 'Toby', place: 'Tarragona' },
+    { img: 'assets/perro2.jpg', name: 'Toby', place: 'Tarragona' },
+    { img: 'assets/perro1.png', name: 'Toby', place: 'Tarragona' },
+    { img: 'assets/gato2.jpeg', name: 'Toby', place: 'Tarragona' },
+    { img: 'assets/perro2.jpg', name: 'Toby', place: 'Tarragona' },
   ];
-  slideConfig = {"slidesToShow": 4, "slidesToScroll": 1};
-  
+  slideConfig = { slidesToShow: 4, slidesToScroll: 1 };
+
   addSlide() {
-    this.slides.push( 
-    {img: "assets/perro1.png",
-    name:"toby",
-    place: "Tarragona"},
-)
+    this.slides.push({
+      img: 'assets/perro1.png',
+      name: 'Toby',
+      place: 'Tarragona',
+    });
   }
-  
+
   removeSlide() {
     this.slides.length = this.slides.length - 1;
   }
-  
-  slickInit(e:any) {
+
+  slickInit(e: any) {
     console.log('slick initialized');
   }
-  
-  breakpoint(e:any) {
+
+  breakpoint(e: any) {
     console.log('breakpoint');
   }
-  
-  afterChange(e:any) {
+
+  afterChange(e: any) {
     console.log('afterChange');
   }
-  
-  beforeChange(e:any) {
+
+  beforeChange(e: any) {
     console.log('beforeChange');
   }
-  animalCard(){
-    
-  }
+  animalCard() {}
 }
