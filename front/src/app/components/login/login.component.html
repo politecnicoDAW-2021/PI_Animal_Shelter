@@ -47,6 +47,31 @@
     
                 <div>
                     <button mat-raised-button color="primary" (click)="login()" type="submit">Login</button>
+                    
+                        <button id="google" type="button" (click)="loginWithGoogle()" mat-flat-button color="primary" class="btn-block google-button">
+                            Login google
+                        </button>
+                        
+                            <div id="g_id_onload"
+                            data-client_id="107038177183-tfbn4vpe57du6invbfh2lbrubcpotpvt.apps.googleusercontent.com"
+                            data-context="signin"
+                            data-ux_mode="popup"
+                            data-callback="http://localhost:4200/login"
+                            data-itp_support="true">
+                        </div>
+
+                        <div class="g_id_signin"
+                            data-type="standard"
+                            data-shape="rectangular"
+                            data-theme="outline"
+                            data-text="signin_with"
+                            data-size="large"
+                            data-logo_alignment="left">
+                        </div>
+
+
+                        
+                    
                 </div>
     
             </form>
