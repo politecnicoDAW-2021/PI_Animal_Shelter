@@ -21,4 +21,41 @@ export class PasswordService {
       `select password from password where userId = '${condition.id}'`,
     );
   }
+
+  async findOneByGoogleId(condition: any): Promise<PasswordEntity | any> {
+    console.log('findOneByGoogleId', condition);
+
+    return await this.passwordRepository.findOneBy({ userId: condition });
+  }
+
+  async update(userId: any, condition: any): Promise<any> {
+    return await this.passwordRepository.update(
+      {
+        userId: userId,
+      },
+      {
+        google_tk: condition,
+      },
+    );
+  }
+
+  async findOneByGoogleTk(condition: any): Promise<PasswordEntity | any> {
+    return await this.passwordRepository.findOneBy({ google_tk: condition });
+  }
+
+  async findGoogleByUserId(condition: any): Promise<PasswordEntity | any> {
+    return await this.passwordRepository.findOneBy({
+      userId: condition,
+    });
+  }
+
+  async createWithGoogle(data: any): Promise<PasswordEntity> {
+    console.log('dataCreateWithGoogle', data);
+    console.log('data.uiser.id', data.user.id);
+
+    return await this.passwordRepository.save({
+      google_tk: data.google_tk,
+      userId: data.user.id,
+    });
+  }
 }
