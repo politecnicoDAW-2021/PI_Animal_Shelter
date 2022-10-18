@@ -1,64 +1,87 @@
 import { HttpBackend, HttpClient } from '@angular/common/http';
 import { Inject, Injectable, SkipSelf } from '@angular/core';
 import { Router } from '@angular/router';
-import { map, pipe } from 'rxjs';
-
+import { map, mergeMap, pipe, take } from 'rxjs';
+import {
+  GoogleLoginProvider,
+  SocialAuthService,
+} from '@abacritt/angularx-social-login';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
-  private httpLogin: HttpClient
-  endpoint: string = 'http://localhost:3000'
+  private httpLogin: HttpClient;
+  endpoint: string = 'http://localhost:3000';
+  googleLoginOptions = {
+    scope: 'profile email',
+  };
 
   constructor(
     private httpBack: HttpBackend,
     private http: HttpClient,
     private router: Router,
-  ) 
-  { 
-    this.httpLogin = new HttpClient(this.httpBack); 
+    private socialService: SocialAuthService
+  ) {
+    this.httpLogin = new HttpClient(this.httpBack);
   }
 
-  register(user: any){
-    return this.http.post(`${this.endpoint}/register`, user)
+  register(user: any) {
+    return this.http.post(`${this.endpoint}/register`, user);
   }
 
   login(user: any) {
-    return this.httpLogin
-      .post<any>(`${this.endpoint}/login`, user)
-      .pipe(
-        map(async (user) => {
-          if (user && user.access_token) { 
-            this.saveToken(user.access_token)
-            this.saveId(user.id)
-            this.saveUser(user.username)
-          }
-        })
-      );    
+    return this.httpLogin.post<any>(`${this.endpoint}/login`, user).pipe(
+      map(async (user) => {
+        if (user && user.access_token) {
+          this.saveToken(user.access_token);
+          this.saveId(user.id);
+          this.saveUser(user.username);
+        }
+      })
+    );
   }
 
-  saveToken(access_token: string){
-    localStorage.setItem('token', access_token)
+  async googleGet() {
+    const user = await this.socialService.signIn(
+      GoogleLoginProvider.PROVIDER_ID
+    );
+
+    console.log(user);
+
+    return this.http.post<any>(`${this.endpoint}/googleLogin`, user).pipe(
+      take(1),
+      mergeMap(() => this.setTokens(user.idToken))
+    );
+  }
+  saveToken(access_token: string) {
+    localStorage.setItem('token', access_token);
   }
 
-  saveUser(user: string){
-    localStorage.setItem('user', user)
+  saveUser(user: string) {
+    localStorage.setItem('user', user);
   }
 
-  saveId(id: any){
-    localStorage.setItem('id', id)
+  async setTokens(tokens: any) {
+    localStorage.setItem('token', tokens);
   }
 
-  getToken(){
-    return localStorage.getItem('token')
+  async setTokenGoogle(tokens: any) {
+    localStorage.setItem('token', tokens.authToken);
   }
 
-  isLoggedIn(){
-    const authToken = localStorage.getItem('token')
+  saveId(id: any) {
+    localStorage.setItem('id', id);
+  }
 
-    return authToken !== null
+  getToken() {
+    return localStorage.getItem('token');
+  }
+
+  isLoggedIn() {
+    const authToken = localStorage.getItem('token');
+
+    return authToken !== null;
   }
 
   logout() {
