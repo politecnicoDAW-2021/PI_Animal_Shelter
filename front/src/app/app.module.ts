@@ -1,33 +1,28 @@
+import {
+  SocialLoginModule,
+  GoogleLoginProvider,
+  SocialAuthServiceConfig,
+  SocialAuthService,
+} from '@abacritt/angularx-social-login';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { AnimalIndividualComponent } from './components/animal-individual/animal-individual.component';
-
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { RegisterModule } from './components/register/register.module';
-import { AboutMeModule } from './components/about-me/about-me.module';
-import { LoginModule } from './components/login/login.module';
+import { AnimalIndividualComponent } from './components/animal/animal-individual/animal-individual.component';
+import { LoginModule } from './components/auth/login/login.module';
+import { RegisterModule } from './components/auth/register/register.module';
 import { LandingPageModule } from './components/landing-page/landing-page.module';
-import { AuthInterceptor } from './shared/interceptors/authconfig.interceptor';
+import { AboutMeModule } from './components/user/about-me/about-me.module';
 import { AuthService } from './services/auth.service';
-import 'hammerjs';
-import {
-  GoogleLoginProvider,
-  SocialAuthService,
-  SocialAuthServiceConfig,
-  SocialLoginModule,
-} from '@abacritt/angularx-social-login';
+import { AuthInterceptor } from './shared/interceptors/authconfig.interceptor';
+
 @NgModule({
   declarations: [AppComponent, AnimalIndividualComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NoopAnimationsModule,
-    NoopAnimationsModule,
     RegisterModule,
     AboutMeModule,
     LoginModule,
