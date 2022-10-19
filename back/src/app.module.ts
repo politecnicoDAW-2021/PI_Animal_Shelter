@@ -32,8 +32,8 @@ import { AnimalModule } from './modules/animals/modules/animal.module';
       AnimalEntity,
     ]),
     UserModule,
-    AuthModule, 
-    AnimalModule
+    AuthModule,
+    AnimalModule,
   ],
   controllers: [AppController],
   providers: [AppService],
