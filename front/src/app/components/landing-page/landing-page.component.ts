@@ -54,4 +54,19 @@ export class LandingPageComponent {
     console.log('beforeChange');
   }
   animalCard() {}
+  menuHandler: boolean = true;
+  mdOptions: boolean = true;
+  search: boolean = true;
+  menuHandlerBtn() {
+    this.menuHandler = !this.menuHandler;
+  }
+  mdOptionsToggle() {
+    this.mdOptions = !this.mdOptions;
+  }
+  searchToggle() {
+    this.search = !this.search;
+  }
+  constructor() {}
+
+  ngOnInit(): void {}
 }
