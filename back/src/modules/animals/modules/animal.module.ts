@@ -1,4 +1,9 @@
-import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
+import {
+  MiddlewareConsumer,
+  Module,
+  NestModule,
+  RequestMethod,
+} from '@nestjs/common';
 import { JwtModule, JwtService } from '@nestjs/jwt';
 import { UserModule } from 'src/modules/users/user.module';
 import { ConfigModule } from '@nestjs/config';
@@ -9,17 +14,10 @@ import { AnimalEntity } from 'src/database/entities/animal/animal.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AnimalService } from '../services/animal.service';
 
-
-
 @Module({
-    imports: [
-        TypeOrmModule.forFeature([SpecieEntity])
-    ],
-    providers: [AnimalService,],
-    controllers: [AnimalController],
-    exports: [AnimalService]
+  imports: [TypeOrmModule.forFeature([SpecieEntity, AnimalEntity])],
+  providers: [AnimalService],
+  controllers: [AnimalController],
+  exports: [AnimalService],
 })
-export class AnimalModule{
-
-    
-}
+export class AnimalModule {}

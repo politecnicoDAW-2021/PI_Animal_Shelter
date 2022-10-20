@@ -1,23 +1,41 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { AnimalEntity } from 'src/database/entities/animal/animal.entity';
 import { SpecieEntity } from 'src/database/entities/animal/specie.entity';
-import { Repository } from 'typeorm';
+import { getConnection, Repository } from 'typeorm';
 
 @Injectable()
 export class AnimalService {
   constructor(
     @InjectRepository(SpecieEntity)
-    private readonly animalRepository: Repository<SpecieEntity>,
+    private readonly specieRepository: Repository<SpecieEntity>,
+    @InjectRepository(AnimalEntity)
+    private readonly animalRepository: Repository<AnimalEntity>,
   ) {}
 
-  async createDog(specie:any): Promise<SpecieEntity> {
-    return await this.animalRepository.save({name: specie,breed:'dog'});
+  async findDogs(): Promise<AnimalEntity[]> {
+    return await this.animalRepository
+      .createQueryBuilder('animal')
+      .innerJoinAndSelect(SpecieEntity, 'specie', 'specie.id=animal.specieId')
+      .where('breed="dog"')
+      .getMany();
   }
-  async createCat(specie:any): Promise<SpecieEntity> {
-    return await this.animalRepository.save({name: specie,breed:'cat'});
+  async findCats(): Promise<AnimalEntity[]> {
+    return await this.animalRepository
+      .createQueryBuilder('animal')
+      .innerJoinAndSelect(SpecieEntity, 'specie', 'specie.id=animal.specieId')
+      .where('breed="cat"')
+      .getMany();
   }
-  async createPrueba(specie:any): Promise<SpecieEntity> {
-    console.log('creating prueba',specie);
-    return await this.animalRepository.save({name: specie,breed:'other'});
+  async findAnimals(): Promise<AnimalEntity[]> {
+    return await this.animalRepository
+      .createQueryBuilder('animal')
+      .innerJoinAndSelect(SpecieEntity, 'specie', 'specie.id=animal.specieId')
+      .getMany();
+  }
+
+  async findAnimalById(id: any): Promise<AnimalEntity[]> {
+    console.log('findAnimalById', id);
+    return await this.animalRepository.findBy({ id: id });
   }
 }
