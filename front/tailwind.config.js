@@ -10,12 +10,17 @@ module.exports = {
   theme: {
     colors: {
       'gray-1': '#cdcdcd',
-      'gray-2': '#2e2e2e'
+      'gray-2': '#2e2e2e',
+      'white-1': '#f5f5f5'
     },
     fontFamily: {
       'fAwesome': '"FontAwesome"'
     },
     extend: {
+      backgroundImage: {
+        'login-bg': "url('src/assets/login_Background.png')",
+
+      }
     },
   },
   variants: {
