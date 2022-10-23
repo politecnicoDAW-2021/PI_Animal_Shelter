@@ -31,8 +31,11 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
     MatSelectModule,
     MatSnackBarModule,
     MatToolbarModule,
-    MatTooltipModule, MatCardModule,
-    MatCheckboxModule,[NguCarouselModule],SlickCarouselModule
+    MatTooltipModule,
+    MatCardModule,
+    MatCheckboxModule,
+    [NguCarouselModule],
+    SlickCarouselModule,
   ],
 })
 export class LandingPageModule {}

@@ -8,10 +8,18 @@ module.exports = {
   },
   darkMode: 'class', // or 'media' or 'class'
   theme: {
-    extend: {},
+    colors: {
+      'gray-1': '#cdcdcd',
+      'gray-2': '#2e2e2e'
+    },
+    fontFamily: {
+      'fAwesome': '"FontAwesome"'
+    },
+    extend: {
+    },
   },
   variants: {
     extend: {},
   },
-  plugins: [require('@tailwindcss/forms'),require('@tailwindcss/typography')],
+  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
 };

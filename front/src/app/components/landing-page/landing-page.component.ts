@@ -8,13 +8,14 @@ import {
 import { Observable, interval } from 'rxjs';
 import { startWith, take, map } from 'rxjs/operators';
 import { NguCarouselConfig } from '@ngu/carousel';
-
+import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.css'],
 })
 export class LandingPageComponent {
+  constructor(private authService: AuthService) {}
   slides = [
     { img: 'assets/gato1.jpg', name: 'Toby', place: 'Tarragona' },
     { img: 'assets/perro1.png', name: 'Toby', place: 'Tarragona' },
@@ -66,7 +67,10 @@ export class LandingPageComponent {
   searchToggle() {
     this.search = !this.search;
   }
-  constructor() {}
+
+  logOut() {
+    this.authService.logout();
+  }
 
   ngOnInit(): void {}
 }
