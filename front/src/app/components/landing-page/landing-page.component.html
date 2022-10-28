@@ -601,12 +601,12 @@
     (afterChange)="afterChange($event)"
     (beforeChange)="beforeChange($event)"
   >
-    <div ngxSlickItem *ngFor="let slide of slides" class="slide">
-      <img src="{{ slide.img }}" alt="" />
+    <div ngxSlickItem *ngFor="let animal of animals" class="slide">
+      <img alt="" />
       <div class="info">
-        <div class="name">{{ slide.name }}</div>
+        <div class="name">{{ animal.name }}</div>
 
-        <div class="place">, {{ slide.place }}</div>
+        <div class="place">, {{ animal.place }}</div>
       </div>
 
       <button (click)="animalCard()">Ver perfil</button>

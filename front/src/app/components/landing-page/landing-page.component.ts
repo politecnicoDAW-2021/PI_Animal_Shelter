@@ -9,34 +9,31 @@ import { Observable, interval } from 'rxjs';
 import { startWith, take, map } from 'rxjs/operators';
 import { NguCarouselConfig } from '@ngu/carousel';
 import { AuthService } from '../../services/auth.service';
+import { AnimalService } from '../../services/animal/animal.service';
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.css'],
 })
 export class LandingPageComponent {
-  constructor(private authService: AuthService) {}
-  slides = [
-    { img: 'assets/gato1.jpg', name: 'Toby', place: 'Tarragona' },
-    { img: 'assets/perro1.png', name: 'Toby', place: 'Tarragona' },
-    { img: 'assets/gato2.jpeg', name: 'Toby', place: 'Tarragona' },
-    { img: 'assets/perro2.jpg', name: 'Toby', place: 'Tarragona' },
-    { img: 'assets/perro1.png', name: 'Toby', place: 'Tarragona' },
-    { img: 'assets/gato2.jpeg', name: 'Toby', place: 'Tarragona' },
-    { img: 'assets/perro2.jpg', name: 'Toby', place: 'Tarragona' },
-  ];
+  constructor(
+    private authService: AuthService,
+    private animalService: AnimalService
+  ) {}
+  animals: any[] = [];
+
   slideConfig = { slidesToShow: 4, slidesToScroll: 1 };
 
+  ngOnInit(): void {
+    console.log('animal', this.getAnimals());
+  }
+
   addSlide() {
-    this.slides.push({
-      img: 'assets/perro1.png',
-      name: 'Toby',
-      place: 'Tarragona',
-    });
+    this.animals.push();
   }
 
   removeSlide() {
-    this.slides.length = this.slides.length - 1;
+    this.animals.length = this.animals.length - 1;
   }
 
   slickInit(e: any) {
@@ -72,5 +69,9 @@ export class LandingPageComponent {
     this.authService.logout();
   }
 
-  ngOnInit(): void {}
+  getAnimals() {
+    this.animalService
+      .getAnimals()
+      .subscribe((animals) => (this.animals = animals));
+  }
 }
