@@ -16,6 +16,7 @@ import { LandingPageModule } from './components/landing-page/landing-page.module
 import { AboutMeModule } from './components/user/about-me/about-me.module';
 import { AuthService } from './services/auth.service';
 import { AuthInterceptor } from './shared/interceptors/authconfig.interceptor';
+import { AnimalFormModule } from './components/animal/animal-form/animal-form.module';
 
 @NgModule({
   declarations: [AppComponent, AnimalIndividualComponent],
@@ -28,6 +29,7 @@ import { AuthInterceptor } from './shared/interceptors/authconfig.interceptor';
     LoginModule,
     LandingPageModule,
     SocialLoginModule,
+    AnimalFormModule,
   ],
   providers: [
     {

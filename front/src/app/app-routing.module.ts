@@ -42,6 +42,14 @@ const routes: Routes = [
             (m) => m.AboutMeModule
           ),
       },
+
+      {
+        path: 'animal-form',
+        loadChildren: () =>
+          import('./components/animal/animal-form/animal-form.module').then(
+            (m) => m.AnimalFormModule
+          ),
+      },
     ],
   },
 ];
