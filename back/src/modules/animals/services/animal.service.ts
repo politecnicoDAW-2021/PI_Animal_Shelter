@@ -38,4 +38,7 @@ export class AnimalService {
     console.log('findAnimalById', id);
     return await this.animalRepository.findBy({ id: id });
   }
+  async findBreeds(): Promise<SpecieEntity[]> {
+    return await this.specieRepository.find();
+  }
 }

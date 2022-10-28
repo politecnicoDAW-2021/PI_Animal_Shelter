@@ -29,4 +29,8 @@ export class AnimalController {
   async animalId(@Param('id') id: any) {
     return await this.animalService.findAnimalById(id);
   }
+  @Get('breeds')
+  async breed() {
+    return await this.animalService.findBreeds();
+  }
 }
