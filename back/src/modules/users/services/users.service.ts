@@ -28,4 +28,8 @@ export class UsersService {
   async findUserById(condition: any) {
     return await this.userRepository.findOneByOrFail({ id: condition });
   }
+
+  async findUserByEmail(condition: any) {
+    return await this.userRepository.findBy(condition);
+  }
 }
