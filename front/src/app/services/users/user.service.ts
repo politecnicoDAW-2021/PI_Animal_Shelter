@@ -3,17 +3,18 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
+  private endpoint: string = 'http://localhost:3000';
 
-  private endpoint: string = 'http://localhost:3000'
+  constructor(private http: HttpClient) {}
 
-  constructor(
-    private http: HttpClient
-  ) { }
-
-  findById(id: any): Observable<any[]>{
+  findById(id: any): Observable<any[]> {
     return this.http.get<any[]>(`${this.endpoint}/me/${id}`);
+  }
+
+  findByEmail(email: any): Observable<any[]> {
+    return this.http.get<any[]>(`${this.endpoint}/me/${email}`);
   }
 }
