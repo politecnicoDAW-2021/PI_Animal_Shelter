@@ -30,6 +30,13 @@
               required=""
             />
           </div>
+          <span
+            *ngIf="(this.loginForm.get('email')?.touched || submitted) && loginForm.get('email')?.errors?.['required']"
+            class="flex items-center font-medium tracking-wide text-xs text-red-900 mt-1 ml-1"
+          >
+            Invalid email!
+          </span>
+
           <div>
             <label
               for="password"
@@ -46,6 +53,12 @@
               required=""
             />
           </div>
+          <span
+            *ngIf="(this.loginForm.get('password')?.touched || submitted) && loginForm.get('password')?.errors?.['required']"
+            class="flex items-center font-medium tracking-wide text-xs text-red-900 mt-1 ml-1"
+          >
+            Invalid password!
+          </span>
           <div class="flex items-center justify-between">
             <div class="flex items-start">
               <button

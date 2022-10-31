@@ -1,13 +1,13 @@
-import {
-  GoogleLoginProvider,
-  SocialAuthService,
-} from '@abacritt/angularx-social-login';
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder } from '@angular/forms';
+import {
+  FormControl,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { first } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
-import { CredentialResponse, PromptMomentNotification } from 'google-one-tap';
 
 @Component({
   selector: 'app-login',
@@ -15,22 +15,32 @@ import { CredentialResponse, PromptMomentNotification } from 'google-one-tap';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  clientId: string = '';
-  handleCredentialResponse: any;
+  loginForm!: FormGroup;
+  email!: FormControl;
+  password!: FormControl;
+  submitted: boolean = false;
+
   constructor(
-    private fb: UntypedFormBuilder,
+    private fb: FormBuilder,
     private authService: AuthService,
     private router: Router
   ) {}
 
-  loginForm = this.fb.group({
-    email: [''],
-    password: [''],
-  });
+  ngOnInit(): void {
+    this.validators();
+    this.loginForm = this.fb.group({
+      email: this.email,
+      password: this.password,
+    });
+  }
 
-  ngOnInit(): void {}
+  validators() {
+    this.email = new FormControl('', [Validators.required, Validators.email]);
+    this.password = new FormControl('', [Validators.required]);
+  }
 
   login() {
+    this.submitted = true;
     return this.authService
       .login(this.loginForm.value)
       .pipe(first())
