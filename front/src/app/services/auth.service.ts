@@ -36,7 +36,7 @@ export class AuthService {
         if (user && user.access_token) {
           this.saveToken(user.access_token);
           this.saveId(user.id);
-          this.saveUser(user.username);
+          this.saveEmail(user.username);
         }
       })
     );
@@ -51,19 +51,20 @@ export class AuthService {
 
     return this.http.post<any>(`${this.endpoint}/googleLogin`, user).pipe(
       take(1),
-      mergeMap(() => this.setTokens(user.idToken))
+      mergeMap(() => this.setTokens(user.idToken, user.email))
     );
   }
   saveToken(access_token: string) {
     localStorage.setItem('token', access_token);
   }
 
-  saveUser(user: string) {
-    localStorage.setItem('user', user);
+  saveEmail(email: string) {
+    localStorage.setItem('email', email);
   }
 
-  async setTokens(tokens: any) {
+  async setTokens(tokens: any, email: any) {
     localStorage.setItem('token', tokens);
+    localStorage.setItem('email', email);
   }
 
   async setTokenGoogle(tokens: any) {

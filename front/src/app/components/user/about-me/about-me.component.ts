@@ -17,10 +17,10 @@ export class AboutMeComponent implements OnInit {
   }
 
   getUserInfo() {
-    const id = localStorage.getItem('id');
+    const email = localStorage.getItem('email');
 
     return this.userService
-      .findById(id)
+      .findByEmail(email)
       .subscribe((data) => (this.user = data));
   }
 }
