@@ -1,8 +1,8 @@
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { typeOrmConfig } from './config/typeOrm.config';
+import { typeOrmConfigAsync } from './config/typeOrm.config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Module } from '@nestjs/common';
+import { Logger, Module } from '@nestjs/common';
 
 import { AuthModule } from './auth/jwt/auth.module';
 import { UserModule } from './modules/users/user.module';
@@ -16,10 +16,15 @@ import { CreditCardEntity } from './database/entities/user/credit_card.entity';
 import { PasswordEntity } from './database/entities/user/password.entity';
 import { UserEntity } from './database/entities/user/user.entity';
 import { AnimalModule } from './modules/animals/modules/animal.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot(typeOrmConfig),
+    ConfigModule.forRoot({
+      envFilePath: ['.env'],
+      isGlobal: true,
+    }),
+    TypeOrmModule.forRootAsync(typeOrmConfigAsync),
     TypeOrmModule.forFeature([
       CreditCardEntity,
       PasswordEntity,
