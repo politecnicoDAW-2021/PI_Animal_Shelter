@@ -25,7 +25,8 @@ export class LandingPageComponent {
   slideConfig = { slidesToShow: 4, slidesToScroll: 1 };
 
   ngOnInit(): void {
-    console.log('animal', this.getAnimals());
+    this.getAnimals();
+    console.log('age: ' + this.getAge('2020-03-16'));
   }
 
   addSlide() {
@@ -51,10 +52,12 @@ export class LandingPageComponent {
   beforeChange(e: any) {
     console.log('beforeChange');
   }
+
   animalCard() {}
   menuHandler: boolean = true;
   mdOptions: boolean = true;
   search: boolean = true;
+
   menuHandlerBtn() {
     this.menuHandler = !this.menuHandler;
   }
@@ -70,8 +73,19 @@ export class LandingPageComponent {
   }
 
   getAnimals() {
-    this.animalService
+    return this.animalService
       .getAnimals()
       .subscribe((animals) => (this.animals = animals));
+  }
+
+  getAge(date: string) {
+    let today = new Date();
+    let birthDate = new Date(date);
+    let age = today.getFullYear() - birthDate.getFullYear();
+    let m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return age;
   }
 }
