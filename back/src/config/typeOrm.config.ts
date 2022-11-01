@@ -35,29 +35,6 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
 };
 
 export const typeOrmConfigAsync: TypeOrmModuleAsyncOptions = {
-  // type: 'mysql',
-  // // host: '146.59.155.183',
-  // // port: 3306,
-  // // username: 'lara',
-  // // password: '1838Cisñ!',
-  // // database: 'MoonPets',
-  // host: '146.59.155.183',
-  // port: 3306,
-  // username: process.env.DB_USER,
-  // password: process.env.PASSWORD,
-  // database: process.env.DATABASE,
-  // entities: [
-  //   CreditCardEntity,
-  //   PasswordEntity,
-  //   WishlistEntity,
-  //   UserEntity,
-  //   SocialMediaEntity,
-  //   ShelterEntity,
-  //   AnimalEntity,
-  //   SpecieEntity,
-  //   MediaEntity,
-  // ],
-  // synchronize: true,
   imports: [ConfigModule],
   inject: [ConfigService],
   useFactory: async (): Promise<TypeOrmModuleOptions> => {
