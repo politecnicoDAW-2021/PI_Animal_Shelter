@@ -84,10 +84,6 @@
     class="carousel"
     #slickModal="slick-carousel"
     [config]="slideConfig"
-    (init)="slickInit($event)"
-    (breakpoint)="breakpoint($event)"
-    (afterChange)="afterChange($event)"
-    (beforeChange)="beforeChange($event)"
   >
     <div ngxSlickItem *ngFor="let animal of animals" class="slide">
       <img alt="" />

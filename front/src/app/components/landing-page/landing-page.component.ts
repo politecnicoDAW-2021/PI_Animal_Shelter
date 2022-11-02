@@ -37,22 +37,6 @@ export class LandingPageComponent {
     this.animals.length = this.animals.length - 1;
   }
 
-  slickInit(e: any) {
-    console.log('slick initialized');
-  }
-
-  breakpoint(e: any) {
-    console.log('breakpoint');
-  }
-
-  afterChange(e: any) {
-    console.log('afterChange');
-  }
-
-  beforeChange(e: any) {
-    console.log('beforeChange');
-  }
-
   animalCard() {}
   menuHandler: boolean = true;
   mdOptions: boolean = true;
