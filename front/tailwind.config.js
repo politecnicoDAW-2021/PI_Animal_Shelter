@@ -15,22 +15,31 @@ module.exports = {
       'green-primary': '#395144',
       'green-secundary': '#4E6C50',
       'brown-primary': '#AA8B56',
-      'brown-secundary': '#F0EBCE'
+      'brown-secundary': '#F0EBCE',
+      'green-700': '#395144',
+      'green-800': '#4d6e5c',
+      'button': 'white'
     },
     fontFamily: {
-      'fAwesome': '"FontAwesome"'
+      'fAwesome': '"FontAwesome"',
+      'title': 'Bowlby One SC',
+      'text': 'Nunito Sans'
     },
     extend: {
       backgroundImage: {
         'login-bg': "url('src/assets/login_Background.png')",
-        'hero-gradient': "linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 87%, rgba(255,255,255,1) 95%);",
-        //'hero': "https://media.istockphoto.com/photos/happy-smiling-pet-dog-puppy-web-banner-with-copy-space-picture-id1024626456?b=1&k=20&m=1024626456&s=170667a&w=0&h=a1QAyqA7nWgyon4dPeAwHD_d2kTK4p_Uj9z8k547Mws="
+        'hero-gradient': "linear-gradient(270deg, rgba(255,255,255,0.9528186274509804) 4%, rgba(255,255,255,0.6951155462184874) 15%, rgba(255,255,255,0) 100%)",
+        //'hero-gradient': "linear-gradient(90deg, rgba(255,255,255,0.9416141456582633) 0%, rgba(255,255,255,0.7287289915966386) 10%, rgba(255,255,255,0.16850490196078427) 55%, rgba(255,255,255,0) 100%);",
       },
       width: {
         'w-hero': '100%',
       },
       height: {
-        'h-hero': '41rem',
+        'h-hero': '35rem',
+      },
+      spacing: {
+        't-text': '15.5rem',
+        'r-text': '20rem'
       }
     },
   },
