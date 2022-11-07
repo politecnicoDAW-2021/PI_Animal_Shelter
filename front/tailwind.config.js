@@ -33,13 +33,16 @@ module.exports = {
       },
       width: {
         'w-hero': '100%',
+        'carousel': '1500px'
       },
       height: {
         'h-hero': '35rem',
+        'carousel': '40rem'
       },
       spacing: {
         't-text': '15.5rem',
-        'r-text': '20rem'
+        'r-text': '20rem',
+        'carousel': '0 calc((100% - 1500px)/2)'
       }
     },
   },
