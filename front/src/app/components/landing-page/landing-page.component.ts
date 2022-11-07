@@ -21,35 +21,14 @@ export class LandingPageComponent {
     private animalService: AnimalService
   ) {}
   animals: any[] = [];
-
-  slideConfig = { slidesToShow: 4, slidesToScroll: 1 };
+  slider: any;
+  defaultTransform: any;
 
   ngOnInit(): void {
     this.getAnimals();
-    console.log('age: ' + this.getAge('2020-03-16'));
-  }
-
-  addSlide() {
-    this.animals.push();
-  }
-
-  removeSlide() {
-    this.animals.length = this.animals.length - 1;
-  }
-
-  animalCard() {}
-  menuHandler: boolean = true;
-  mdOptions: boolean = true;
-  search: boolean = true;
-
-  menuHandlerBtn() {
-    this.menuHandler = !this.menuHandler;
-  }
-  mdOptionsToggle() {
-    this.mdOptions = !this.mdOptions;
-  }
-  searchToggle() {
-    this.search = !this.search;
+    //console.log('age: ' + this.getAge('2020-03-16'));
+    this.slider = document.getElementById('slider');
+    this.defaultTransform = 0;
   }
 
   logOut() {
@@ -71,5 +50,17 @@ export class LandingPageComponent {
       age--;
     }
     return age;
+  }
+
+  goNext() {
+    this.defaultTransform = this.defaultTransform - 398;
+    if (Math.abs(this.defaultTransform) >= this.slider.scrollWidth / 1.7)
+      this.defaultTransform = 0;
+    this.slider.style.transform = 'translateX(' + this.defaultTransform + 'px)';
+  }
+  goPrev() {
+    if (Math.abs(this.defaultTransform) === 0) this.defaultTransform = 0;
+    else this.defaultTransform = this.defaultTransform + 398;
+    this.slider.style.transform = 'translateX(' + this.defaultTransform + 'px)';
   }
 }
