@@ -35,17 +35,18 @@ export class AnimalsLandingComponent implements OnInit {
     return age;
   };
 
-  goNext(id: any) {
+  goNext = (id: any) => {
     this.slider = document.getElementById(id);
     this.defaultTransform = this.defaultTransform - 398;
     if (Math.abs(this.defaultTransform) >= this.slider.scrollWidth / 1.7)
       this.defaultTransform = 0;
     this.slider.style.transform = 'translateX(' + this.defaultTransform + 'px)';
-  }
-  goPrev(id: any) {
+  };
+
+  goPrev = (id: any) => {
     this.slider = document.getElementById(id);
     if (Math.abs(this.defaultTransform) === 0) this.defaultTransform = 0;
     else this.defaultTransform = this.defaultTransform + 398;
     this.slider.style.transform = 'translateX(' + this.defaultTransform + 'px)';
-  }
+  };
 }
