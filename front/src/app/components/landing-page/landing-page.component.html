@@ -1,5 +1,5 @@
 <nav
-  class="bg-white border-gray-200 mx-w-screen-xl bg-green-primary h-16 px-2 sm:px-4 py-2.5 rounded"
+  class="bg-white border-gray-200 mx-w-screen-xl bg-green-primary h-16 px-2 sm:px-4 py-2.5"
 >
   <div
     class="container flex justify-evenly flex-wrap absolute -top-4 text-brown-secundary items-center mx-auto"
@@ -39,7 +39,7 @@
     </button>
     <div class="hidden w-full md:block md:w-auto" id="navbar-default">
       <ul
-        class="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
+        class="flex flex-col p-4 mt-4 bg-gray-50 -lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
       >
         <li>
           <a
@@ -134,7 +134,7 @@
     <button
       aria-label="slide backward"
       class="absolute z-30 left-0 ml-8 focus:outline-none focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 cursor-pointer"
-      (click)="goPrev()"
+      (click)="goPrev('slider')"
     >
       <svg
         width="8"
@@ -206,7 +206,7 @@
     <button
       aria-label="slide forward"
       class="absolute z-30 right-0 mr-8 focus:outline-none focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400"
-      (click)="goNext()"
+      (click)="goNext('slider')"
     >
       <svg
         width="8"
@@ -236,7 +236,7 @@
     <button
       aria-label="slide backward"
       class="absolute z-30 left-0 ml-8 focus:outline-none focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 cursor-pointer"
-      (click)="goPrev()"
+      (click)="goPrev('slider_geo')"
     >
       <svg
         width="8"
@@ -256,7 +256,7 @@
     </button>
     <div class="w-full h-full mx-auto overflow-x-hidden overflow-y-hidden">
       <div
-        id="slider"
+        id="slider_geo"
         class="h-full flex lg:gap-8 md:gap-6 gap-14 items-center justify-start transition ease-out duration-700"
       >
         <div
@@ -308,7 +308,7 @@
     <button
       aria-label="slide forward"
       class="absolute z-30 right-0 mr-8 focus:outline-none focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400"
-      (click)="goNext()"
+      (click)="goNext('slider_geo')"
     >
       <svg
         width="8"
