@@ -16,8 +16,10 @@ module.exports = {
       'green-secundary': '#4E6C50',
       'brown-primary': '#AA8B56',
       'brown-secundary': '#F0EBCE',
+      'brown-tertiary': '#aa8b56b8',
       'green-700': '#395144',
       'green-800': '#4d6e5c',
+      'gray': '#c2bbba8c',
       'button': 'white'
     },
     fontFamily: {
@@ -37,12 +39,19 @@ module.exports = {
       },
       height: {
         'h-hero': '35rem',
-        'carousel': '40rem'
+        'carousel': '18rem',
+        'card': '27rem'
       },
       spacing: {
         't-text': '15.5rem',
         'r-text': '20rem',
-        'carousel': '0 calc((100% - 1500px)/2)'
+        'carousel': '0 calc((100% - 1500px)/2)',
+        'name': '19rem'
+      },
+      fontSize: {
+        'text-name': ['1.5rem', {
+          fontWeight: '600',
+        }]
       }
     },
   },
