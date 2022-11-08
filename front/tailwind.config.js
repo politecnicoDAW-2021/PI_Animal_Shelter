@@ -28,7 +28,7 @@ module.exports = {
     extend: {
       backgroundImage: {
         'login-bg': "url('src/assets/login_Background.png')",
-        'hero-gradient': "linear-gradient(270deg, rgba(255,255,255,0.9528186274509804) 4%, rgba(255,255,255,0.6951155462184874) 15%, rgba(255,255,255,0) 100%)",
+        'hero-gradient': " linear-gradient(270deg, rgba(255,255,255,1) 4%, rgba(255,255,255,0.7903536414565826) 15%, rgba(255,255,255,0.6951155462184874) 33%, rgba(255,255,255,0) 47%, rgba(255,255,255,0) 62%, rgba(255,255,255,0) 80%, rgba(255,255,255,0) 92%);",
         //'hero-gradient': "linear-gradient(90deg, rgba(255,255,255,0.9416141456582633) 0%, rgba(255,255,255,0.7287289915966386) 10%, rgba(255,255,255,0.16850490196078427) 55%, rgba(255,255,255,0) 100%);",
       },
       width: {
