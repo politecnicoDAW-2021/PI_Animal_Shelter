@@ -17,7 +17,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { NguCarouselModule } from '@ngu/carousel';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
-import { AnimalsLandingComponent } from '../animals-landing/animals-landing.component';
+import { AnimalsLandingComponent } from '../general/animals-landing/animals-landing.component';
 
 @NgModule({
   declarations: [LandingPageComponent, AnimalsLandingComponent],
