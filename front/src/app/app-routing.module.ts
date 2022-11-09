@@ -50,6 +50,14 @@ const routes: Routes = [
             (m) => m.AnimalFormModule
           ),
       },
+
+      {
+        path: 'animal-section',
+        loadChildren: () =>
+          import(
+            './components/animal/animal-section/animal-section.module'
+          ).then((m) => m.AnimalSectionModule),
+      },
     ],
   },
 ];
