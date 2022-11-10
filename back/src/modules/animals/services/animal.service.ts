@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { AnimalEntity } from 'src/database/entities/animal/animal.entity';
 import { SpecieEntity } from 'src/database/entities/animal/specie.entity';
-import { getConnection, Repository } from 'typeorm';
+import { getConnection, ObjectLiteral, Repository } from 'typeorm';
 
 @Injectable()
 export class AnimalService {
@@ -20,6 +20,7 @@ export class AnimalService {
       .where('breed="dog"')
       .getMany();
   }
+
   async findCats(): Promise<AnimalEntity[]> {
     return await this.animalRepository
       .createQueryBuilder('animal')
@@ -27,10 +28,19 @@ export class AnimalService {
       .where('breed="cat"')
       .getMany();
   }
+
   async findAnimals(): Promise<AnimalEntity[]> {
     return await this.animalRepository
       .createQueryBuilder('animal')
       .innerJoinAndSelect(SpecieEntity, 'specie', 'specie.id=animal.specieId')
+      .getMany();
+  }
+
+  async findAnimalsByBreed(breed: ObjectLiteral): Promise<AnimalEntity[]> {
+    return await this.animalRepository
+      .createQueryBuilder('animal')
+      .innerJoinAndSelect(SpecieEntity, 'specie', 'specie.id=animal.specieId')
+      .where(`breed = "${breed}"`)
       .getMany();
   }
 

@@ -6,20 +6,13 @@ import {
   Request,
   Param,
 } from '@nestjs/common';
+import { ObjectLiteral } from 'typeorm';
 import { AnimalService } from '../services/animal.service';
 
 @Controller()
 export class AnimalController {
   constructor(private readonly animalService: AnimalService) {}
 
-  @Get('dogs')
-  async dogs() {
-    return await this.animalService.findDogs();
-  }
-  @Get('cats')
-  async cats() {
-    return await this.animalService.findCats();
-  }
   @Get('animals')
   async animals() {
     return await this.animalService.findAnimals();
@@ -29,8 +22,16 @@ export class AnimalController {
   async animalId(@Param('id') id: any) {
     return await this.animalService.findAnimalById(id);
   }
+
   @Get('breeds')
   async breed() {
     return await this.animalService.findBreeds();
+  }
+
+  @Get('animal-breed/:breed')
+  async animalByBreed(@Param('breed') breed: ObjectLiteral) {
+    console.log('controller -> breed', breed);
+
+    return await this.animalService.findAnimalsByBreed(breed);
   }
 }
