@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AnimalService } from 'src/app/services/animal/animal.service';
+import { AnimalService } from '@services/animal/animal.service';
 
 @Component({
   selector: 'app-animal-section',
@@ -17,7 +17,7 @@ export class AnimalSectionComponent implements OnInit {
 
   getAnimals = () => {
     return this.animalService
-      .getAnimals()
+      .getAnimalByBreed('dog')
       .subscribe((animals) => (this.animals = animals));
   };
 
