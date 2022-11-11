@@ -10,10 +10,15 @@ export class AnimalService {
 
   constructor(private http: HttpClient) {}
 
-  getAnimals(): Observable<any[]> {
+  getAnimals = (): Observable<any[]> => {
     return this.http.get<any[]>(`${this.endpoint}/animals`);
-  }
-  getBreeds(): Observable<any[]> {
+  };
+
+  getBreeds = (): Observable<any[]> => {
     return this.http.get<any[]>(`${this.endpoint}/breeds`);
-  }
+  };
+
+  getAnimalByBreed = (breed: string) => {
+    return this.http.get<any[]>(`${this.endpoint}/animal-breed/${breed}`);
+  };
 }
