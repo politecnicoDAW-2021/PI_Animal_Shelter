@@ -13,7 +13,7 @@ import { LocalStrategy } from './strategies/local.strategy';
 import { ConfigModule } from '@nestjs/config';
 import { PassportModule } from '@nestjs/passport';
 import { AuthMiddleware } from './middleware/auth.middleware';
-import { GoogleAuthService } from '../google/google-auth.service';
+//import { GoogleAuthService } from '../google/google-auth.service';
 
 @Module({
   imports: [
@@ -37,13 +37,16 @@ import { GoogleAuthService } from '../google/google-auth.service';
   ],
   providers: [
     AuthService,
-    GoogleAuthService,
+    //GoogleAuthService,
     JwtService,
     LocalStrategy,
     JwtStrategy,
   ],
   controllers: [AuthController],
-  exports: [AuthService, GoogleAuthService],
+  exports: [
+    AuthService,
+    //GoogleAuthService
+  ],
 })
 export class AuthModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
