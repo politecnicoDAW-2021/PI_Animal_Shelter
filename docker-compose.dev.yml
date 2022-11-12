@@ -1,0 +1,25 @@
+version: '3.3'
+services:
+  back: 
+    build: 
+      dockerfile: Dockerfile
+      context: ./back
+      target: development
+    command: npm run start:dev
+    volumes:
+      - ./back:/back/src/
+      - /back/src/node_modules/
+    ports:
+      - 3000:3000
+  front:
+    build:
+      dockerfile: Dockerfile
+      context: ./front
+      target: development
+    command: npm run start
+    volumes: 
+      - ./front:/front/src/app
+      - /front/src/app/node_modules
+    ports:
+      - 4200:4200 
+          
