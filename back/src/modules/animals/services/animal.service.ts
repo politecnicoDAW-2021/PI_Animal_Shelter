@@ -36,18 +36,33 @@ export class AnimalService {
       .getMany();
   }
 
-  async findAnimalsByBreed(breed: ObjectLiteral): Promise<AnimalEntity[]> {
-    return await this.animalRepository
+  async findAnimalsByFilters(
+    breed: ObjectLiteral,
+    gender: ObjectLiteral,
+  ): Promise<AnimalEntity[]> {
+    const animals = this.animalRepository
       .createQueryBuilder('animal')
-      .innerJoinAndSelect(SpecieEntity, 'specie', 'specie.id=animal.specieId')
-      .where(`breed = "${breed}"`)
-      .getMany();
+      .innerJoinAndSelect(SpecieEntity, 'specie', 'specie.id=animal.specieId');
+
+    if (breed && gender) {
+      animals.where(`gender = "${gender}"`).andWhere(`breed = "${breed}"`);
+      return animals.getMany();
+    }
+
+    if (!breed) {
+      return animals.where(`gender = "${gender}"`).getMany();
+    }
+
+    if (!gender) {
+      return animals.where(`breed = "${breed}"`).getMany();
+    }
   }
 
   async findAnimalById(id: any): Promise<AnimalEntity[]> {
     console.log('findAnimalById', id);
     return await this.animalRepository.findBy({ id: id });
   }
+
   async findBreeds(): Promise<SpecieEntity[]> {
     return await this.specieRepository.find();
   }

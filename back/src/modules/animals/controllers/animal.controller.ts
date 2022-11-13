@@ -5,7 +5,9 @@ import {
   UseGuards,
   Request,
   Param,
+  Query,
 } from '@nestjs/common';
+import { ApiParam, ApiQuery } from '@nestjs/swagger';
 import { ObjectLiteral } from 'typeorm';
 import { AnimalService } from '../services/animal.service';
 
@@ -28,10 +30,27 @@ export class AnimalController {
     return await this.animalService.findBreeds();
   }
 
-  @Get('animal-breed/:breed')
-  async animalByBreed(@Param('breed') breed: ObjectLiteral) {
-    console.log('controller -> breed', breed);
+  //@Get('animal-breed/:breed')
+  //@Get('animal-breed?')
 
-    return await this.animalService.findAnimalsByBreed(breed);
+  // @ApiQuery({
+  //   name: 'breed',
+  //   type: String,
+  //   required: false,
+  // })
+  // @ApiQuery({
+  //   name: 'gender',
+  //   type: String,
+  //   required: false,
+  // })
+  @Get('animal-breed?')
+  async animalByBreed(
+    @Query('breed') breed: ObjectLiteral,
+    @Query('gender') gender: ObjectLiteral,
+  ) {
+    console.log('controller -> breed', breed);
+    console.log('controller -> gender', gender);
+
+    return await this.animalService.findAnimalsByFilters(breed, gender);
   }
 }
