@@ -2,7 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { AnimalEntity } from 'src/database/entities/animal/animal.entity';
 import { SpecieEntity } from 'src/database/entities/animal/specie.entity';
-import { getConnection, ObjectLiteral, Repository } from 'typeorm';
+import { ShelterEntity } from 'src/database/entities/shelter/shelter.entity';
+import { ObjectLiteral, Repository } from 'typeorm';
 
 @Injectable()
 export class AnimalService {
@@ -39,13 +40,22 @@ export class AnimalService {
   async findAnimalsByFilters(
     breed: ObjectLiteral,
     gender: ObjectLiteral,
+    city: ObjectLiteral,
   ): Promise<AnimalEntity[]> {
     const animals = this.animalRepository
       .createQueryBuilder('animal')
-      .innerJoinAndSelect(SpecieEntity, 'specie', 'specie.id=animal.specieId');
+      .innerJoinAndSelect(SpecieEntity, 'specie', 'specie.id=animal.specieId')
+      .innerJoinAndSelect(
+        ShelterEntity,
+        'shelter',
+        'shelter.id=animal.shelterId',
+      );
 
-    if (breed && gender) {
-      animals.where(`gender = "${gender}"`).andWhere(`breed = "${breed}"`);
+    if (breed && gender && city) {
+      animals
+        .where(`gender = "${gender}"`)
+        .andWhere(`breed = "${breed}"`)
+        .andWhere(`city = "${city}"`);
       return animals.getMany();
     }
 
