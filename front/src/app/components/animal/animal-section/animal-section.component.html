@@ -1,5 +1,4 @@
-
-  <div class="flex flex-wrap flex-row justify-center gap-5">
+<div class="flex flex-wrap flex-row justify-center gap-5">
   <div 
     class="bg-gray-100 max-w-fit"
     *ngFor="let animal of animals"
@@ -8,11 +7,11 @@
       <img class="rounded-xl" src="../../../../assets/perro2.jpg" alt="" />
       <div class="flex justify-between items-center mt-1">
         <div>
-          <h1 class="mt-5 text-2xl font-semibold">{{animal.name}}</h1>
-          <p class="mt-2">{{this.getAge(animal.birthdate)}} años</p>
+          <h1 class="mt-5 text-2xl text-black font-semibold">{{animal.name}}</h1>
+          <p class="mt-2 text-gray-2">{{this.getAge(animal.birthdate)}} años</p>
         </div>
         <div>
-          <button class="text-white text-md font-semibold bg-green-400 py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition duration-500 transform-gpu hover:scale-110 ">
+          <button class="text-white text-md font-semibold bg-green-400 py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition duration-500 hover:scale-110 ">
             Ver detalles
           </button>
         </div>

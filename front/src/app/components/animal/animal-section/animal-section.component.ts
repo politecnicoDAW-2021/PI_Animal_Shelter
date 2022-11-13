@@ -17,7 +17,7 @@ export class AnimalSectionComponent implements OnInit {
 
   getAnimals = () => {
     return this.animalService
-      .getAnimalByBreed('dog')
+      .getAnimalByParams('dog', 'male', 'Malaga')
       .subscribe((animals) => (this.animals = animals));
   };
 
