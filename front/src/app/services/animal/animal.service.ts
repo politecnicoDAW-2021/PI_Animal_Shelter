@@ -18,7 +18,9 @@ export class AnimalService {
     return this.http.get<any[]>(`${this.endpoint}/breeds`);
   };
 
-  getAnimalByBreed = (breed: string) => {
-    return this.http.get<any[]>(`${this.endpoint}/animal-breed/${breed}`);
+  getAnimalByParams = (breed: string, gender: string, city: string) => {
+    return this.http.get<any[]>(
+      `${this.endpoint}/animal-filters?breed=${breed}&gender=${gender}&city=${city}`
+    );
   };
 }
