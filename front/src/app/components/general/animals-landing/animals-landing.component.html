@@ -44,13 +44,15 @@
           <div
             class="bg-brown-tertiary bg-opacity-30 absolute w-full h-full p-6"
           >
-            <div class="flex h-full items-end pb-6">
-              <h3
-                class="text-text-name lg:text-card font-semibold leading-5 lg:leading-6 text-white absolute top-name"
+            <div class="h-full items-end pb-6 font-text">
+              <div
+                class="text-text-name text-2xl text-text-black text-card lg:text-card font-bold leading-5 lg:leading-6 absolute top-name"
               >
-                {{ animal.name }}, {{ getAge(animal.birthdate) }},
+                {{ animal.name }}, {{ getAge(animal.birthdate) }}
+              </div>
+              <div class="description line-clamp-3 font-bold mt-80">
                 {{ animal.description }}
-              </h3>
+              </div>
             </div>
           </div>
         </div>
