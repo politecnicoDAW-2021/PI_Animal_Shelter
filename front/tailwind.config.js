@@ -11,6 +11,7 @@ module.exports = {
     colors: {
       'gray-1': '#cdcdcd',
       'gray-2': '#2e2e2e',
+      'gray': '#c2bbba8c',
       'white-1': '#f5f5f5',
       'green-primary': '#395144',
       'green-secundary': '#4E6C50',
@@ -19,8 +20,8 @@ module.exports = {
       'brown-tertiary': '#aa8b56b8',
       'green-700': '#395144',
       'green-800': '#4d6e5c',
-      'gray': '#c2bbba8c',
-      'button': 'white'
+      'button': 'white',
+      'text-black': '#1e1e1e'
     },
     fontFamily: {
       'fAwesome': '"FontAwesome"',
@@ -28,6 +29,7 @@ module.exports = {
       'text': 'Nunito Sans'
     },
     extend: {
+      display: ['                                            '],
       backgroundImage: {
         'login-bg': "url('src/assets/login_Background.png')",
         'hero-gradient': " linear-gradient(270deg, rgba(255,255,255,1) 4%, rgba(255,255,255,0.7903536414565826) 15%, rgba(255,255,255,0.6951155462184874) 33%, rgba(255,255,255,0) 47%, rgba(255,255,255,0) 62%, rgba(255,255,255,0) 80%, rgba(255,255,255,0) 92%);",
@@ -35,7 +37,8 @@ module.exports = {
       },
       width: {
         'w-hero': '100%',
-        'carousel': '1500px'
+        'carousel': '1500px',
+        'description': '323px'
       },
       height: {
         'h-hero': '35rem',
@@ -46,17 +49,14 @@ module.exports = {
         't-text': '15.5rem',
         'r-text': '20rem',
         'carousel': '0 calc((100% - 1500px)/2)',
-        'name': '19rem'
-      },
-      fontSize: {
-        'text-name': ['1.5rem', {
-          fontWeight: '600',
-        }]
+        'name': '19rem',
+        'description': '340px',
+        'm-description': '30px calc((100% - 19rem)/2)'
       }
     },
   },
   variants: {
     extend: {},
   },
-  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
+  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography'), require('@tailwindcss/line-clamp')],
 };
