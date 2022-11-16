@@ -1,40 +1,11 @@
-import {
-  Controller,
-  Get,
-  Post,
-  UseGuards,
-  Request,
-  Param,
-  Query,
-} from '@nestjs/common';
-import { ObjectLiteral } from 'typeorm';
+import { Controller, Get, Post, Query } from '@nestjs/common';
 import { AnimalService } from '../services/animal.service';
 
-@Controller()
+@Controller('animal')
 export class AnimalController {
   constructor(private readonly animalService: AnimalService) {}
-
-  @Get('animals')
-  async animals() {
-    return await this.animalService.findAnimals();
-  }
-
-  @Get('animal/:id')
-  async animalId(@Param('id') id: any) {
-    return await this.animalService.findAnimalById(id);
-  }
-
-  @Get('breeds')
-  async breed() {
-    return await this.animalService.findBreeds();
-  }
-
-  @Get('animal-breed?')
-  async animalByBreed(
-    @Query('breed') breed: ObjectLiteral,
-    @Query('gender') gender: ObjectLiteral,
-    @Query('city') city: ObjectLiteral,
-  ) {
-    return await this.animalService.findAnimalsByFilters(breed, gender, city);
+  @Get()
+  async findAll(@Query() query: any) {
+    return this.animalService.findAll(query);
   }
 }
