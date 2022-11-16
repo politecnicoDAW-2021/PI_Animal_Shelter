@@ -12,7 +12,10 @@ export class AnimalService {
     @InjectRepository(AnimalEntity)
     private readonly animalRepository: Repository<AnimalEntity>,
   ) {}
-
+  async findBreeds(): Promise<SpecieEntity[]> {
+    return await this.specieRepository.find();
+  }
+  endpoint;
   async findAll(query: any) {
     return await this.animalRepository.findBy({
       id: query.id,
