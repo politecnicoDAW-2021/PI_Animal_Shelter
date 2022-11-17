@@ -15,7 +15,6 @@ export class AnimalService {
   async findBreeds(): Promise<SpecieEntity[]> {
     return await this.specieRepository.find();
   }
-  endpoint;
   async findAll(query: any) {
     return await this.animalRepository.findBy({
       id: query.id,
