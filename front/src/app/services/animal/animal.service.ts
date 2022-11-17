@@ -6,21 +6,32 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AnimalService {
-  private endpoint: string = 'http://localhost:3000';
+  private endpoint: string = 'http://localhost:3000/animal';
+  private endpointBreeds: string = 'http://localhost:3000/breeds';
 
   constructor(private http: HttpClient) {}
 
-  getAnimals = (): Observable<any[]> => {
-    return this.http.get<any[]>(`${this.endpoint}/animals`);
-  };
-
   getBreeds = (): Observable<any[]> => {
-    return this.http.get<any[]>(`${this.endpoint}/breeds`);
+    return this.http.get<any[]>(`${this.endpointBreeds}`);
   };
 
-  getAnimalByParams = (breed: string, gender: string, city: string) => {
-    return this.http.get<any[]>(
-      `${this.endpoint}/animal-breed?breed=${breed}&gender=${gender}&city=${city}`
-    );
+  getAnimalByParams = (params: any) => {
+    let query = '';
+    const asArray = Object.entries(params);
+    params = asArray.filter(([key, value]) => {
+      return value !== undefined;
+    });
+    if (params.length) {
+      console.log(params);
+      query = Object.keys(params)
+        .reduce(function (accumulator, key) {
+          return accumulator != '?'
+            ? accumulator.toString() + '&' + params[key].toString()
+            : accumulator.toString() + params[key].toString();
+        }, '?')
+        .replace(/,/g, '=');
+    }
+    console.log(query);
+    return this.http.get<any[]>(`${this.endpoint}${query}`);
   };
 }
