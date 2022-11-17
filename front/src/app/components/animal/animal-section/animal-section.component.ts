@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { AnimalService } from '@services/animal/animal.service';
+import { map, startWith } from 'rxjs';
 
 @Component({
   selector: 'app-animal-section',
@@ -8,16 +10,28 @@ import { AnimalService } from '@services/animal/animal.service';
 })
 export class AnimalSectionComponent implements OnInit {
   animals: any[] = [];
+  options: any[] = [];
+  filteredOptions: any;
+  myControl = new FormControl('');
 
   constructor(private animalService: AnimalService) {}
 
   ngOnInit(): void {
     this.getAnimals();
+    let form: any = document.getElementById('login');
+    this.getBreeds();
+    this.filteredOptions = this.myControl.valueChanges.pipe(
+      startWith(''),
+      map((value) => this._filter(value || ''))
+    );
   }
 
   getAnimals = () => {
     return this.animalService
-      .getAnimalByParams('dog', 'male', 'Malaga')
+      .getAnimalByParams({
+        breed: 'dog',
+        gender: 'female',
+      })
       .subscribe((animals) => (this.animals = animals));
   };
 
@@ -31,4 +45,17 @@ export class AnimalSectionComponent implements OnInit {
     }
     return age;
   };
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.options.filter((option) =>
+      option.name.toLowerCase().includes(filterValue)
+    );
+  }
+
+  getBreeds() {
+    this.animalService
+      .getBreeds()
+      .subscribe((animals) => (this.options = animals));
+  }
 }

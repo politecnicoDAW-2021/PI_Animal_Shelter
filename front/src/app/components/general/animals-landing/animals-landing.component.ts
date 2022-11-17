@@ -20,7 +20,7 @@ export class AnimalsLandingComponent implements OnInit {
 
   getAnimals = () => {
     return this.animalService
-      .getAnimals()
+      .getAnimalByParams([])
       .subscribe((animals) => (this.animals = animals));
   };
 
