@@ -13,9 +13,12 @@ import { SpecieEntity } from 'src/database/entities/animal/specie.entity';
 import { AnimalEntity } from 'src/database/entities/animal/animal.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AnimalService } from '../services/animal.service';
+import { BreedEntity } from 'src/database/entities/animal/breed.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([SpecieEntity, AnimalEntity])],
+  imports: [
+    TypeOrmModule.forFeature([SpecieEntity, AnimalEntity, BreedEntity]),
+  ],
   providers: [AnimalService],
   controllers: [AnimalController],
   exports: [AnimalService],

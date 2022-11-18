@@ -4,6 +4,7 @@ import {
   TypeOrmModuleOptions,
 } from '@nestjs/typeorm';
 import { AnimalEntity } from 'src/database/entities/animal/animal.entity';
+import { BreedEntity } from 'src/database/entities/animal/breed.entity';
 import { MediaEntity } from 'src/database/entities/animal/media.entity';
 import { SpecieEntity } from 'src/database/entities/animal/specie.entity';
 import { WishlistEntity } from 'src/database/entities/common/wishlist.entity';
@@ -28,6 +29,7 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
     SocialMediaEntity,
     ShelterEntity,
     AnimalEntity,
+    BreedEntity,
     SpecieEntity,
     MediaEntity,
   ],
@@ -53,6 +55,7 @@ export const typeOrmConfigAsync: TypeOrmModuleAsyncOptions = {
         SocialMediaEntity,
         ShelterEntity,
         AnimalEntity,
+        BreedEntity,
         SpecieEntity,
         MediaEntity,
       ],
