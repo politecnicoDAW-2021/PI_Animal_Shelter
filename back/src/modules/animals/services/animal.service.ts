@@ -2,8 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { distinct } from 'rxjs';
 import { AnimalEntity } from 'src/database/entities/animal/animal.entity';
-import { SpecieEntity } from 'src/database/entities/animal/specie.entity';
 import { BreedEntity } from 'src/database/entities/animal/breed.entity';
+import { SpecieEntity } from 'src/database/entities/animal/specie.entity';
+
 import { Repository } from 'typeorm';
 
 @Injectable()

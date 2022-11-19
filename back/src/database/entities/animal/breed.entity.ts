@@ -1,10 +1,11 @@
 import {
+  Entity,
   Column,
   PrimaryGeneratedColumn,
-  OneToMany,
   ManyToOne,
-  Entity,
+  OneToMany,
 } from 'typeorm';
+import { AnimalEntity } from './animal.entity';
 import { SpecieEntity } from './specie.entity';
 @Entity('breed')
 export class BreedEntity {
@@ -14,6 +15,9 @@ export class BreedEntity {
   @Column()
   name: string;
 
-  @OneToMany(() => SpecieEntity, (specie) => specie.id)
+  @OneToMany(() => AnimalEntity, (animal) => animal.id)
+  animal: AnimalEntity;
+
+  @ManyToOne(() => SpecieEntity, (specie) => specie.id)
   specie: SpecieEntity;
 }

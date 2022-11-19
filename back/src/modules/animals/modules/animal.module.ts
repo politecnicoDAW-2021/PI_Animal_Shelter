@@ -9,11 +9,12 @@ import { UserModule } from 'src/modules/users/user.module';
 import { ConfigModule } from '@nestjs/config';
 import { PassportModule } from '@nestjs/passport';
 import { AnimalController } from '../controllers/animal.controller';
-import { SpecieEntity } from 'src/database/entities/animal/specie.entity';
+
 import { AnimalEntity } from 'src/database/entities/animal/animal.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AnimalService } from '../services/animal.service';
 import { BreedEntity } from 'src/database/entities/animal/breed.entity';
+import { SpecieEntity } from 'src/database/entities/animal/specie.entity';
 
 @Module({
   imports: [

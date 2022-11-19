@@ -28,7 +28,7 @@ export class AnimalEntity {
   gender: Gender;
 
   @Column()
-  weight: number
+  weight: number;
 
   @Column()
   dewormed: boolean;
@@ -42,16 +42,28 @@ export class AnimalEntity {
   @Column()
   urgent: boolean;
 
-  @Column("text")
-    description: string
-    @Column("date")
-    birthdate: Date
-  @OneToMany(() => WishlistEntity, (wishlist) => wishlist.id)
+  @Column('text')
+  description: string;
+  @Column('date')
+  birthdate: Date;
+  @OneToMany(() => WishlistEntity, (wishlist) => wishlist.id, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
   wishlist: WishlistEntity;
-  @ManyToOne(() => SpecieEntity, (specie) => specie.id)
+  @ManyToOne(() => SpecieEntity, (specie) => specie.id, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
   specie: SpecieEntity;
-  @ManyToOne(() => ShelterEntity, (shelter) => shelter.id)
-  shelter : ShelterEntity;
-  @OneToMany(() => MediaEntity, (media) => media.id)
+  @ManyToOne(() => ShelterEntity, (shelter) => shelter.id, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
+  shelter: ShelterEntity;
+  @OneToMany(() => MediaEntity, (media) => media.id, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
   media: MediaEntity;
 }

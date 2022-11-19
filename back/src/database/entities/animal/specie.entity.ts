@@ -1,13 +1,10 @@
 import {
-  Entity,
   Column,
   PrimaryGeneratedColumn,
-  ManyToOne,
   OneToMany,
-  ManyToMany,
-  BeforeInsert,
+  ManyToOne,
+  Entity,
 } from 'typeorm';
-import { AnimalEntity } from './animal.entity';
 import { BreedEntity } from './breed.entity';
 @Entity('specie')
 export class SpecieEntity {
@@ -17,9 +14,9 @@ export class SpecieEntity {
   @Column()
   name: string;
 
-  @OneToMany(() => AnimalEntity, (animal) => animal.id)
-  animal: AnimalEntity;
-
-  @ManyToOne(() => BreedEntity, (breed) => breed.id)
+  @OneToMany(() => BreedEntity, (breed) => breed.id, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
   breed: BreedEntity;
 }
