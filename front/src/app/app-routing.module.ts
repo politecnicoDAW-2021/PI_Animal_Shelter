@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AnimalListComponent } from '@components/animal/animal-list/animal-list.component';
 import { AuthGuard } from './shared/interceptors/auth.guard';
 
 const routes: Routes = [
@@ -7,6 +8,19 @@ const routes: Routes = [
     path: '',
     redirectTo: 'register',
     pathMatch: 'full',
+  },
+
+  {
+    path: 'animal-list',
+    component: AnimalListComponent,
+  },
+
+  {
+    path: 'animal-details/:index',
+    loadComponent: () =>
+      import('./components/animal/animal-view/animal-view.component').then(
+        (m) => m.AnimalViewComponent
+      ),
   },
 
   {
