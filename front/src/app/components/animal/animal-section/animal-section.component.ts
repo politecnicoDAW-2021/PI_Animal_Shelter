@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormControl } from '@angular/forms';
 import { AnimalService } from '@services/animal/animal.service';
-import { map, startWith } from 'rxjs';
+import { ShelterService } from '@services/shelter/shelter.service';
+
+import { map, Observable, startWith } from 'rxjs';
 
 @Component({
   selector: 'app-animal-section',
@@ -9,32 +11,79 @@ import { map, startWith } from 'rxjs';
   styleUrls: ['./animal-section.component.css'],
 })
 export class AnimalSectionComponent implements OnInit {
-  animals: any[] = [];
-  options: any[] = [];
-  filteredOptions: any;
+  animals$: Observable<any[]> = this.getAnimals();
+
+  breeds: any[] = [];
+  cities: any[] = [];
+  species: any[] = [];
+
+  filteredBreeds: any;
+  filteredCities: any;
+  filteredSpecies: any;
+
   myControl = new FormControl('');
 
-  constructor(private animalService: AnimalService) {}
-
+  constructor(
+    private fb: FormBuilder,
+    private animalService: AnimalService,
+    private shelterService: ShelterService
+  ) {}
+  filterForm = this.fb.group({
+    breed: [''],
+    specie: [''],
+    city: [''],
+  });
   ngOnInit(): void {
-    this.getAnimals();
-    let form: any = document.getElementById('login');
+    //* Get Breeds */
     this.getBreeds();
-    this.filteredOptions = this.myControl.valueChanges.pipe(
-      startWith(''),
-      map((value) => this._filter(value || ''))
-    );
+    this.filteredBreeds = this.filterForm
+      .get('breed')
+      ?.valueChanges.pipe(
+        map((value: any) => this._filter(value ?? '', this.breeds))
+      );
+
+    //* Get Cities */
+    this.getCities();
+    this.filteredCities = this.filterForm
+      .get('city')
+      ?.valueChanges.pipe(
+        map((value: any) => this._filter(value ?? '', this.cities))
+      );
+
+    //* Get Species */
+    this.getSpecies();
+    this.filteredSpecies = this.filterForm
+      .get('specie')
+      ?.valueChanges.pipe(
+        map((value: any) => this._filter(value ?? '', this.species))
+      );
+    console.log('species: ', this.filteredSpecies);
+    console.log('cities: ', this.filteredCities);
   }
 
-  getAnimals = () => {
-    return this.animalService
-      .getAnimalByParams({
-        breed: 'dog',
-        gender: 'female',
-      })
-      .subscribe((animals) => (this.animals = animals));
-  };
+  getAnimals() {
+    return this.animalService.getAnimalByParams({});
+  }
+  getBreeds() {
+    this.animalService.getBreeds().subscribe((breed) => (this.breeds = breed));
+  }
 
+  getSpecies() {
+    this.animalService
+      .getSpecies()
+      .subscribe((specie) => (this.species = specie));
+  }
+  getCities() {
+    this.shelterService.getShelter().subscribe((city) => (this.cities = city));
+  }
+
+  private _filter(value: string, elements: any[]): string[] {
+    console.log(elements);
+    const filterValue = value.toLowerCase();
+    return elements.filter((elements) =>
+      elements.name.toLowerCase().includes(filterValue)
+    );
+  }
   getAge = (date: string) => {
     let today = new Date();
     let birthDate = new Date(date);
@@ -45,17 +94,11 @@ export class AnimalSectionComponent implements OnInit {
     }
     return age;
   };
-
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-    return this.options.filter((option) =>
-      option.name.toLowerCase().includes(filterValue)
-    );
-  }
-
-  getBreeds() {
-    this.animalService
-      .getBreeds()
-      .subscribe((animals) => (this.options = animals));
+  public sendForm() {
+    this.animals$ = this.animalService.getAnimalByParams({
+      breed: this.filterForm.value.breed,
+      specie: this.filterForm.value.specie,
+      city: this.filterForm.value.city,
+    });
   }
 }
