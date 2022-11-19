@@ -34,4 +34,8 @@ export class AnimalService {
     console.log(query);
     return this.http.get<any[]>(`${this.endpoint}${query}`);
   };
+
+  getAllAnimals() {
+    return this.http.get<any[]>(`${this.endpoint}`);
+  }
 }
