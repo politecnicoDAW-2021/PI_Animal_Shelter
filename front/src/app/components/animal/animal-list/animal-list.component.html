@@ -1,0 +1,25 @@
+<div class="flex flex-wrap flex-row justify-center gap-5">
+  <div class="flex filter-nav w-w-hero h-16 bg-brown-tertiary items-center">
+    <form class="inline-flex items-center ml-4">
+      <label for="specie text-black">Specie</label>
+      <select id="specie"
+        class="z-50 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
+        <option selected class="">Choose a country</option>
+      </select>
+      <label for="breed" class="ml-4">breed</label>
+      <select id="specie"
+        class="z-50 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
+        <option selected class="h-input bg-green-800 py-1.5">
+          Choose a country
+        </option>
+        <option value="US" class="h-input py-1.5">United States</option>
+      </select>
+      <label for="city">city</label>
+      <input type="text" matInput
+        class="z-50 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" />
+    </form>
+  </div>
+  <div class="flex flex-wrap bg-gray-100 gap-5 max-w-fit mx-5 justify-center">
+    <app-animal-card *ngFor="let animal of animals; let i = index" [index]="i" [animal]="animal"></app-animal-card>
+  </div>
+</div>

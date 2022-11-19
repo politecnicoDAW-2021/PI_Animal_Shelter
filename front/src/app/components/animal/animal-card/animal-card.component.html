@@ -1,0 +1,20 @@
+<div
+    class="container inline-block mx-auto p-9 bg-white max-w-sm rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition duration-300">
+    <img class="rounded-xl" src="../../../../assets/perro2.jpg" alt="" />
+    <div class="flex justify-between items-center mt-1">
+        <div>
+            <h1 class="mt-5 text-2xl text-black font-semibold">
+                {{ animal.name }}
+            </h1>
+            <p class="mt-2 text-gray-2">
+                {{ this.getAge(animal.birthdate) }} años
+            </p>
+        </div>
+        <div>
+            <button
+                class="text-white text-md font-semibold bg-green-400 py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition duration-500 hover:scale-110">
+                <a href="/animal-details/{{ index }}">Ver detalles</a>
+            </button>
+        </div>
+    </div>
+</div>
