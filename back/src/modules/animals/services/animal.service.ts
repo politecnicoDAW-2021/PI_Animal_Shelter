@@ -30,7 +30,7 @@ export class AnimalService {
       id: query.id,
       gender: query.gender,
       urgent: query.urgent,
-      shelter: { city: query.city },
+      shelter: { id: query.city },
       specie: { breed: { name: query.name }, id: query.specie },
     });
   }
