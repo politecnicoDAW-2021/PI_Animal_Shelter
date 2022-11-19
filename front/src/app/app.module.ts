@@ -9,7 +9,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AnimalIndividualComponent } from './components/animal/animal-individual/animal-individual.component';
 import { LoginModule } from './components/auth/login/login.module';
 import { RegisterModule } from './components/auth/register/register.module';
 import { LandingPageModule } from './components/landing-page/landing-page.module';
@@ -20,7 +19,7 @@ import { AnimalFormModule } from './components/animal/animal-form/animal-form.mo
 import { NavbarComponent } from './components/general/navbar/navbar.component';
 
 @NgModule({
-  declarations: [AppComponent, AnimalIndividualComponent, NavbarComponent],
+  declarations: [AppComponent, NavbarComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
