@@ -7,6 +7,7 @@ import {
 } from 'typeorm';
 import { WishlistEntity } from '../common/wishlist.entity';
 import { ShelterEntity } from '../shelter/shelter.entity';
+import { BreedEntity } from './breed.entity';
 import { MediaEntity } from './media.entity';
 import { SpecieEntity } from './specie.entity';
 export type Gender = 'male' | 'female' | 'unknown';
@@ -51,11 +52,11 @@ export class AnimalEntity {
     onUpdate: 'CASCADE',
   })
   wishlist: WishlistEntity;
-  @ManyToOne(() => SpecieEntity, (specie) => specie.id, {
+  @ManyToOne(() => BreedEntity, (breed) => breed.id, {
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
   })
-  specie: SpecieEntity;
+  breed: BreedEntity;
   @ManyToOne(() => ShelterEntity, (shelter) => shelter.id, {
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
