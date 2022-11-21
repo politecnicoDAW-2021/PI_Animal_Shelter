@@ -11,11 +11,11 @@ import { Repository } from 'typeorm';
 export class AnimalService {
   constructor(
     @InjectRepository(SpecieEntity)
-    private readonly breedRepository: Repository<BreedEntity>,
+    private readonly specieRepository: Repository<SpecieEntity>,
     @InjectRepository(AnimalEntity)
     private readonly animalRepository: Repository<AnimalEntity>,
     @InjectRepository(BreedEntity)
-    private readonly specieRepository: Repository<SpecieEntity>,
+    private readonly breedRepository: Repository<BreedEntity>,
   ) {}
   async findBreeds(): Promise<BreedEntity[]> {
     return await this.breedRepository.find();
