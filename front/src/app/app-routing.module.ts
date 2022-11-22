@@ -6,21 +6,8 @@ import { AuthGuard } from './shared/interceptors/auth.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'register',
+    redirectTo: 'home',
     pathMatch: 'full',
-  },
-
-  {
-    path: 'animal-list',
-    component: AnimalListComponent,
-  },
-
-  {
-    path: 'animal-details/:index',
-    loadComponent: () =>
-      import('./components/animal/animal-view/animal-view.component').then(
-        (m) => m.AnimalViewComponent
-      ),
   },
 
   {
@@ -38,17 +25,30 @@ const routes: Routes = [
   },
 
   {
+    path: 'home',
+    loadChildren: () =>
+      import('./components/landing-page/landing-page.module').then(
+        (m) => m.LandingPageModule
+      ),
+  },
+
+  {
+    path: 'animal-list',
+    component: AnimalListComponent,
+  },
+
+  {
+    path: 'animal-details/:index',
+    loadComponent: () =>
+      import('./components/animal/animal-view/animal-view.component').then(
+        (m) => m.AnimalViewComponent
+      ),
+  },
+
+  {
     path: '',
     canActivate: [AuthGuard],
     children: [
-      {
-        path: 'home',
-        loadChildren: () =>
-          import('./components/landing-page/landing-page.module').then(
-            (m) => m.LandingPageModule
-          ),
-      },
-
       {
         path: 'me',
         loadChildren: () =>
