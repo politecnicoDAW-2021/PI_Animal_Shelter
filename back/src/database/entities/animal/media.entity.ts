@@ -1,4 +1,10 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToMany,
+  ManyToOne,
+} from 'typeorm';
 import { AnimalEntity } from '../animal/animal.entity';
 import { UserEntity } from '../user/user.entity';
 
@@ -8,7 +14,12 @@ export class MediaEntity {
   id: number;
 
   @Column()
-  url: string;
+  filename: string;
+
+  // @Column({
+  //   type: 'bytea',
+  // })
+  // data: Uint8Array;
 
   @ManyToOne(() => AnimalEntity, (animal) => animal.id)
   animal: AnimalEntity;
