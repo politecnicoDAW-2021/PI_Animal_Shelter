@@ -4,10 +4,11 @@ import { map, Observable } from 'rxjs';
 import { AnimalService } from '@services/animal/animal.service';
 import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
+import { FooterComponent } from '@components/general/footer/footer.component';
 @Component({
   selector: 'app-animal-view',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FooterComponent],
   templateUrl: './animal-view.component.html',
   styleUrls: ['./animal-view.component.css'],
 })
