@@ -1,25 +1,61 @@
-<!-- <div class="bg-gray-100 max-w-fit" *ngFor="let animal of animals">
-    
-    <div
-      class="container inline-block mx-auto p-9 bg-white max-w-sm rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition duration-300"
-    >
+<div
+  class="container mx-auto my-5 p-9 bg-white h-screen max-w-6xl rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition duration-300"
+  *ngIf="animal$ | async as animals">
+  <div class="flex">
+    <div class="flex-auto w-96 max-w-2xl">
       <img class="rounded-xl" src="../../../../assets/perro2.jpg" alt="" />
-      <div class="flex justify-between items-center mt-1">
-        <div>
-          <h1 class="mt-5 text-2xl text-black font-semibold">
-            {{ animal.name }}
-          </h1>
-          <p class="mt-2 text-gray-2">
-            {{ this.getAge(animal.birthdate) }} años
-          </p>
+      <div class="mt-12">
+        <p>
+          {{animal.description}}
+        </p>
+      </div>
+    </div>
+
+    <div class="w-64">
+      <div class="flex flex-col">
+        <div class="flex flex-row justify-start gap-2">
+          <div class="inline-flex ml-5">
+            <p class="font-text text-4xl font-bold">{{ animal.name }} </p>
+          </div>
+          <div class="inline-flex mt-3">
+            <p class="font-text font-bold text-xl"> {{ this.getAge(animal.birthdate) }} años</p>
+          </div>
         </div>
-        <div>
-          <button
-            class="text-white text-md font-semibold bg-green-400 py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition duration-500 hover:scale-110"
-          >
-            Ver detalles
-          </button>
+      </div>
+
+      <div class="flex flex-col mt-20">
+        <div class="flex flex-row justify-between p-5">
+          <div class="inline-flex">
+            <p class="font-text font-bold text-l"><i class="fa-solid fa-cake-candles"></i> {{
+              this.parseBirthdate(animal.birthdate) }} </p>
+          </div>
+          <div class="inline-flex">
+            <p class="font-text font-bold text-l"><i class="fa-light fa-arrows-maximize"></i> {{animal.size }} </p>
+          </div>
+        </div>
+
+        <div class="flex flex-row justify-between p-5">
+          <div class="inline-flex">
+            <p class="font-text font-bold text-l"><i class="fa-solid fa-location-dot"></i> Malaga </p>
+          </div>
+          <div class="inline-flex">
+            <p class="font-text font-bold text-l"><i class="fa-solid fa-venus-mars"></i> {{animal.gender === 'female' ?
+              'Hembra' : 'Macho'}} </p>
+          </div>
+        </div>
+
+        <div class="flex flex-row justify-between p-5">
+          <div class="inline-flex">
+            <p class="font-text font-bold text-l"><i class="fa-solid fa-weight-scale"></i> {{ animal.weight }} kg</p>
+          </div>
+          <div class="inline-flex">
+            <p class="font-text font-bold text-l"><i class="fa-solid fa-worm"></i> {{ animal.dewormed ? 'Desparasitado'
+              : 'No desparasitado' }}</p>
+          </div>
         </div>
       </div>
     </div>
-  </div> -->
+
+  </div>
+
+</div>
