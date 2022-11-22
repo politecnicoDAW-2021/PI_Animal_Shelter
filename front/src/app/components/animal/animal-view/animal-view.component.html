@@ -5,13 +5,13 @@
     <div class="flex-auto w-96 max-w-2xl">
       <img class="rounded-xl" src="../../../../assets/perro2.jpg" alt="" />
       <div class="mt-12">
-        <p>
+        <p class="font-text font-bold text-lg">
           {{animal.description}}
         </p>
       </div>
     </div>
 
-    <div class="w-64">
+    <div class="w-72">
       <div class="flex flex-col">
         <div class="flex flex-row justify-start gap-2">
           <div class="inline-flex ml-5">
@@ -23,39 +23,51 @@
         </div>
       </div>
 
-      <div class="flex flex-col mt-20">
-        <div class="flex flex-row justify-between p-5">
-          <div class="inline-flex">
-            <p class="font-text font-bold text-l"><i class="fa-solid fa-cake-candles"></i> {{
+      <div class="flex flex-row ml-7 w-72">
+
+        <div class="flex flex-col w-96">
+          <div class="inline-flex my-6">
+            <p class="font-text font-bold text-md"><i class="fa-solid fa-cake-candles"></i> {{
               this.parseBirthdate(animal.birthdate) }} </p>
           </div>
-          <div class="inline-flex">
-            <p class="font-text font-bold text-l"><i class="fa-light fa-arrows-maximize"></i> {{animal.size }} </p>
+          <div class="inline-flex my-6">
+            <p class="font-text font-bold text-md"><i class="fa-solid fa-location-dot"></i> Malaga </p>
+          </div>
+          <div class="inline-flex my-6">
+            <p class="font-text font-bold text-md"><i class="fa-solid fa-weight-scale"></i> {{ animal.weight }} kg</p>
           </div>
         </div>
 
-        <div class="flex flex-row justify-between p-5">
-          <div class="inline-flex">
-            <p class="font-text font-bold text-l"><i class="fa-solid fa-location-dot"></i> Malaga </p>
+        <div class="flex flex-col">
+          <div class="inline-flex my-6">
+            <p class="font-text font-bold text-md"><i class="fa-solid fa-arrow-up-small-big"></i> {{animal.size }} </p>
           </div>
-          <div class="inline-flex">
-            <p class="font-text font-bold text-l"><i class="fa-solid fa-venus-mars"></i> {{animal.gender === 'female' ?
+          <div class="inline-flex my-6">
+            <p class="font-text font-bold text-md"><i class="fa-solid fa-venus-mars"></i> {{animal.gender === 'female' ?
               'Hembra' : 'Macho'}} </p>
           </div>
-        </div>
-
-        <div class="flex flex-row justify-between p-5">
-          <div class="inline-flex">
-            <p class="font-text font-bold text-l"><i class="fa-solid fa-weight-scale"></i> {{ animal.weight }} kg</p>
-          </div>
-          <div class="inline-flex">
-            <p class="font-text font-bold text-l"><i class="fa-solid fa-worm"></i> {{ animal.dewormed ? 'Desparasitado'
+          <div class="inline-flex my-6">
+            <p class="font-text font-bold text-md"><i class="fa-solid fa-worm"></i> {{ animal.dewormed ? 'Desparasitado'
               : 'No desparasitado' }}</p>
           </div>
         </div>
       </div>
+      <div>
+        <button type="button" class="focus:outline-none 
+        text-white
+        w-96
+        mx-7 
+        mt-24
+        bg-green-primary 
+        hover:bg-green-800 
+        focus:ring-4 focus:ring-green-300 
+        font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
+          Adoptame
+        </button>
+      </div>
+
+
     </div>
 
   </div>
-
 </div>
