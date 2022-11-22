@@ -43,7 +43,8 @@ module.exports = {
       height: {
         'h-hero': '35rem',
         'carousel': '18rem',
-        'card': '27rem'
+        'card': '27rem',
+        'animal-card': '50rem'
       },
       spacing: {
         't-text': '15.5rem',
