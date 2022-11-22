@@ -38,12 +38,14 @@ module.exports = {
       width: {
         'w-hero': '100%',
         'carousel': '1500px',
-        'description': '323px'
+        'description': '323px',
+        'animal-info': '20px'
       },
       height: {
         'h-hero': '35rem',
         'carousel': '18rem',
-        'card': '27rem'
+        'card': '27rem',
+        'animal-card': '50px'
       },
       spacing: {
         't-text': '15.5rem',

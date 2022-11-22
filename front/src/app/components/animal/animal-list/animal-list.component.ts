@@ -12,6 +12,7 @@ import { AnimalCardComponent } from '../animal-card/animal-card.component';
 import { ShelterService } from '@services/shelter/shelter.service';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatOptionModule } from '@angular/material/core';
+import { FooterComponent } from '@components/general/footer/footer.component';
 
 @Component({
   selector: 'app-animal-list',
@@ -19,6 +20,7 @@ import { MatOptionModule } from '@angular/material/core';
   imports: [
     CommonModule,
     AnimalCardComponent,
+    FooterComponent,
     FormsModule,
     ReactiveFormsModule,
     MatOptionModule,
