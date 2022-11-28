@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { ShelterService } from '@services/shelter/shelter.service';
 import { Observable, startWith, map } from 'rxjs';
 import { AnimalService } from '../../../services/animal/animal.service';
 @Component({
@@ -8,56 +9,67 @@ import { AnimalService } from '../../../services/animal/animal.service';
   styleUrls: ['./animal-form.component.css'],
 })
 export class AnimalFormComponent implements OnInit {
-  constructor(private animalService: AnimalService) {}
+  constructor(
+    private animalService: AnimalService,
+    private fb: FormBuilder,
+    private shelterService: ShelterService
+  ) {}
 
-  myControl = new FormControl('');
-  options: any[] = [];
-  filteredOptions: any;
+  breeds: any[] = [];
+  filteredBreeds: any;
+  genders: any[] = ['Male', 'Female'];
+  sizes: any[] = ['Large', 'Medium', 'Small'];
+  shelters: any[] = [];
+
+  animalForm = this.fb.group({
+    name: [''],
+    birthdate: [''],
+    weight: [''],
+    breed: [''],
+    shelter: [],
+    description: [''],
+    gender: [''],
+    size: [''],
+    urgent: [],
+    dewormed: [],
+    image: [''],
+  });
 
   ngOnInit(): void {
-    let form: any = document.getElementById('login');
     this.getBreeds();
-    this.filteredOptions = this.myControl.valueChanges.pipe(
-      startWith(''),
-      map((value) => this._filter(value || ''))
-    );
-
-    // form.addEventListener(
-    //   'submit',
-    //   function (event: any) {
-    //     event.preventDefault();
-    //     let elements = form.elements;
-    //     let payload = {};
-    //     for (let i = 0; i < elements.length; i++) {
-    //       let item = elements.item(i);
-    //       switch (item.type) {
-    //         case 'checkbox':
-    //           //payload[item.name] = item.checked;
-    //           break;
-    //         case 'submit':
-    //           break;
-    //         default:
-    //           //payload[item.name] = item.value;
-    //           break;
-    //       }
-    //     }
-    //     // Place your API call here to submit your payload.
-    //     // console.log('payload', payload);
-    //   },
-    //   true
-    // );
-  }
-
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-    return this.options.filter((option) =>
-      option.name.toLowerCase().includes(filterValue)
-    );
+    this.getShelters();
+    this.filteredBreeds = this.animalForm
+      .get('breed')
+      ?.valueChanges.pipe(
+        map((value: any) => this._filter(value ?? '', this.breeds))
+      );
   }
 
   getBreeds() {
-    this.animalService
-      .getBreeds()
-      .subscribe((animals) => (this.options = animals));
+    return this.animalService.getBreeds().subscribe((breed) => {
+      this.breeds = breed;
+    });
+  }
+
+  getShelters() {
+    return this.shelterService.getShelter().subscribe((shelter) => {
+      this.shelters = shelter;
+    });
+  }
+
+  private _filter(value: string, elements: any[]): string[] {
+    const filterValue = value.toLowerCase();
+    return elements.filter((element) =>
+      element.name.toLowerCase().includes(filterValue)
+    );
+  }
+
+  saveValues() {
+    const dewormed = this.animalForm.get('dewormed')?.value ? 1 : 0;
+    const urgent = this.animalForm.get('urgent')?.value ? 1 : 0;
+
+    return this.animalService
+      .addAnimal({ ...this.animalForm.value, dewormed, urgent })
+      .subscribe();
   }
 }

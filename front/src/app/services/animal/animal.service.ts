@@ -15,9 +15,11 @@ export class AnimalService {
   getBreeds = (): Observable<any[]> => {
     return this.http.get<any[]>(`${this.endpointBreeds}`);
   };
+
   getSpecies = (): Observable<any[]> => {
     return this.http.get<any[]>(`${this.endpointSpecies}`);
   };
+
   getAnimalByParams = (params: any) => {
     let query = '';
     const asArray = Object.entries(params);
@@ -37,5 +39,9 @@ export class AnimalService {
 
   getAllAnimals() {
     return this.http.get<any[]>(`${this.endpoint}`);
+  }
+
+  addAnimal(animal: any) {
+    return this.http.post<any[]>(`${this.endpoint}`, animal);
   }
 }

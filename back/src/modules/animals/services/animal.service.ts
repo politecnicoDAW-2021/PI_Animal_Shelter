@@ -38,14 +38,21 @@ export class AnimalService {
   async findAll(query: any) {
     const file: any = await this.getFileById(query.id);
     console.log(file);
+    console.log('kueri', query);
+
     return await this.animalRepository.findBy({
       id: query.id,
       gender: query.gender,
       urgent: query.urgent,
       shelter: { id: query.city },
+<<<<<<< HEAD
       breed: { specie: { name: query.breed }, id: query.specie },
+=======
+      breed: { specie: { id: query.specie }, id: query.breed },
+>>>>>>> be9c8d24e9bc345ee736592f99f8b6ef020c2d53
     });
   }
+
   addAnimals(animal: any) {
     console.log(animal);
     return this.animalRepository.insert({
@@ -60,8 +67,9 @@ export class AnimalService {
       description: animal.description,
     });
   }
+
   async uploadFiles(idAnimal: number, file: Buffer, filename: string) {
-    const newFile = await this.mediaRepository.create({
+    const newFile = this.mediaRepository.create({
       animal: { id: idAnimal },
       filename,
       data: file,
