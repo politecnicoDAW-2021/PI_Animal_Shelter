@@ -7,6 +7,7 @@ import { MaterialModule } from 'src/app/shared/material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatOptionModule } from '@angular/material/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { NgSelectModule, NgOption } from '@ng-select/ng-select';
 @NgModule({
   declarations: [AnimalFormComponent],
   imports: [
@@ -17,31 +18,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     ReactiveFormsModule,
     MatOptionModule,
     MatAutocompleteModule,
-  ],
-  providers: [
-    // GoogleLoginProvider,
-    // SocialAuthService,
-    // {
-    //   provide: 'SocialAuthServiceConfig',
-    //   useValue: {
-    //     autoLogin: false,
-    //     providers: [
-    //       {
-    //         id: GoogleLoginProvider.PROVIDER_ID,
-    //         provider: new GoogleLoginProvider(
-    //           '107038177183-tfbn4vpe57du6invbfh2lbrubcpotpvt.apps.googleusercontent.com',
-    //           {
-    //             scopes: 'email',
-    //           }
-    //         ),
-    //       },
-    //     ],
-    //     onError: (err: any) => {
-    //       console.error(err);
-    //     },
-    //   } as SocialAuthServiceConfig,
-    // },
-    // SocialAuthService,
+    NgSelectModule,
   ],
 })
 export class AnimalFormModule {}

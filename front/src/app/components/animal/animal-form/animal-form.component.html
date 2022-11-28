@@ -1,234 +1,108 @@
-<form id="login">
-  <div class="bg-white dark:bg-gray-800">
-    <div class="container mx-auto bg-white dark:bg-gray-800 rounded">
-      <div
-        class="xl:w-full border-b border-gray-300 dark:border-gray-700 py-5 bg-white dark:bg-gray-800"
-      >
-        <div class="flex w-11/12 mx-auto xl:w-full xl:mx-0 items-center">
-          <p class="text-lg text-gray-800 dark:text-gray-100 font-bold">
-            Profile
-          </p>
-          <div class="ml-2 cursor-pointer text-gray-600 dark:text-gray-400">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              width="16"
-              height="16"
-            >
-              <path
-                class="heroicon-ui"
-                d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm0-9a1 1 0 0 1 1 1v4a1 1 0 0 1-2 0v-4a1 1 0 0 1 1-1zm0-4a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
-                fill="currentColor"
-              />
-            </svg>
-          </div>
-        </div>
+<section class="max-w-4xl p-6 mx-auto bg-indigo-600 rounded-md shadow-md dark:bg-gray-800 mt-20">
+  <h1 class="text-xl font-bold text-white dark:text-white">Añade animal</h1>
+  <form [formGroup]="animalForm">
+    <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
+      <div>
+        <label class="text-white dark:text-gray-200" for="name">Nombre</label>
+        <input id="name" type="text" name="name" formControlName="name"
+          class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
       </div>
-      <div class="mx-auto">
-        <div class="xl:w-9/12 w-11/12 mx-auto xl:mx-0">
-          <div class="mt-16 flex flex-col xl:w-2/6 lg:w-1/2 md:w-1/2 w-full">
-            <label
-              for="name"
-              class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100"
-              >Name</label
-            >
-            <input
-              type="text"
-              id="name"
-              name="name"
-              required
-              class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm rounded text-sm focus:outline-none focus:border-indigo-700 bg-transparent placeholder-gray-500 text-gray-500 dark:text-gray-400"
-              placeholder="Pet name"
-            />
-          </div>
-          <div class="xl:w-1/4 lg:w-1/2 md:w-1/2 flex flex-col mb-6">
-            <label
-              for="age"
-              class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100"
-              >Age</label
-            >
-            <input
-              type="number"
-              id="age"
-              name="age"
-              required
-              class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm rounded bg-transparent text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-500 dark:text-gray-400"
-              placeholder=""
-            />
-          </div>
-          <div class="xl:w-1/4 lg:w-1/2 md:w-1/2 flex flex-col mb-6">
-            <label
-              for="weight"
-              class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100"
-              >weight</label
-            >
-            <input
-              type="number"
-              id="weight"
-              name="weight"
-              required
-              class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm rounded bg-transparent text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-500 dark:text-gray-400"
-              placeholder=""
-            />
-          </div>
-          <form class="example-form">
-            <mat-form-field class="example-full-width" appearance="fill">
-              <mat-label>Number</mat-label>
-              <input
-                type="text"
-                placeholder="Pick one"
-                aria-label="Number"
-                matInput
-                [formControl]="myControl"
-                [matAutocomplete]="auto"
-              />
-              <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-                <mat-option
-                  *ngFor="let option of filteredOptions | async"
-                  [value]="option.name"
-                  key="option.id"
-                >
-                  {{ option.name }}
-                </mat-option>
-              </mat-autocomplete>
-            </mat-form-field>
-          </form>
-          <div class="mt-8 flex flex-col xl:w-3/5 lg:w-1/2 md:w-1/2 w-full">
-            <label
-              for="description"
-              class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100"
-              >Description</label
-            >
-            <textarea
-              id="description"
-              name="description"
-              required
-              class="bg-transparent border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm rounded text-sm focus:outline-none focus:border-indigo-700 resize-none placeholder-gray-500 text-gray-500 dark:text-gray-400"
-              placeholder="Describe a tu mascota :)"
-              rows="5"
-            ></textarea>
-            <p
-              class="w-full text-right text-xs pt-1 text-gray-500 dark:text-gray-400"
-            >
-              Character Limit: 200
+
+      <div>
+        <label class="text-white dark:text-gray-200" for="birthdate">Fecha nacimiento</label>
+        <input id="birthdate" type="date" name="birthdate" formControlName="birthdate"
+          class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+      </div>
+
+      <div>
+        <label class="text-white dark:text-gray-200" for="weight">Peso</label>
+        <input id="weight" type="text" name="weight" formControlName="weight"
+          class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+      </div>
+
+      <div>
+        <label class="text-white dark:text-gray-200" for="breed">Raza</label>
+
+        <ng-select formControlName="breed">
+          <ng-option *ngFor="let breed of breeds" [value]="breed.id">
+            {{breed.name}}
+          </ng-option>
+        </ng-select>
+      </div>
+      <div>
+        <label class="text-white dark:text-gray-200" for="gender">Género</label>
+        <ng-select formControlName="gender">
+          <ng-option *ngFor="let gender of genders" [value]="gender">
+            {{gender}}
+          </ng-option>
+        </ng-select>
+      </div>
+      <div>
+        <label class="text-white dark:text-gray-200" for="gender">Tamaño</label>
+        <ng-select formControlName="size">
+          <ng-option *ngFor="let size of sizes" [value]="size">
+            {{size}}
+          </ng-option>
+        </ng-select>
+      </div>
+      <div>
+        <label class="text-white dark:text-gray-200" for="shelter">Shelter</label>
+        <ng-select formControlName="shelter">
+          <ng-option *ngFor="let shelter of shelters" [value]="shelter.id">
+            {{shelter.name}}
+          </ng-option>
+        </ng-select>
+      </div>
+      <div>
+        <label class="text-white dark:text-gray-200" for="description">Descripcion</label>
+        <textarea id="description" type="textarea" name="description" formControlName="description"
+          class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"></textarea>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-white">
+          Image
+        </label>
+        <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+          <div class="space-y-1 text-center">
+            <svg class="mx-auto h-12 w-12 text-white" stroke="currentColor" fill="none" viewBox="0 0 48 48"
+              aria-hidden="true">
+              <path
+                d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <div class="flex text-sm text-gray-600">
+              <label for="file-upload"
+                class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                <span class="">Upload a file</span>
+                <input id="file-upload" formControlName="image" name="file-upload" type="file" class="sr-only">
+              </label>
+              <p class="pl-1 text-white">or drag and drop</p>
+            </div>
+            <p class="text-xs text-white">
+              PNG, JPG, GIF up to 10MB
             </p>
           </div>
-          <div class="flex justify-center items-center w-full">
-            <label
-              for="dropzone-file"
-              class="flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
-            >
-              <div class="flex flex-col justify-center items-center pt-5 pb-6">
-                <svg
-                  aria-hidden="true"
-                  class="mb-3 w-10 h-10 text-gray-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-                  ></path>
-                </svg>
-                <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">
-                  <span class="font-semibold">Click to upload</span> or drag and
-                  drop
-                </p>
-                <p class="text-xs text-gray-500 dark:text-gray-400">
-                  SVG, PNG, JPG or GIF (MAX. 800x400px)
-                </p>
-              </div>
-              <input id="dropzone-file" type="file" class="hidden" />
-            </label>
-          </div>
+        </div>
+        <div class="flex items-center mb-4">
+          <input id="dewormed" formControlName="dewormed" type="checkbox"
+            class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+          <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+            Desparasitado
+          </label>
+        </div>
+        <div class="flex items-center">
+          <input id="urgent" formControlName="urgent" type="checkbox"
+            class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+          <label for="checked-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+            Urgente
+          </label>
         </div>
       </div>
     </div>
-    <div class="container mx-auto bg-white dark:bg-gray-800 mt-10 rounded px-4">
-      <div class="xl:w-full border-b border-gray-300 dark:border-gray-700 py-5">
-        <div class="flex w-11/12 mx-auto xl:w-full xl:mx-0 items-center">
-          <div class="ml-2 cursor-pointer text-gray-600 dark:text-gray-400">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              width="16"
-              height="16"
-            >
-              <path
-                class="heroicon-ui"
-                d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm0-9a1 1 0 0 1 1 1v4a1 1 0 0 1-2 0v-4a1 1 0 0 1 1-1zm0-4a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
-                fill="currentColor"
-              />
-            </svg>
-          </div>
-        </div>
-      </div>
-      <div class="mx-auto pt-4">
-        <div class="container mx-auto">
-          <form class="my-6 w-11/12 mx-auto xl:w-full xl:mx-0"></form>
-        </div>
-      </div>
-    </div>
-    <div
-      class="container mx-auto mt-10 rounded bg-gray-100 dark:bg-gray-700 w-11/12 xl:w-full"
-    >
-      <div class="xl:w-full py-5 px-8">
-        <div class="flex items-center mx-auto">
-          <div class="container mx-auto"></div>
-        </div>
-      </div>
-      <div class="container mx-auto pb-6">
-        <div class="px-8">
-          <div class="flex justify-between items-center mb-8 mt-4"></div>
-          <div class="flex justify-between items-center mb-8"></div>
-          <div class="flex justify-between items-center mb-8"></div>
-        </div>
 
-        <div class="px-8">
-          <div class="flex justify-between items-center mb-8 mt-4">
-            <div class="w-9/12">
-              <p class="text-sm text-gray-500 dark:text-gray-400">
-                EMERGENCY: este animal necesita ser adoptado urgentemente
-              </p>
-            </div>
-            <div
-              class="cursor-pointer rounded-full bg-gray-200 relative shadow-sm"
-            >
-              <input
-                type="checkbox"
-                name="notification_comment"
-                id="toggle4"
-                class="focus:outline-none checkbox w-6 h-6 rounded-full bg-white dark:bg-gray-400 absolute shadow-sm appearance-none cursor-pointer border border-transparent top-0 bottom-0 m-auto"
-              />
-              <label
-                for="toggle4"
-                class="toggle-label block w-12 h-4 overflow-hidden rounded-full bg-gray-300 dark:bg-gray-800 cursor-pointer"
-              ></label>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="flex justify-end mt-6">
+      <button (click)="saveValues()"
+        class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-pink-500 rounded-md hover:bg-pink-700 focus:outline-none focus:bg-gray-600">Save</button>
     </div>
-    <div class="container mx-auto w-11/12 xl:w-full">
-      <div
-        class="w-full py-4 sm:px-0 bg-white dark:bg-gray-800 flex justify-end"
-      >
-        <button
-          class="bg-gray-200 focus:outline-none transition duration-150 ease-in-out hover:bg-gray-300 dark:bg-gray-700 rounded text-indigo-600 dark:text-indigo-600 px-6 py-2 text-xs mr-4"
-        >
-          Cancel
-        </button>
-        <button
-          class="bg-indigo-700 focus:outline-none transition duration-150 ease-in-out hover:bg-indigo-600 rounded text-white px-8 py-2 text-sm"
-          type="submit"
-        >
-          Save
-        </button>
-      </div>
-    </div>
-  </div>
-</form>
+  </form>
+</section>
