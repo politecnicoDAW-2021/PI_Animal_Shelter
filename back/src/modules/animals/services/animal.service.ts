@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Body, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { distinct } from 'rxjs';
 import { AnimalEntity } from 'src/database/entities/animal/animal.entity';
@@ -30,6 +30,8 @@ export class AnimalService {
     return this.animalRepository.find();
   }
   async findAll(query: any) {
+    const file: any = await this.getFileById(query.id);
+    console.log(file);
     return await this.animalRepository.findBy({
       id: query.id,
       gender: query.gender,
@@ -39,10 +41,32 @@ export class AnimalService {
     });
   }
   addAnimals(animal: any) {
-    return this.animalRepository.insert(animal);
+    console.log(animal);
+    return this.animalRepository.insert({
+      name: animal.name,
+      gender: animal.gender,
+      breed: animal.breed,
+      shelter: animal.shelter,
+      weight: animal.weight,
+      dewormed: animal.dewormed,
+      urgent: animal.urgent,
+      birthdate: animal.birthdate,
+      description: animal.description,
+    });
   }
-  uploadFiles(files: any) {
-    // files.
-    return this.mediaRepository.create({});
+  async uploadFiles(idAnimal: number, file: Buffer, filename: string) {
+    const newFile = await this.mediaRepository.create({
+      animal: { id: idAnimal },
+      filename,
+      data: file,
+    });
+    console.log(newFile);
+    return await this.mediaRepository.save(newFile);
+  }
+
+  async getFileById(id: any) {
+    console.log(id);
+    const file = await this.mediaRepository.findOneBy(id);
+    return file;
   }
 }
