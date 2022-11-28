@@ -1,10 +1,16 @@
-import { Body, Injectable, NotFoundException } from '@nestjs/common';
+import {
+  Body,
+  Injectable,
+  NotFoundException,
+  StreamableFile,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { distinct } from 'rxjs';
 import { AnimalEntity } from 'src/database/entities/animal/animal.entity';
 import { BreedEntity } from 'src/database/entities/animal/breed.entity';
 import { MediaEntity } from 'src/database/entities/animal/media.entity';
 import { SpecieEntity } from 'src/database/entities/animal/specie.entity';
+import { Readable } from 'stream';
 
 import { Repository } from 'typeorm';
 
@@ -37,7 +43,7 @@ export class AnimalService {
       gender: query.gender,
       urgent: query.urgent,
       shelter: { id: query.city },
-      breed: { specie: { name: query.name }, id: query.specie },
+      breed: { specie: { name: query.breed }, id: query.specie },
     });
   }
   addAnimals(animal: any) {
@@ -66,7 +72,8 @@ export class AnimalService {
 
   async getFileById(id: any) {
     console.log(id);
-    const file = await this.mediaRepository.findOneBy(id);
+    const file = await this.mediaRepository.findOneBy({ id: id });
+    // const stream = Readable.from(file.data);
     return file;
   }
 }
