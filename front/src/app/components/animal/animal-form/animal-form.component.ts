@@ -65,11 +65,10 @@ export class AnimalFormComponent implements OnInit {
   }
 
   saveValues() {
-    const dewormed = this.animalForm.get('dewormed')?.value ? 1 : 0;
-    const urgent = this.animalForm.get('urgent')?.value ? 1 : 0;
-
     return this.animalService
-      .addAnimal({ ...this.animalForm.value, dewormed, urgent })
-      .subscribe();
+      .addAnimal({ ...this.animalForm.value })
+      .subscribe(() => {
+        this.animalForm.reset();
+      });
   }
 }
