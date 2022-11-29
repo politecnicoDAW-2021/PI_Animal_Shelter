@@ -24,8 +24,8 @@ export class AnimalService {
     let query = '';
     const asArray = Object.entries(params);
     params = asArray.filter(([_, value]) => value);
+
     if (params.length) {
-      console.log(params);
       query = Object.keys(params)
         .reduce((accumulator, key) => {
           const option = accumulator !== '?' ? '&' : '';
@@ -33,7 +33,6 @@ export class AnimalService {
         }, '?')
         .replace(/,/g, '=');
     }
-    console.log(query);
     return this.http.get<any[]>(`${this.endpoint}${query}`);
   };
 
