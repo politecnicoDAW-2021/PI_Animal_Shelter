@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AnimalService } from 'src/app/services/animal/animal.service';
+import { AnimalService } from '@services/animal/animal.service';
 
 @Component({
   selector: 'app-animals-landing',
@@ -10,6 +10,7 @@ export class AnimalsLandingComponent implements OnInit {
   constructor(private animalService: AnimalService) {}
 
   animals: any[] = [];
+  urgentAnimals: any[] = [];
   slider: any;
   defaultTransform: any;
 
@@ -19,9 +20,10 @@ export class AnimalsLandingComponent implements OnInit {
   }
 
   getAnimals = () => {
-    return this.animalService
-      .getAnimalByParams({ urgent: true })
-      .subscribe((animals) => (this.animals = animals));
+    return this.animalService.getAnimalByParams({}).subscribe((animals) => {
+      this.animals = animals;
+      this.urgentAnimals = animals.filter((animal) => animal.urgent === true);
+    });
   };
 
   getAge = (date: string) => {
