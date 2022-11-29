@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-animal-card',
@@ -10,7 +10,7 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./animal-card.component.css'],
 })
 export class AnimalCardComponent implements OnInit {
-  constructor() {}
+  constructor(private router: Router) {}
   @Input() animal!: any;
   @Input() index!: any;
 
@@ -26,4 +26,13 @@ export class AnimalCardComponent implements OnInit {
     }
     return age;
   };
+
+  sendAnimal(animal: any) {
+    this.router.navigate([`/animal-details/${animal}}`], {
+      queryParams: {
+        animal: JSON.stringify(animal),
+        skipLocationChange: false,
+      },
+    });
+  }
 }
