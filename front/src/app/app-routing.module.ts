@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AnimalListComponent } from '@components/animal/animal-list/animal-list.component';
+import { NotFoundComponent } from '@components/general/not-found/not-found.component';
 import { AuthGuard } from './shared/interceptors/auth.guard';
 
 const routes: Routes = [
@@ -65,6 +66,12 @@ const routes: Routes = [
           ),
       },
     ],
+  },
+
+  {
+    path: '**',
+    pathMatch: 'full',
+    component: NotFoundComponent,
   },
 ];
 

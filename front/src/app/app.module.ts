@@ -17,9 +17,10 @@ import { AuthService } from './services/auth.service';
 import { AuthInterceptor } from './shared/interceptors/authconfig.interceptor';
 import { AnimalFormModule } from './components/animal/animal-form/animal-form.module';
 import { NavbarComponent } from './components/general/navbar/navbar.component';
+import { NotFoundComponent } from './components/general/not-found/not-found.component';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent],
+  declarations: [AppComponent, NavbarComponent, NotFoundComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
