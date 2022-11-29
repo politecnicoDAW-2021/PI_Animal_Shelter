@@ -16,20 +16,12 @@ export class AnimalViewComponent implements OnInit {
   @Input() animal!: any;
   animal$!: Observable<any | undefined> | any;
 
-  constructor(
-    private animalService: AnimalService,
-    private route: ActivatedRoute
-  ) {}
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.animal$ = this.route.paramMap.pipe(
-      map((param: any) => {
-        return this.animalService.getAllAnimals().subscribe((animals) => {
-          this.animal = animals[Number(param.get('index'))];
-          console.log('this.animal', animals);
-        });
-      })
-    );
+    this.route.queryParams.subscribe((params: any) => {
+      this.animal = JSON.parse(params['animal']);
+    });
   }
 
   getAge = (date: string) => {
