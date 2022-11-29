@@ -34,7 +34,7 @@
     </form>
   </div>
   <div class="flex flex-wrap bg-gray-100 gap-5 max-w-fit mx-5 justify-center">
-    <app-animal-card *ngFor="let animal of animals | async; let i = index" [index]="i" [animal]="animal">
+    <app-animal-card *ngFor="let animal of animals | async;" [animal]="animal">
     </app-animal-card>
   </div>
 </div>

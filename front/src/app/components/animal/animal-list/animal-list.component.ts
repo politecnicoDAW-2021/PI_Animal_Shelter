@@ -31,7 +31,6 @@ import { FooterComponent } from '@components/general/footer/footer.component';
 })
 export class AnimalListComponent implements OnInit {
   animals: Observable<any[]> = this.getAnimals();
-  i: any = 0;
 
   breeds: any[] = [];
   cities: any[] = [];
@@ -48,11 +47,13 @@ export class AnimalListComponent implements OnInit {
     private animalService: AnimalService,
     private shelterService: ShelterService
   ) {}
+
   filterForm = this.fb.group({
     breed: [''],
     specie: [''],
     city: [''],
   });
+
   ngOnInit(): void {
     //* Get Breeds */
     this.getBreeds();
@@ -77,13 +78,12 @@ export class AnimalListComponent implements OnInit {
       ?.valueChanges.pipe(
         map((value: any) => this._filter(value ?? '', this.species))
       );
-    console.log('species: ', this.filteredSpecies);
-    console.log('cities: ', this.filteredCities);
   }
 
   getAnimals() {
     return this.animalService.getAnimalByParams({});
   }
+
   getBreeds() {
     this.animalService.getBreeds().subscribe((breed) => (this.breeds = breed));
   }
@@ -93,6 +93,7 @@ export class AnimalListComponent implements OnInit {
       .getSpecies()
       .subscribe((specie) => (this.species = specie));
   }
+
   getCities() {
     this.shelterService.getShelter().subscribe((city) => (this.cities = city));
   }
@@ -104,6 +105,7 @@ export class AnimalListComponent implements OnInit {
       elements.name.toLowerCase().includes(filterValue)
     );
   }
+
   getAge = (date: string) => {
     let today = new Date();
     let birthDate = new Date(date);
@@ -114,6 +116,7 @@ export class AnimalListComponent implements OnInit {
     }
     return age;
   };
+
   public sendForm() {
     this.animals = this.animalService.getAnimalByParams({
       breed: this.filterForm.value.breed,
