@@ -1,32 +1,30 @@
 <div class="flex flex-wrap flex-row justify-center gap-5">
   <div class="flex filter-nav w-w-hero h-16 bg-brown-tertiary items-center">
     <form method="get" class="inline-flex items-center ml-4" [formGroup]="filterForm">
-      <label for="city" class="font-bold">City: </label>
-      <input id="city" type="text" matInput formControlName="city" [matAutocomplete]="cities"
-        class="z-50 ml-2 mr-9 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-        placeholder="select a city" />
-      <mat-autocomplete autoActiveFirstOption #cities="matAutocomplete" class="">
-        <mat-option *ngFor="let shelter of filteredCities | async" [value]="shelter.id" key="shelter" class="">
-          {{ shelter.city }}
-        </mat-option>
-      </mat-autocomplete>
+      <label class="text-white dark:text-gray-200" for="city">Ciudad:</label>
+      <ng-select formControlName="city"
+        class="z-50 ml-2 block w-72 px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
+        <ng-option *ngFor="let city of cities" [value]="city.id">
+          {{city.name}}
+        </ng-option>
+      </ng-select>
 
-      <label for="breed" class="font-bold">Specie: </label>
-      <input id="breed" type="text" matInput formControlName="specie" [matAutocomplete]="species"
-        class="z-50 ml-2 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" />
-      <mat-autocomplete autoActiveFirstOption #species="matAutocomplete" class="">
-        <mat-option *ngFor="let option of filteredSpecies | async" [value]="option.id" key="option.id" class="">
-          {{ option.name }}
-        </mat-option>
-      </mat-autocomplete>
-      <label for="breed" class="font-bold">Breed: </label>
-      <input id="breed" type="text" matInput formControlName="breed" [matAutocomplete]="breeds"
-        class="z-50 ml-2 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" />
-      <mat-autocomplete autoActiveFirstOption #breeds="matAutocomplete" class="">
-        <mat-option *ngFor="let option of filteredBreeds | async" [value]="option.id" key="option.id" class="">
-          {{ option.name }}
-        </mat-option>
-      </mat-autocomplete>
+      <label class="text-white dark:text-gray-200" for="specie">Especie:</label>
+      <ng-select formControlName="specie"
+        class="z-50 ml-2 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
+        <ng-option *ngFor="let specie of species" [value]="specie.id">
+          {{specie.name}}
+        </ng-option>
+      </ng-select>
+
+      <label class="text-white dark:text-gray-200" for="breed">Raza</label>
+      <ng-select formControlName="breed"
+        class="z-50 ml-2 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
+        <ng-option *ngFor="let breed of breeds" [value]="breed.id">
+          {{breed.name}}
+        </ng-option>
+      </ng-select>
+
       <button (click)="sendForm()"
         class="mx-2 my-2 bg-white transition duration-150 ease-in-out hover:border-gray-900 hover:text-gray-900 rounded border border-gray-800 text-gray-800 px-8 py-3 text-sm">
         Button

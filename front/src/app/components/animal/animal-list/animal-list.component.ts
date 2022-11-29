@@ -13,6 +13,7 @@ import { ShelterService } from '@services/shelter/shelter.service';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatOptionModule } from '@angular/material/core';
 import { FooterComponent } from '@components/general/footer/footer.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @Component({
   selector: 'app-animal-list',
@@ -25,6 +26,7 @@ import { FooterComponent } from '@components/general/footer/footer.component';
     ReactiveFormsModule,
     MatOptionModule,
     MatAutocompleteModule,
+    NgSelectModule,
   ],
   templateUrl: './animal-list.component.html',
   styleUrls: ['./animal-list.component.css'],
