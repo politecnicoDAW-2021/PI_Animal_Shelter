@@ -22,10 +22,20 @@ export class PasswordService {
     );
   }
 
+  async findShelter(condition: any): Promise<PasswordEntity | any> {
+    return await this.dataSource.query(
+      `select password from password where shelterId = '${condition}'`,
+    );
+  }
+
   async findOneByGoogleId(condition: any): Promise<PasswordEntity | any> {
     console.log('findOneByGoogleId', condition);
 
     return await this.passwordRepository.findOneBy({ userId: condition });
+  }
+
+  async findShelterByGoogleId(condition: any): Promise<PasswordEntity | any> {
+    return this.passwordRepository.findOneBy({ shelterId: condition });
   }
 
   async update(userId: any, condition: any): Promise<any> {

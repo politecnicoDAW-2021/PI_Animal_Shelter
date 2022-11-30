@@ -7,9 +7,18 @@ import { Repository } from 'typeorm';
 export class ShelterService {
   constructor(
     @InjectRepository(ShelterEntity)
-    private readonly shelterEntity: Repository<ShelterEntity>,
+    private readonly shelterRepository: Repository<ShelterEntity>,
   ) {}
+
   findCities(): Promise<ShelterEntity[]> {
-    return this.shelterEntity.find();
+    return this.shelterRepository.find();
+  }
+
+  async create(shelter: any): Promise<any> {
+    return await this.shelterRepository.save(shelter);
+  }
+
+  async findOneByEmail(condition: any): Promise<ShelterEntity> {
+    return await this.shelterRepository.findOneBy({ email: condition });
   }
 }
