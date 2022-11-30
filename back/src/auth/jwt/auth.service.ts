@@ -5,6 +5,7 @@ import { UsersService } from 'src/modules/users/services/users.service';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { sign } from 'jsonwebtoken';
+import { ShelterService } from 'src/modules/shelters/services/shelter.service';
 
 export interface SocialUser {
   id?: any;
@@ -20,6 +21,7 @@ export class AuthService {
   constructor(
     private userService: UsersService,
     private passwordService: PasswordService,
+    private shelterService: ShelterService,
     private jwtService: JwtService,
   ) {}
 
@@ -43,6 +45,7 @@ export class AuthService {
         twitter_tk: null,
         jwt_tk: null,
         userId: userToRegister.id,
+        shelterId: null,
       });
 
       return userToRegister;
@@ -91,6 +94,79 @@ export class AuthService {
     ) {
       return {
         username: (await user).name,
+        password: password,
+      };
+    }
+    return null;
+  }
+
+  async registerShelter(shelter: any) {
+    const existsShelter = await this.shelterService.findOneByEmail(
+      shelter.email,
+    );
+
+    if (!existsShelter) {
+      const shelterToRegister = await this.shelterService.create({
+        name: shelter.name,
+        email: shelter.email,
+        city: shelter.city,
+      });
+
+      const password = await this.passwordService.create({
+        password: await bcrypt.hash(shelter.password, await bcrypt.genSalt()),
+        google_tk: null,
+        twitter_tk: null,
+        jwt_tk: null,
+        shelterId: shelterToRegister.id,
+        userId: null,
+      });
+
+      return shelterToRegister;
+    }
+
+    throw new Error('esta protectora ya existe');
+  }
+
+  async loginShelter(shelter: any) {
+    const shelterId = await this.shelterService.findOneByEmail(shelter.email);
+    const payload = { email: shelter.email, sub: shelterId.id };
+
+    if (shelter.idToken) {
+      const tokenFromDb = await this.passwordService.findShelterByGoogleId(
+        shelterId.id,
+      );
+
+      const jwt: string = sign(payload, 'secret', { expiresIn: 3600 });
+
+      return {
+        username: shelter.email,
+        id: shelterId.id,
+      };
+    }
+
+    const success = await this.validateShelter(shelter.email, shelter.password);
+
+    if (!success) {
+      throw new UnauthorizedException('credenciales no validos');
+    }
+
+    return {
+      username: shelter.email,
+      id: shelterId.id,
+      access_token: this.jwtService.sign(payload, { secret: 'secret' }),
+    };
+  }
+
+  async validateShelter(email: any, password: any): Promise<any> {
+    const shelter = await this.shelterService.findOneByEmail(email);
+    const pass = await this.passwordService.findShelter(shelter.id);
+
+    if (
+      shelter &&
+      (await this.passwordsAreEqual(await pass[0].password, password))
+    ) {
+      return {
+        username: (await shelter).name,
         password: password,
       };
     }
