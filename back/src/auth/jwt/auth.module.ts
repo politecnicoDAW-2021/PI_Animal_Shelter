@@ -13,11 +13,12 @@ import { LocalStrategy } from './strategies/local.strategy';
 import { ConfigModule } from '@nestjs/config';
 import { PassportModule } from '@nestjs/passport';
 import { AuthMiddleware } from './middleware/auth.middleware';
-//import { GoogleAuthService } from '../google/google-auth.service';
+import { ShelterModule } from 'src/modules/shelters/modules/shelter.module';
 
 @Module({
   imports: [
     UserModule,
+    ShelterModule,
     JwtModule.register({
       secret: 'secret',
       signOptions: {
@@ -35,18 +36,9 @@ import { AuthMiddleware } from './middleware/auth.middleware';
       session: false,
     }),
   ],
-  providers: [
-    AuthService,
-    //GoogleAuthService,
-    JwtService,
-    LocalStrategy,
-    JwtStrategy,
-  ],
+  providers: [AuthService, JwtService, LocalStrategy, JwtStrategy],
   controllers: [AuthController],
-  exports: [
-    AuthService,
-    //GoogleAuthService
-  ],
+  exports: [AuthService],
 })
 export class AuthModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
