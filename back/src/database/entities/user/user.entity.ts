@@ -56,8 +56,8 @@ export class UserEntity {
   })
   creditCard: CreditCardEntity;
 
-  // @ManyToOne(() => ShelterEntity, (shelter) => shelter.id, {
-  //   onDelete: 'CASCADE'
-  // })
-  // shelter: ShelterEntity;
+  @ManyToOne(() => ShelterEntity, (shelter) => shelter.id, {
+    onDelete: 'CASCADE',
+  })
+  shelter: ShelterEntity;
 }
