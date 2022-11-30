@@ -31,6 +31,9 @@ export class PasswordEntity {
   @Column({ nullable: true })
   userId: number;
 
+  @Column({ nullable: true })
+  shelterId: number;
+
   @BeforeInsert()
   async hashPassword() {
     this.password = await bcrypt.hash(this.password, 10);
