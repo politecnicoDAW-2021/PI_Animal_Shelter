@@ -1,0 +1,149 @@
+<div class="flex justify-center bg-gray-100 py-10 p-14">
+    <div class="container mx-auto pr-4">
+        <div
+            class="w-72 bg-brown-secundary max-w-xs mx-auto rounded text-center overflow-hidden shadow-lg hover:shadow-2xl transition duration-500 transform hover:scale-100 cursor-pointer">
+            <div class="h-20 pt-4 items-center justify-between">
+                <p class="mr-0 text-white text-lg pl-5">TOTAL USUARIOS</p>
+            </div>
+            <p class="py-4 text-3xl ml-5">{{userAmount ?? ""}}</p>
+        </div>
+    </div>
+
+    <div class="container mx-auto pr-4">
+        <div
+            class="w-72 bg-brown-secundary max-w-xs mx-auto rounded text-center overflow-hidden shadow-lg hover:shadow-2xl transition duration-500 transform hover:scale-100 cursor-pointer">
+            <div class="h-20 pt-4 items-center justify-between">
+                <p class="mr-0 text-white text-lg pl-5">TOTAL ANIMALES</p>
+            </div>
+            <p class="py-4 text-3xl ml-5">{{animalAmount ?? ""}}</p>
+        </div>
+    </div>
+
+    <div class="container mx-auto pr-4">
+        <div
+            class="w-72 bg-brown-secundary max-w-xs mx-auto rounded text-center overflow-hidden shadow-lg hover:shadow-2xl transition duration-500 transform hover:scale-100 cursor-pointer">
+            <div class="h-20 pt-4 items-center justify-between">
+                <p class="mr-0 text-white text-lg pl-5">TOTAL RAZAS</p>
+            </div>
+            <p class="py-4 text-3xl ml-5">{{breedAmount ?? ""}}</p>
+        </div>
+    </div>
+
+    <div class="container mx-auto">
+        <div
+            class="w-72 bg-brown-secundary max-w-xs mx-auto rounded text-center overflow-hidden shadow-lg hover:shadow-2xl transition duration-500 transform hover:scale-100 cursor-pointer">
+            <div class="h-20 pt-4 items-center justify-between">
+                <p class="mr-0 text-white text-lg pl-5">TOTAL REFUGIOS</p>
+            </div>
+            <p class="py-4 text-3xl ml-5">{{shelterAmount ?? ""}}</p>
+        </div>
+    </div>
+
+</div>
+
+<div class="flex justify-center bg-gray-100 py-10 p-5">
+    <div class="container mr-5 ml-2 mx-auto bg-white shadow-xl">
+        <div class="w-11/12 mx-auto">
+            <div class="bg-white my-6">
+                USUARIOS
+                <table class="text-left w-full border-collapse">
+                    <thead>
+                        <tr>
+                            <th
+                                class="py-4 px-6 bg-purple-400 font-bold uppercase text-sm text-white border-b border-grey-light">
+                                Nombre
+                            </th>
+                            <th
+                                class="py-4 px-6 text-center bg-purple-400 font-bold uppercase text-sm text-white border-b border-grey-light">
+                                Apellido
+                            </th>
+                            <th
+                                class="py-4 px-6 text-center bg-purple-400 font-bold uppercase text-sm text-white border-b border-grey-light">
+                                Nombre de usuario
+                            </th>
+                            <th
+                                class="py-4 px-6 text-center bg-purple-400 font-bold uppercase text-sm text-white border-b border-grey-light">
+                                Email</th>
+                            <th
+                                class="py-4 px-6 text-center bg-purple-400 font-bold uppercase text-sm text-white border-b border-grey-light">
+                                Rol
+                            </th>
+                            <th
+                                class="py-4 px-6 text-center bg-purple-400 font-bold uppercase text-sm text-white border-b border-grey-light">
+                                Acciones
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="hover:bg-grey-lighter" *ngFor="let user of users">
+                            <td class="py-4 px-6 border-b border-grey-light">
+                                {{user.name}}
+                            </td>
+                            <td class="py-4 px-6 text-center border-b border-grey-light">
+                                {{user.surname}}
+                            </td>
+                            <td class="py-4 px-6 text-center border-b border-grey-light">
+                                {{user.username}}
+                            </td>
+                            <td class="py-4 px-6 text-center border-b border-grey-light">
+                                {{user.email}}
+                            </td>
+                            <td class="py-4 px-6 text-center border-b border-grey-light">
+                                {{user.rol}}
+                            </td>
+                            <td class="py-4 px-6 text-center border-b border-grey-light">
+                                <button>
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container mx-auto bg-white shadow-xl">
+        <div class="w-11/12 mx-auto">
+            <div class="bg-white my-6">
+                ANIMALES
+                <table class="text-left w-full border-collapse">
+                    <thead>
+                        <tr>
+                            <th
+                                class="py-4 px-6 bg-purple-400 font-bold uppercase text-sm text-white border-b border-grey-light">
+                                NOMBRE</th>
+                            <th
+                                class="py-4 px-6 text-center bg-purple-400 font-bold uppercase text-sm text-white border-b border-grey-light">
+                                GÉNERO</th>
+                            <th
+                                class="py-4 px-6 text-center bg-purple-400 font-bold uppercase text-sm text-white border-b border-grey-light">
+                                DESPARASITADO
+                            </th>
+                            <th
+                                class="py-4 px-6 text-center bg-purple-400 font-bold uppercase text-sm text-white border-b border-grey-light">
+                                TAMAÑO
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="hover:bg-grey-lighter" *ngFor="let animal of animals">
+                            <td class="py-4 px-6 border-b border-grey-light">{{animal.name}}</td>
+                            <td class="py-4 text-center px-6 border-b border-grey-light">
+                                {{animal.gender}}
+                            </td>
+                            <td class="py-4 text-center px-6 border-b border-grey-light">
+                                {{animal.dewormed}}
+                            </td>
+                            <td class="py-4 text-center px-6 border-b border-grey-light">
+                                {{animal.size}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
