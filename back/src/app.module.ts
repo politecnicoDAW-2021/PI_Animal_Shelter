@@ -19,6 +19,7 @@ import { ConfigModule } from '@nestjs/config';
 import { ShelterModule } from './modules/shelters/modules/shelter.module';
 import { BreedEntity } from './database/entities/animal/breed.entity';
 import { SpecieEntity } from './database/entities/animal/specie.entity';
+import { AdminModule } from './modules/admin/modules/admin.module';
 
 @Module({
   imports: [
@@ -43,6 +44,7 @@ import { SpecieEntity } from './database/entities/animal/specie.entity';
     AuthModule,
     AnimalModule,
     ShelterModule,
+    AdminModule,
   ],
   controllers: [AppController],
   providers: [AppService],
