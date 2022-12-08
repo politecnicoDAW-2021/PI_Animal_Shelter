@@ -25,6 +25,11 @@ export class RegisterComponent implements OnInit {
   password!: FormControl;
   submitted: boolean = false;
 
+  nameShelter!: FormControl;
+  emailShelter!: FormControl;
+  cityShelter!: FormControl;
+  passwordShelter!: FormControl;
+
   constructor(
     private fb: UntypedFormBuilder,
     private router: Router,
@@ -50,10 +55,10 @@ export class RegisterComponent implements OnInit {
     });
 
     this.shelterForm = this.fb.group({
-      name: this.name,
-      email: this.email,
-      city: this.city,
-      password: this.password,
+      name: this.nameShelter,
+      email: this.emailShelter,
+      city: this.cityShelter,
+      password: this.passwordShelter,
     });
   }
 
@@ -81,9 +86,11 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
+    console.log(this.registerForm.status);
     if (this.registerForm.status === 'VALID') {
       this.submitted = true;
       this.authService.register(this.registerForm.value).subscribe();
+
       this.registerForm.reset();
     }
   }
