@@ -30,6 +30,10 @@ export class AuthService {
     return this.http.post(`${this.endpoint}/register`, user);
   }
 
+  registerShelter(shelter: any) {
+    return this.http.post(`${this.endpoint}/registerShelter`, shelter);
+  }
+
   login(user: any) {
     return this.httpLogin.post<any>(`${this.endpoint}/login`, user).pipe(
       map(async (user) => {
