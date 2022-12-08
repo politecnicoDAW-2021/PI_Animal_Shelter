@@ -1,10 +1,7 @@
 <section class="bg-gray-50 dark:bg-gray-900">
-  <div
-    class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0 bg-login-bg"
-  >
+  <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0 bg-login-bg">
     <div
-      class="bg-white-1 w-full rounded-lg shadow-xl shadow-gray-2 dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"
-    >
+      class="bg-white-1 w-full rounded-lg shadow-xl shadow-gray-2 dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
       <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
         <div class="flex items-center justify-between">
           <div class="flex items-start">
@@ -12,100 +9,136 @@
           </div>
           <h1>MoonPets</h1>
         </div>
+        <ul class="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row">
+          <li class="-mb-px mr-2 last:mr-0 flex-auto text-center">
+            <button class="bg-green-secundary rounded-lg">
+              <a class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal"
+                (click)="toggleTabs(1)"
+                [ngClass]="{'text-pink-600 bg-white': openTab !== 1, 'text-white bg-pink-600': openTab === 1}">
+                <i class="fa-solid fa-user mx-2"></i> Usuario
+              </a>
+            </button>
+          </li>
+          <li class="-mb-px mr-2 last:mr-0 flex-auto text-center">
+            <button class="bg-green-secundary rounded-lg">
+              <a class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal"
+                (click)="toggleTabs(2)"
+                [ngClass]="{'text-pink-600 bg-white': openTab !== 2, 'text-white bg-pink-600': openTab === 2}">
+                <i class="fa-solid fa-tent mx-2"></i> Protectora
+              </a>
+            </button>
 
-        <form class="space-y-4 md:space-y-6" [formGroup]="loginForm">
-          <div>
-            <label
-              for="email"
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >Your email</label
-            >
-            <input
-              type="email"
-              name="email"
-              id="email"
-              formControlName="email"
-              class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="name@company.com"
-              required=""
-            />
-          </div>
-          <span
-            *ngIf="(this.loginForm.get('email')?.touched || submitted) && loginForm.get('email')?.errors?.['required']"
-            class="flex items-center font-medium tracking-wide text-xs text-red-900 mt-1 ml-1"
-          >
-            Invalid email!
-          </span>
-
-          <div>
-            <label
-              for="password"
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >Password</label
-            >
-            <input
-              type="password"
-              name="password"
-              id="password"
-              formControlName="password"
-              placeholder="••••••••"
-              class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              required=""
-            />
-          </div>
-          <span
-            *ngIf="(this.loginForm.get('password')?.touched || submitted) && loginForm.get('password')?.errors?.['required']"
-            class="flex items-center font-medium tracking-wide text-xs text-red-900 mt-1 ml-1"
-          >
-            Invalid password!
-          </span>
-          <div class="flex items-center justify-between">
-            <div class="flex items-start">
-              <button
-                type="submit"
-                (click)="login()"
-                class="w-full text-brown-secundary bg-green-secundary hover:bg-green-secundary/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2"
-              >
-                Sign in
-              </button>
+          </li>
+        </ul>
+        <div [ngClass]="{'hidden': openTab !== 1, 'block': openTab === 1}">
+          <form class="space-y-4 md:space-y-6" [formGroup]="loginForm">
+            <div>
+              <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email
+                usuario</label>
+              <input type="email" name="email" id="email" formControlName="email"
+                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="name@company.com" required="" />
             </div>
-            <a
-              href="#"
-              class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
-              >Forgot password?</a
-            >
-          </div>
-          <button
-            type="button"
-            (click)="loginWithGoogle()"
-            class="text-brown-secundary bg-green-secundary hover:bg-green-secundary/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2"
-          >
-            <svg
-              class="mr-2 -ml-1 w-4 h-4"
-              aria-hidden="true"
-              focusable="false"
-              data-prefix="fab"
-              data-icon="google"
-              role="img"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 488 512"
-            >
-              <path
-                fill="currentColor"
-                d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"
-              ></path>
-            </svg>
-            Sign in with Google
-          </button>
-          <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-            Don’t have an account yet?
-            <a
-              href="http://localhost:4200/register"
-              class="font-medium text-primary-600 hover:underline dark:text-primary-500"
-              >Sign up</a
-            >
-          </p>
-        </form>
+            <span
+              *ngIf="(this.loginForm.get('email')?.touched || submitted) && loginForm.get('email')?.errors?.['required']"
+              class="flex items-center font-medium tracking-wide text-xs text-red-900 mt-1 ml-1">
+              Invalid email!
+            </span>
+
+            <div>
+              <label for="password"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contraseña</label>
+              <input type="password" name="password" id="password" formControlName="password" placeholder="••••••••"
+                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                required="" />
+            </div>
+            <span
+              *ngIf="(this.loginForm.get('password')?.touched || submitted) && loginForm.get('password')?.errors?.['required']"
+              class="flex items-center font-medium tracking-wide text-xs text-red-900 mt-1 ml-1">
+              Invalid password!
+            </span>
+            <div class="flex items-center justify-between">
+              <div class="flex items-start">
+                <button type="submit" (click)="login()"
+                  class="w-full text-brown-secundary bg-green-secundary hover:bg-green-secundary/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2">
+                  Inicia sesión
+                </button>
+              </div>
+              <a href="#" class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">
+                ¿Has olvidado tu contraseña?</a>
+            </div>
+            <button type="button" (click)="loginWithGoogle()"
+              class="text-brown-secundary bg-green-secundary hover:bg-green-secundary/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2">
+              <svg class="mr-2 -ml-1 w-4 h-4" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="google"
+                role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512">
+                <path fill="currentColor"
+                  d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z">
+                </path>
+              </svg>
+              Inicia sesión con Google
+            </button>
+            <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+              ¿No tienes cuenta aún?
+              <a href="http://localhost:4200/register"
+                class="font-medium text-primary-600 hover:underline dark:text-primary-500">Regístrate</a>
+            </p>
+          </form>
+        </div>
+        <div [ngClass]="{'hidden': openTab !== 2, 'block': openTab === 2}">
+          <form class="space-y-4 md:space-y-6" [formGroup]="shelterForm">
+            <div>
+              <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email
+                protectora</label>
+              <input type="email" name="email" id="email" formControlName="email"
+                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="name@company.com" required="" />
+            </div>
+            <!-- <span
+              *ngIf="(this.loginForm.get('email')?.touched || submitted) && loginForm.get('email')?.errors?.['required']"
+              class="flex items-center font-medium tracking-wide text-xs text-red-900 mt-1 ml-1">
+              Invalid email!
+            </span> -->
+
+            <div>
+              <label for="password"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contraseña</label>
+              <input type="password" name="password" id="password" formControlName="password" placeholder="••••••••"
+                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                required="" />
+            </div>
+            <!-- <span
+              *ngIf="(this.loginForm.get('password')?.touched || submitted) && loginForm.get('password')?.errors?.['required']"
+              class="flex items-center font-medium tracking-wide text-xs text-red-900 mt-1 ml-1">
+              Invalid password!
+            </span> -->
+            <div class="flex items-center justify-between">
+              <div class="flex items-start">
+                <button type="submit" (click)="loginShelter()"
+                  class="w-full text-brown-secundary bg-green-secundary hover:bg-green-secundary/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2">
+                  Inicia sesión
+                </button>
+              </div>
+              <a href="#" class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">
+                ¿Has olvidado tu contraseña?
+              </a>
+            </div>
+            <button type="button" (click)="loginWithGoogle()"
+              class="text-brown-secundary bg-green-secundary hover:bg-green-secundary/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2">
+              <svg class="mr-2 -ml-1 w-4 h-4" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="google"
+                role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512">
+                <path fill="currentColor"
+                  d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z">
+                </path>
+              </svg>
+              Inicia sesión con Google
+            </button>
+            <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+              ¿No tienes cuenta aún?
+              <a href="http://localhost:4200/register"
+                class="font-medium text-primary-600 hover:underline dark:text-primary-500">Regístrate</a>
+            </p>
+          </form>
+        </div>
       </div>
     </div>
   </div>

@@ -20,6 +20,10 @@ export class LoginComponent implements OnInit {
   password!: FormControl;
   submitted: boolean = false;
 
+  shelterForm!: FormGroup;
+  emailShelter!: FormGroup;
+  passwordShelter!: FormGroup;
+
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -32,6 +36,16 @@ export class LoginComponent implements OnInit {
       email: this.email,
       password: this.password,
     });
+
+    this.shelterForm = this.fb.group({
+      email: this.emailShelter,
+      password: this.passwordShelter,
+    });
+  }
+
+  openTab = 1;
+  toggleTabs($tabNumber: number) {
+    this.openTab = $tabNumber;
   }
 
   validators() {
@@ -43,6 +57,16 @@ export class LoginComponent implements OnInit {
     this.submitted = true;
     return this.authService
       .login(this.loginForm.value)
+      .pipe(first())
+      .subscribe(() => {
+        this.router.navigate(['/home']);
+      });
+  }
+
+  loginShelter() {
+    this.submitted = true;
+    return this.authService
+      .loginShelter(this.shelterForm.value)
       .pipe(first())
       .subscribe(() => {
         this.router.navigate(['/home']);

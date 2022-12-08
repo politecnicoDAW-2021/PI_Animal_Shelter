@@ -46,6 +46,20 @@ export class AuthService {
     );
   }
 
+  loginShelter(shelter: any) {
+    return this.httpLogin
+      .post<any>(`${this.endpoint}/loginShelter`, shelter)
+      .pipe(
+        map(async (shelter) => {
+          if (shelter && shelter.access_token) {
+            this.saveToken(shelter.access_token);
+            this.saveId(shelter.id);
+            this.saveEmail(shelter.username);
+          }
+        })
+      );
+  }
+
   async googleGet() {
     const user = await this.socialService.signIn(
       GoogleLoginProvider.PROVIDER_ID
