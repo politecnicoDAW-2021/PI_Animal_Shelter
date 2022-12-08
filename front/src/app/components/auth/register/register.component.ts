@@ -16,6 +16,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
+  shelterForm!: FormGroup;
   name!: FormControl;
   surname!: FormControl;
   username!: FormControl;
@@ -30,6 +31,11 @@ export class RegisterComponent implements OnInit {
     private authService: AuthService
   ) {}
 
+  openTab = 1;
+  toggleTabs($tabNumber: number) {
+    this.openTab = $tabNumber;
+  }
+
   ngOnInit(): void {
     this.validators();
     this.registerForm = this.fb.group({
@@ -42,7 +48,13 @@ export class RegisterComponent implements OnInit {
       password: this.password,
       //file: []
     });
-    console.log('formulario', this.registerForm.status);
+
+    this.shelterForm = this.fb.group({
+      name: this.name,
+      email: this.email,
+      city: this.city,
+      password: this.password,
+    });
   }
 
   validators() {
@@ -74,5 +86,10 @@ export class RegisterComponent implements OnInit {
       this.authService.register(this.registerForm.value).subscribe();
       this.registerForm.reset();
     }
+  }
+
+  registerShelter() {
+    this.authService.registerShelter(this.shelterForm.value).subscribe();
+    this.shelterForm.reset();
   }
 }

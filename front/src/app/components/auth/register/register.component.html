@@ -3,178 +3,188 @@
     <div class="container mx-auto py-8">
       <div class="w-5/6 lg:w-1/2 mx-auto bg-white rounded shadow">
         <div class="py-4 px-8 text-black text-xl">Register in MoonPets</div>
+        <ul class="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row">
+          <li class="-mb-px mr-2 last:mr-0 flex-auto text-center">
+            <a class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal"
+              (click)="toggleTabs(1)"
+              [ngClass]="{'text-pink-600 bg-white': openTab !== 1, 'text-white bg-pink-600': openTab === 1}">
+              <i class="fa-solid fa-user mx-2"></i> Register as user
+            </a>
+          </li>
+          <li class="-mb-px mr-2 last:mr-0 flex-auto text-center">
+            <a class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal"
+              (click)="toggleTabs(2)"
+              [ngClass]="{'text-pink-600 bg-white': openTab !== 2, 'text-white bg-pink-600': openTab === 2}">
+              <i class="fa-solid fa-tent mx-2"></i> Register as shelter
+            </a>
+          </li>
+        </ul>
         <div class="py-4 px-8">
-          <form [formGroup]="registerForm">
-            <div class="flex mb-4">
-              <div class="w-1/2 mr-1">
-                <label
-                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                  for="first_name"
-                  >Name
+          <div [ngClass]="{'hidden': openTab !== 1, 'block': openTab === 1}">
+            <form [formGroup]="registerForm">
+              <div class="flex mb-4">
+                <div class="w-1/2 mr-1">
+                  <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="first_name">Name
+                  </label>
+                  <input
+                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    id="name" type="text" name="name" formControlName="name" placeholder="Your first name" />
+                  <span
+                    *ngIf="(this.registerForm.get('name')?.touched || submitted) && registerForm.get('name')?.errors?.['required']"
+                    class="flex items-center font-medium tracking-wide text-xs text-red-900 mt-1 ml-1">
+                    Invalid name
+                  </span>
+                </div>
+                <div class="w-1/2 ml-1">
+                  <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="last_name">
+                    Last Name
+                  </label>
+                  <input
+                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    type="text" id="surname" formControlName="surname" name="surname" placeholder="Your last name" />
+                  <span
+                    *ngIf="(this.registerForm.get('surname')?.touched || submitted) && registerForm.get('surname')?.errors?.['required']"
+                    class="flex items-center font-medium tracking-wide text-xs text-red-900 mt-1 ml-1">
+                    Invalid surname
+                  </span>
+                </div>
+              </div>
+              <div class="flex mb-4">
+                <div class="w-2/3 mr-1">
+                  <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="first_name">Username
+                  </label>
+                  <input
+                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    id="username" type="text" name="username" formControlName="username" placeholder="Your username" />
+                  <span
+                    *ngIf="(this.registerForm.get('username')?.touched || submitted) && registerForm.get('username')?.errors?.['required']"
+                    class="flex items-center font-medium tracking-wide text-xs text-red-900 mt-1 ml-1">
+                    Invalid username
+                  </span>
+                </div>
+                <div class="w-1/3 ml-1">
+                  <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="last_name">
+                    City
+                  </label>
+                  <input
+                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    type="text" id="city" formControlName="city" name="city" placeholder="Enter your city" />
+                  <span
+                    *ngIf="(this.registerForm.get('city')?.touched || submitted) && registerForm.get('city')?.errors?.['required']"
+                    class="flex items-center font-medium tracking-wide text-xs text-red-900 mt-1 ml-1">
+                    Invalid city
+                  </span>
+                </div>
+              </div>
+              <div class="mb-4">
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="email">
+                  Email Address
                 </label>
                 <input
                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  id="name"
-                  type="text"
-                  name="name"
-                  formControlName="name"
-                  placeholder="Your first name"
-                />
+                  id="email" type="email" formControlName="email" placeholder="Your email address" />
                 <span
-                  *ngIf="(this.registerForm.get('name')?.touched || submitted) && registerForm.get('name')?.errors?.['required']"
-                  class="flex items-center font-medium tracking-wide text-xs text-red-900 mt-1 ml-1"
-                >
-                  Invalid name
+                  *ngIf="(this.registerForm.get('email')?.touched || submitted) && registerForm.get('email')?.errors?.['required']"
+                  class="flex items-center font-medium tracking-wide text-xs text-red-900 mt-1 ml-1">
+                  Invalid email
                 </span>
               </div>
-              <div class="w-1/2 ml-1">
-                <label
-                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                  for="last_name"
-                >
-                  Last Name
+              <div class="mb-4">
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="password">
+                  Password
                 </label>
                 <input
                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  type="text"
-                  id="surname"
-                  formControlName="surname"
-                  name="surname"
-                  placeholder="Your last name"
-                />
+                  id="password" type="password" formControlName="password" placeholder="Your secure password" />
                 <span
-                  *ngIf="(this.registerForm.get('surname')?.touched || submitted) && registerForm.get('surname')?.errors?.['required']"
-                  class="flex items-center font-medium tracking-wide text-xs text-red-900 mt-1 ml-1"
-                >
-                  Invalid surname
+                  *ngIf="(this.registerForm.get('password')?.touched || submitted) && registerForm.get('password')?.errors?.['required']"
+                  class="flex items-center font-medium tracking-wide text-xs text-red-900 mt-1 ml-1">
+                  Invalid password
                 </span>
               </div>
-            </div>
-            <div class="flex mb-4">
-              <div class="w-2/3 mr-1">
-                <label
-                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                  for="first_name"
-                  >Username
+              <div class="flex items-center justify-between mt-8">
+                <button
+                  class="w-full text-white justify-center bg-green-secundary hover:bg-green-secundary/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-4"
+                  type="submit" (click)="register()">
+                  Register
+                </button>
+              </div>
+              <div class="border-b border-gray-300"></div>
+            </form>
+            <button type="button"
+              class="w-full text-white justify-center bg-green-secundary hover:bg-green-secundary/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 mt-4 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2">
+              <svg class="mr-2 -ml-1 w-4 h-4" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="google"
+                role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512">
+                <path fill="currentColor"
+                  d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z">
+                </path>
+              </svg>
+              Sign in with Google
+            </button>
+          </div>
+          <div [ngClass]="{'hidden': openTab !== 2, 'block': openTab === 2}">
+            <form [formGroup]="shelterForm">
+              <div class="flex mb-4">
+                <div class="w-1/2 mr-1">
+                  <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="first_name">Nombre de
+                    la protectora
+                  </label>
+                  <input
+                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    id="name" type="text" name="name" formControlName="name" placeholder="Nombre" />
+                </div>
+                <div class="w-1/2 ml-1">
+                  <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="email">
+                    Email
+                  </label>
+                  <input
+                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    type="text" id="email" formControlName="email" name="email" placeholder="Your email" />
+                </div>
+              </div>
+              <div class="flex mb-4">
+                <div class="w-1/2 mr-1">
+                  <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="city">Ciudad
+                  </label>
+                  <input
+                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    id="city" type="text" name="city" formControlName="city" placeholder="Introduce una ciudad" />
+                </div>
+              </div>
+              <div class="mb-4">
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="password">
+                  Password
                 </label>
                 <input
                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  id="username"
-                  type="text"
-                  name="username"
-                  formControlName="username"
-                  placeholder="Your username"
-                />
-                <span
-                  *ngIf="(this.registerForm.get('username')?.touched || submitted) && registerForm.get('username')?.errors?.['required']"
-                  class="flex items-center font-medium tracking-wide text-xs text-red-900 mt-1 ml-1"
-                >
-                  Invalid username
-                </span>
+                  id="password" type="password" formControlName="password" placeholder="Your secure password" />
               </div>
-              <div class="w-1/3 ml-1">
-                <label
-                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                  for="last_name"
-                >
-                  City
-                </label>
-                <input
-                  class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  type="text"
-                  id="city"
-                  formControlName="city"
-                  name="city"
-                  placeholder="Enter your city"
-                />
-                <span
-                  *ngIf="(this.registerForm.get('city')?.touched || submitted) && registerForm.get('city')?.errors?.['required']"
-                  class="flex items-center font-medium tracking-wide text-xs text-red-900 mt-1 ml-1"
-                >
-                  Invalid city
-                </span>
+              <div class="flex items-center justify-between mt-8">
+                <button
+                  class="w-full text-white justify-center bg-green-secundary hover:bg-green-secundary/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-4"
+                  type="submit" (click)="registerShelter()">
+                  Register
+                </button>
               </div>
-            </div>
-            <div class="mb-4">
-              <label
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                for="email"
-              >
-                Email Address
-              </label>
-              <input
-                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                id="email"
-                type="email"
-                formControlName="email"
-                placeholder="Your email address"
-              />
-              <span
-                *ngIf="(this.registerForm.get('email')?.touched || submitted) && registerForm.get('email')?.errors?.['required']"
-                class="flex items-center font-medium tracking-wide text-xs text-red-900 mt-1 ml-1"
-              >
-                Invalid email
-              </span>
-            </div>
-            <div class="mb-4">
-              <label
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                for="password"
-              >
-                Password
-              </label>
-              <input
-                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                id="password"
-                type="password"
-                formControlName="password"
-                placeholder="Your secure password"
-              />
-              <span
-                *ngIf="(this.registerForm.get('password')?.touched || submitted) && registerForm.get('password')?.errors?.['required']"
-                class="flex items-center font-medium tracking-wide text-xs text-red-900 mt-1 ml-1"
-              >
-                Invalid password
-              </span>
-            </div>
-            <div class="flex items-center justify-between mt-8">
-              <button
-                class="w-full text-white justify-center bg-green-secundary hover:bg-green-secundary/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-4"
-                type="submit"
-                (click)="register()"
-              >
-                Register
-              </button>
-            </div>
-            <div class="border-b border-gray-300"></div>
-          </form>
-          <button
-            type="button"
-            class="w-full text-white justify-center bg-green-secundary hover:bg-green-secundary/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 mt-4 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2"
-          >
-            <svg
-              class="mr-2 -ml-1 w-4 h-4"
-              aria-hidden="true"
-              focusable="false"
-              data-prefix="fab"
-              data-icon="google"
-              role="img"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 488 512"
-            >
-              <path
-                fill="currentColor"
-                d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"
-              ></path>
-            </svg>
-            Sign in with Google
-          </button>
+              <div class="border-b border-gray-300"></div>
+            </form>
+            <button type="button"
+              class="w-full text-white justify-center bg-green-secundary hover:bg-green-secundary/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 mt-4 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2">
+              <svg class="mr-2 -ml-1 w-4 h-4" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="google"
+                role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512">
+                <path fill="currentColor"
+                  d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z">
+                </path>
+              </svg>
+              Sign in with Google
+            </button>
+          </div>
         </div>
       </div>
       <p class="text-center my-4"></p>
     </div>
   </div>
-  <!-- Footer -->
+
   <footer class="w-full bg-grey-lighter py-8">
     <div class="container mx-auto text-center px-8"></div>
   </footer>
