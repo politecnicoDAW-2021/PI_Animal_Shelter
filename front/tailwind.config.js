@@ -8,27 +8,27 @@ module.exports = {
   },
   darkMode: 'class', // or 'media' or 'class'
   theme: {
-    colors: {
-      'gray-1': '#cdcdcd',
-      'gray-2': '#2e2e2e',
-      'gray': '#c2bbba8c',
-      'white-1': '#f5f5f5',
-      'green-primary': '#395144',
-      'green-secundary': '#4E6C50',
-      'brown-primary': '#AA8B56',
-      'brown-secundary': '#F0EBCE',
-      'brown-tertiary': '#aa8b56b8',
-      'green-700': '#395144',
-      'green-800': '#4d6e5c',
-      'button': 'white',
-      'text-black': '#1e1e1e'
-    },
     fontFamily: {
       'fAwesome': '"FontAwesome"',
       'title': 'Bowlby One SC',
       'text': 'Nunito Sans'
     },
     extend: {
+      colors: {
+        'gray-1': '#cdcdcd',
+        'gray-2': '#2e2e2e',
+        'gray': '#c2bbba8c',
+        'white-1': '#f5f5f5',
+        'green-primary': '#395144',
+        'green-secundary': '#4E6C50',
+        'brown-primary': '#AA8B56',
+        'brown-secundary': '#F0EBCE',
+        'brown-tertiary': '#aa8b56b8',
+        'green-700': '#395144',
+        'green-800': '#4d6e5c',
+        'button': 'white',
+        'text-black': '#1e1e1e'
+      },
       display: ['                                            '],
       backgroundImage: {
         'login-bg': "url('src/assets/login_Background.png')",
