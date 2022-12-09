@@ -17,6 +17,7 @@ import { BreedEntity } from 'src/database/entities/animal/breed.entity';
 import { SpecieEntity } from 'src/database/entities/animal/specie.entity';
 import { MediaEntity } from 'src/database/entities/animal/media.entity';
 import { MulterModule } from '@nestjs/platform-express/multer';
+import AdoptionEntity from 'src/database/entities/common/adoption.entity';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { MulterModule } from '@nestjs/platform-express/multer';
       AnimalEntity,
       BreedEntity,
       MediaEntity,
+      AdoptionEntity,
     ]),
     MulterModule.register({
       dest: './files',
