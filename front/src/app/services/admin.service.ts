@@ -33,4 +33,12 @@ export class AdminService {
   getShelters() {
     return this.http.get<any[]>(`${this.endpoint}/count-shelters`);
   }
+
+  deleteAnimal(id: number) {
+    return this.http.delete(`${this.endpoint}/animal/${id}`);
+  }
+
+  deleteUser(id: number) {
+    return this.http.delete(`${this.endpoint}/user/${id}`);
+  }
 }
