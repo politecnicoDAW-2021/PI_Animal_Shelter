@@ -97,6 +97,10 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
+  getEmail() {
+    return localStorage.getItem('email');
+  }
+
   isLoggedIn() {
     const authToken = localStorage.getItem('token');
 
