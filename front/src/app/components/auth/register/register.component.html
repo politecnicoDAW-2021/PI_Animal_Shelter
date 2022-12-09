@@ -8,7 +8,7 @@
             <button class="bg-green-secundary rounded-lg">
               <a class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal"
                 (click)="toggleTabs(1)"
-                [ngClass]="{'text-pink-600 bg-white': openTab !== 1, 'text-white bg-pink-600': openTab === 1}">
+                [ngClass]="{'text-black bg-white': openTab !== 1, 'text-white bg-green-secundary': openTab === 1}">
                 <i class="fa-solid fa-user mx-2"></i> Register as user
               </a>
             </button>
@@ -17,7 +17,7 @@
             <button class="bg-green-secundary rounded-lg">
               <a class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal"
                 (click)="toggleTabs(2)"
-                [ngClass]="{'text-pink-600 bg-white': openTab !== 2, 'text-white bg-pink-600': openTab === 2}">
+                [ngClass]="{'text-black bg-white': openTab !== 2, 'text-white bg-green-secundary': openTab === 2}">
                 <i class="fa-solid fa-tent mx-2"></i> Register as shelter
               </a>
             </button>

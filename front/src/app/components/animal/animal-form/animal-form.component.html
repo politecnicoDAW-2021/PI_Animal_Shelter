@@ -1,4 +1,4 @@
-<section class="max-w-4xl p-6 mx-auto bg-indigo-600 rounded-md shadow-md dark:bg-gray-800 mt-20">
+<section class="max-w-4xl p-6 mx-auto bg-brown-tertiary rounded-md shadow-md dark:bg-gray-800 mt-20">
   <h1 class="text-xl font-bold text-white dark:text-white">Añade animal</h1>
   <form [formGroup]="animalForm">
     <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
@@ -72,7 +72,7 @@
             </svg>
             <div class="flex text-sm text-gray-600">
               <label for="file-upload"
-                class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                class="relative cursor-pointer bg-white rounded-md font-medium text-black hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
                 <span class="">Upload a file</span>
                 <input id="file-upload" formControlName="image" name="file-upload" type="file" class="sr-only">
               </label>
@@ -102,7 +102,7 @@
 
     <div class="flex justify-end mt-6">
       <button (click)="saveValues()"
-        class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-pink-500 rounded-md hover:bg-pink-700 focus:outline-none focus:bg-gray-600">Save</button>
+        class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-green-secundary rounded-md hover:bg-green-primary focus:outline-none focus:bg-gray-600">Save</button>
     </div>
   </form>
 </section>
