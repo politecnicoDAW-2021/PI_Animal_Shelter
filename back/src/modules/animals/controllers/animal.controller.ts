@@ -11,15 +11,17 @@ import {
   ParseIntPipe,
   Res,
   Param,
+  BadRequestException,
+  Delete,
 } from '@nestjs/common';
 import { get } from 'http';
 import { AnimalService } from '../services/animal.service';
-import { Express } from 'express';
+import { Express, Response } from 'express';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { createReadStream } from 'fs';
 import { join } from 'path';
-import multer from 'multer';
-import { multerConfig } from '../utils/file-upload.utils';
+import multer, { diskStorage } from 'multer';
+//import { multerConfig } from '../utils/file-upload.utils';
 import { Readable } from 'stream';
 
 @Controller()
@@ -43,27 +45,76 @@ export class AnimalController {
     return this.animalService.addAnimals(animal);
   }
 
-  @UseInterceptors(FileInterceptor('file', multerConfig))
-  @Post('file')
-  async uploadFile(@UploadedFile() file: Express.Multer.File, @Body() body) {
-    console.log('filename', file.originalname);
-    console.log('file', file);
-    return await this.animalService.uploadFiles(
-      body.idAnimal,
-      file.buffer,
-      file.originalname,
-    );
+  @Delete('animal/:id')
+  async deleteAnimal(@Param('id') id: number) {
+    return this.animalService.deleteAnimal(id);
   }
 
-  @Get('file')
-  async getDatabaseFileById(@Query() query: any) {
-    console.log('id', query.id);
-    const file = await this.animalService.getFileById(query.id);
-    console.log('file', file);
-    const stream = Readable.from(file.data);
-    console.log('stream', stream);
-    return new StreamableFile(stream);
+  // @UseInterceptors(FileInterceptor('file', multerConfig))
+  // @Post('file')
+  // async uploadFile(@UploadedFile() file: Express.Multer.File, @Body() body) {
+  //   console.log('filename', file.originalname);
+  //   console.log('file', file);
+  //   return await this.animalService.uploadFiles(
+  //     body.idAnimal,
+  //     file.buffer,
+  //     file.originalname,
+  //   );
+  // }
+
+  @Post('upload-file')
+  @UseInterceptors(
+    FileInterceptor('file', {
+      storage: diskStorage({
+        destination: './uploads',
+        filename: (req: any, file, cb) => {
+          const name = file.originalname.split('.')[0];
+          const fileExtension = file.originalname.split('.')[1];
+          const newFileName =
+            name.split('').join('_') + '_' + Date.now() + '.' + fileExtension;
+
+          cb(null, newFileName);
+          const filesadfa = '../../';
+        },
+      }),
+      fileFilter: (req: any, file: any, cb) => {
+        if (!file.originalname.match(/\.(jpg|jpeg|png|gif)/)) {
+          return cb(null, false);
+        }
+        cb(null, true);
+      },
+    }),
+  )
+  uploadFoto(@UploadedFile() file: Array<Express.Multer.File> | any) {
+    console.log(file);
+
+    if (!file) {
+      throw new BadRequestException('File is not an image');
+    } else {
+      const response = {
+        filePath: `http://localhost:3000/picture/${file.filename}`,
+      };
+
+      console.log(response);
+
+      return response;
+    }
   }
+
+  @Get('picture/:filename')
+  async getPicture(@Param('filename') filename: any, @Res() res: Response) {
+    res.sendFile(filename, { root: './uploads' });
+  }
+
+  // @Get('file')
+  // async getDatabaseFileById(@Query() query: any) {
+  //   console.log('id', query.id);
+  //   const file = await this.animalService.getFileById(query.id);
+  //   console.log('file', file);
+  //   const stream = Readable.from(file.data);
+  //   console.log('stream', stream);
+  //   return new StreamableFile(stream);
+  // }
 }
 
 // @Get('file')

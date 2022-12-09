@@ -40,8 +40,6 @@ export class AnimalService {
   }
 
   async findAll(query: any) {
-    const file: any = await this.getFileById(query.id);
-
     return await this.animalRepository.findBy({
       id: query.id,
       gender: query.gender,
@@ -65,6 +63,10 @@ export class AnimalService {
     });
   }
 
+  async deleteAnimal(id: number) {
+    return await this.animalRepository.delete({ id: id });
+  }
+
   async uploadFiles(idAnimal: number, file: Buffer, filename: string) {
     const newFile = await this.mediaRepository.create({
       animal: { id: idAnimal },
@@ -72,11 +74,5 @@ export class AnimalService {
       data: file,
     });
     return await this.mediaRepository.save(newFile);
-  }
-
-  async getFileById(id: any) {
-    const file = await this.mediaRepository.findOneBy({ id: id });
-    // const stream = Readable.from(file.data);
-    return file;
   }
 }
