@@ -66,4 +66,18 @@ export class DashboardComponent implements OnInit {
       .getShelters()
       .subscribe((total) => (this.shelterAmount = total));
   }
+
+  deleteAnimal(id: number) {
+    return this.adminService.deleteAnimal(id).subscribe((animal) => {
+      this.animals.filter((animal: any) => animal.id !== id);
+      this.getAnimals();
+    });
+  }
+
+  deleteUser(id: number) {
+    return this.adminService.deleteUser(id).subscribe(() => {
+      this.users.filter((user: any) => user.id !== id);
+      this.getUsers();
+    });
+  }
 }
