@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Delete, Get, Param } from '@nestjs/common';
 import { AdminService } from '../services/admin.service';
 
 @Controller()
@@ -23,6 +23,11 @@ export class AdminController {
   @Get('users')
   async getUsers() {
     return await this.adminService.getUsers();
+  }
+
+  @Delete('user/:id')
+  async deleteUser(@Param('id') id: number) {
+    return await this.adminService.deleteUser(id);
   }
 
   @Get('count-shelters')

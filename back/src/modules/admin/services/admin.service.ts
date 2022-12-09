@@ -35,6 +35,10 @@ export class AdminService {
     return await this.userRepository.find();
   }
 
+  async deleteUser(id: number): Promise<any> {
+    return await this.userRepository.delete(id);
+  }
+
   async countShelters(): Promise<any> {
     return await this.shelterEntity.count();
   }
