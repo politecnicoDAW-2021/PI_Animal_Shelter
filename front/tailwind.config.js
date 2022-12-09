@@ -4,6 +4,7 @@ module.exports = {
   purge: {
     content: [
       './src/**/*.{html,ts}',
+      "./node_modules/flowbite/**/*.js"
     ]
   },
   darkMode: 'class', // or 'media' or 'class'
@@ -29,7 +30,7 @@ module.exports = {
         'button': 'white',
         'text-black': '#1e1e1e'
       },
-      display: ['                                            '],
+      display: [''],
       backgroundImage: {
         'login-bg': "url('src/assets/login_Background.png')",
         'hero-gradient': " linear-gradient(270deg, rgba(255,255,255,1) 4%, rgba(255,255,255,0.7903536414565826) 15%, rgba(255,255,255,0.6951155462184874) 33%, rgba(255,255,255,0) 47%, rgba(255,255,255,0) 62%, rgba(255,255,255,0) 80%, rgba(255,255,255,0) 92%);",
@@ -60,5 +61,6 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography'), require('@tailwindcss/line-clamp')],
+  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography'), require('@tailwindcss/line-clamp'), require('flowbite/plugin')
+],
 };
