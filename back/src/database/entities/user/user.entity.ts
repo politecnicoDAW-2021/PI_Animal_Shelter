@@ -6,8 +6,9 @@ import {
   ManyToMany,
   ManyToOne,
 } from 'typeorm';
+import AdoptionEntity from '../common/adoption.entity';
 
-import { WishlistEntity } from '../common/wishlist.entity';
+import WishlistEntity from '../common/adoption.entity';
 import { ShelterEntity } from '../shelter/shelter.entity';
 import { CreditCardEntity } from './credit_card.entity';
 import { PasswordEntity } from './password.entity';
@@ -46,10 +47,10 @@ export class UserEntity {
   /* @OneToMany(() => PasswordEntity, (password) => password.id)
   password: PasswordEntity; */
 
-  @OneToMany(() => WishlistEntity, (wishlist) => wishlist.id, {
+  @OneToMany(() => AdoptionEntity, (adoption) => adoption.id, {
     onDelete: 'CASCADE',
   })
-  wishlist: WishlistEntity;
+  adoption: AdoptionEntity;
 
   @OneToMany(() => CreditCardEntity, (creditCard) => creditCard.id, {
     onDelete: 'CASCADE',

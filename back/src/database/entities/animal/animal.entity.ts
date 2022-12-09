@@ -5,7 +5,8 @@ import {
   OneToMany,
   ManyToOne,
 } from 'typeorm';
-import { WishlistEntity } from '../common/wishlist.entity';
+import AdoptionEntity from '../common/adoption.entity';
+import WishlistEntity from '../common/adoption.entity';
 import { ShelterEntity } from '../shelter/shelter.entity';
 import { BreedEntity } from './breed.entity';
 import { MediaEntity } from './media.entity';
@@ -47,11 +48,11 @@ export class AnimalEntity {
   description: string;
   @Column('date')
   birthdate: Date;
-  @OneToMany(() => WishlistEntity, (wishlist) => wishlist.id, {
+  @OneToMany(() => AdoptionEntity, (adoption) => adoption.id, {
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
   })
-  wishlist: WishlistEntity;
+  adoption: AdoptionEntity;
   @ManyToOne(() => BreedEntity, (breed) => breed.id, {
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
