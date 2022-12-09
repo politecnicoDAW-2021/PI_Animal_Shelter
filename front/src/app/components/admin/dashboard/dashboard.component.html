@@ -91,7 +91,6 @@
                                 {{user.rol}}
                             </td>
                             <td class="py-4 px-6 text-center border-b border-grey-light">
-                            <td class="py-4 px-6 text-center border-b border-grey-light">
                                 <button (click)="deleteUser(user.id)">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
@@ -123,6 +122,10 @@
                             </th>
                             <th
                                 class="py-4 px-6 text-center font-bold uppercase text-sm text-black border-b border-grey-light">
+                                URGENTE
+                            </th>
+                            <th
+                                class="py-4 px-6 text-center font-bold uppercase text-sm text-black border-b border-grey-light">
                                 TAMAÑO
                             </th>
                             <th
@@ -139,6 +142,9 @@
                             </td>
                             <td class="py-4 text-center px-6 border-b border-grey-light">
                                 {{animal.dewormed}}
+                            </td>
+                            <td class="py-4 text-center px-6 border-b border-grey-light">
+                                {{animal.urgent}}
                             </td>
                             <td class="py-4 text-center px-6 border-b border-grey-light">
                                 {{animal.size}}
