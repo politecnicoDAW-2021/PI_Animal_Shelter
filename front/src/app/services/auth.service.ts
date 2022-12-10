@@ -41,6 +41,7 @@ export class AuthService {
           this.saveToken(user.access_token);
           this.saveId(user.id);
           this.saveEmail(user.username);
+          this.saveRol(user.rol);
         }
       })
     );
@@ -55,6 +56,7 @@ export class AuthService {
             this.saveToken(shelter.access_token);
             this.saveId(shelter.id);
             this.saveEmail(shelter.username);
+            this.saveRol('shelter');
           }
         })
       );
@@ -69,9 +71,10 @@ export class AuthService {
 
     return this.http.post<any>(`${this.endpoint}/googleLogin`, user).pipe(
       take(1),
-      mergeMap(() => this.setTokens(user.idToken, user.email))
+      mergeMap(() => this.setTokens(user.idToken, user.email, 'user'))
     );
   }
+
   saveToken(access_token: string) {
     localStorage.setItem('token', access_token);
   }
@@ -80,9 +83,10 @@ export class AuthService {
     localStorage.setItem('email', email);
   }
 
-  async setTokens(tokens: any, email: any) {
+  async setTokens(tokens: any, email: any, rol: any) {
     localStorage.setItem('token', tokens);
     localStorage.setItem('email', email);
+    localStorage.setItem('rol', rol);
   }
 
   async setTokenGoogle(tokens: any) {
@@ -91,6 +95,10 @@ export class AuthService {
 
   saveId(id: any) {
     localStorage.setItem('id', id);
+  }
+
+  saveRol(rol: string) {
+    localStorage.setItem('rol', rol);
   }
 
   getToken() {
@@ -105,6 +113,10 @@ export class AuthService {
     const authToken = localStorage.getItem('token');
 
     return authToken !== null;
+  }
+
+  getRol() {
+    return localStorage.getItem('rol');
   }
 
   logout() {
