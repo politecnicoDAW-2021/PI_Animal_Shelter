@@ -10,8 +10,8 @@ export class AdoptionService {
 
   constructor(private http: HttpClient) {}
 
-  putAdoptation(): Observable<any[]> {
-    return this.http.put<any[]>(`${this.endpoint}`, '');
+  putAdoptation(id: number): Observable<any[]> {
+    return this.http.put<any[]>(`${this.endpoint}`, id);
   }
   postAdoptation(id: any): Observable<any[]> {
     console.log('llego');
@@ -20,5 +20,8 @@ export class AdoptionService {
 
   getAdoptation(): Observable<any[]> {
     return this.http.get<any[]>(`${this.endpoint}`);
+  }
+  deleteAdoptation(id: any): Observable<any> {
+    return this.http.delete(`${this.endpoint}/${id}`);
   }
 }
