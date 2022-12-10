@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@services/auth.service';
+import { ShelterService } from '@services/shelter/shelter.service';
 import { UserService } from '@services/users/user.service';
 
 @Component({
@@ -10,19 +11,23 @@ import { UserService } from '@services/users/user.service';
 })
 export class NavbarComponent implements OnInit {
   public user?: any;
-  public text?: string;
+  public shelter?: any;
 
   constructor(
     private router: Router,
     private authService: AuthService,
-    private userService: UserService
+    private userService: UserService,
+    private shelterService: ShelterService
   ) {}
 
   ngOnInit(): void {
-    this.user = this.getUserInfo();
-    console.log(this.user);
     this.loggedIn();
-    this.refresh();
+    this.getShelterInfo();
+    if (localStorage.getItem('rol') === 'user') {
+      this.getUserInfo();
+    } else {
+      this.getShelterInfo();
+    }
   }
 
   getUrl() {
@@ -38,6 +43,17 @@ export class NavbarComponent implements OnInit {
     });
   }
 
+  async getShelterInfo() {
+    const email = localStorage.getItem('email');
+
+    return (await this.shelterService.getShelterByEmail(email)).subscribe(
+      (data: any) => {
+        this.user = data;
+        console.log(this.user);
+      }
+    );
+  }
+
   loggedIn() {
     return this.authService.isLoggedIn();
   }
@@ -48,9 +64,5 @@ export class NavbarComponent implements OnInit {
 
   logOut() {
     this.authService.logout();
-  }
-
-  refresh() {
-    return this.userService.findByEmail(localStorage.getItem('email'));
   }
 }
