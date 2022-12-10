@@ -1,0 +1,51 @@
+<div class="flex justify-center bg-gray-100 py-10 p-5">
+  <div class="container mx-auto bg-white shadow-xl">
+    <div class="w-11/12 mx-auto">
+      <div class="bg-white my-6">
+        <table class="text-left w-full border-collapse">
+          <thead>
+            <tr>
+              <th
+                class="py-4 px-6 font-bold uppercase text-sm text-black border-b border-grey-light"
+              >
+                USER
+              </th>
+              <th
+                class="py-4 px-6 text-center font-bold uppercase text-sm text-black border-b border-grey-light"
+              >
+                ANIMALS
+              </th>
+
+              <th
+                class="py-4 px-6 text-center font-bold uppercase text-sm text-black border-b border-grey-light"
+              >
+                ACCIONES
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              class="hover:bg-grey-lighter"
+              *ngFor="let adoption of adoptions"
+            >
+              <td class="py-4 px-6 border-b border-grey-light">
+                {{ adoption.username }}
+              </td>
+              <td class="py-4 text-center px-6 border-b border-grey-light">
+                {{ adoption.name_animal }}
+              </td>
+              <td class="py-4 px-6 text-center border-b border-grey-light">
+                <button (click)="deleteAnimal(adoption.id)">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+                <button (click)="accept(adoption.id)">
+                  <i class="fa-solid fa-check"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
