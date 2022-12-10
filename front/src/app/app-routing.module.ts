@@ -45,6 +45,20 @@ const routes: Routes = [
         (m) => m.AnimalViewComponent
       ),
   },
+  {
+    path: 'confirm',
+    loadComponent: () =>
+      import('./components/animal/animal-adopt/animal-adopt.component').then(
+        (m) => m.AnimalAdoptComponent
+      ),
+  },
+  {
+    path: 'shelter',
+    loadComponent: () =>
+      import(
+        './components/shelter/shelter-dashboard/shelter-dashboard.component'
+      ).then((m) => m.ShelterDashboardComponent),
+  },
 
   {
     path: '',

@@ -21,6 +21,8 @@ import { NotFoundComponent } from './components/general/not-found/not-found.comp
 import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
+import { AnimalAdoptComponent } from './components/animal/animal-adopt/animal-adopt.component';
+import { ShelterDashboardComponent } from './components/shelter/shelter-dashboard/shelter-dashboard.component';
 
 @NgModule({
   declarations: [AppComponent, NavbarComponent, NotFoundComponent],
