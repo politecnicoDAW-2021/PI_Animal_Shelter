@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
 import { FooterComponent } from '@components/general/footer/footer.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -19,6 +19,7 @@ export class AnimalViewComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     public dialog: MatDialog,
     private adoptionService: AdoptionService
   ) {}
@@ -47,5 +48,6 @@ export class AnimalViewComponent implements OnInit {
   adopt(animal: number) {
     console.log(animal);
     this.adoptionService.postAdoptation(animal);
+    //this.router.navigate(['confirm']);
   }
 }
