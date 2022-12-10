@@ -1,10 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { map, Observable } from 'rxjs';
-import { AnimalService } from '@services/animal/animal.service';
+import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 import { FooterComponent } from '@components/general/footer/footer.component';
+import { MatDialog } from '@angular/material/dialog';
+import { AdoptionService } from '@services/common/adopation.service';
 @Component({
   selector: 'app-animal-view',
   standalone: true,
@@ -16,12 +17,17 @@ export class AnimalViewComponent implements OnInit {
   @Input() animal!: any;
   animal$!: Observable<any | undefined> | any;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    public dialog: MatDialog,
+    private adoptionService: AdoptionService
+  ) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params: any) => {
       this.animal = JSON.parse(params['animal']);
     });
+    //location.reload();
   }
 
   getAge = (date: string) => {
@@ -38,4 +44,8 @@ export class AnimalViewComponent implements OnInit {
   parseBirthdate = (date: string) => {
     return moment(date).locale('es').format('D MMMM YYYY');
   };
+  adopt(animal: number) {
+    console.log(animal);
+    this.adoptionService.postAdoptation(animal);
+  }
 }

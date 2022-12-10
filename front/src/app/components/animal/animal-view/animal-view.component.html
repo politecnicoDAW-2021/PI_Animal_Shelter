@@ -1,12 +1,13 @@
 <div
   class="container mx-auto my-5 p-9 bg-white h-screen max-w-6xl rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition duration-300"
-  *ngIf="animal">
+  *ngIf="animal"
+>
   <div class="flex">
     <div class="flex-auto w-96 max-w-2xl">
       <img class="rounded-xl" src="../../../../assets/perro2.jpg" alt="" />
       <div class="mt-12">
         <p class="font-text font-bold text-lg">
-          {{animal.description}}
+          {{ animal.description }}
         </p>
       </div>
     </div>
@@ -15,60 +16,126 @@
       <div class="flex flex-col">
         <div class="flex flex-row justify-start gap-2">
           <div class="inline-flex ml-5">
-            <p class="font-text text-4xl font-bold">{{ animal.name }} </p>
+            <p class="font-text text-4xl font-bold">{{ animal.name }}</p>
           </div>
           <div class="inline-flex mt-3">
-            <p class="font-text font-bold text-xl"> {{ this.getAge(animal.birthdate) }} años</p>
+            <p class="font-text font-bold text-xl">
+              {{ this.getAge(animal.birthdate) }} años
+            </p>
           </div>
         </div>
       </div>
 
       <div class="flex flex-row ml-7 w-72">
-
         <div class="flex flex-col w-96">
           <div class="inline-flex my-6">
-            <p class="font-text font-bold text-md"><i class="fa-solid fa-cake-candles"></i> {{
-              this.parseBirthdate(animal.birthdate) }} </p>
+            <p class="font-text font-bold text-md">
+              <i class="fa-solid fa-cake-candles"></i>
+              {{ this.parseBirthdate(animal.birthdate) }}
+            </p>
           </div>
           <div class="inline-flex my-6">
-            <p class="font-text font-bold text-md"><i class="fa-solid fa-location-dot"></i> Malaga </p>
+            <p class="font-text font-bold text-md">
+              <i class="fa-solid fa-location-dot"></i> Malaga
+            </p>
           </div>
           <div class="inline-flex my-6">
-            <p class="font-text font-bold text-md"><i class="fa-solid fa-weight-scale"></i> {{ animal.weight }} kg</p>
+            <p class="font-text font-bold text-md">
+              <i class="fa-solid fa-weight-scale"></i> {{ animal.weight }} kg
+            </p>
           </div>
         </div>
 
         <div class="flex flex-col">
           <div class="inline-flex my-6">
-            <p class="font-text font-bold text-md"><i class="fa-solid fa-arrow-up-small-big"></i> {{animal.size }} </p>
+            <p class="font-text font-bold text-md">
+              <i class="fa-solid fa-arrow-up-small-big"></i> {{ animal.size }}
+            </p>
           </div>
           <div class="inline-flex my-6">
-            <p class="font-text font-bold text-md"><i class="fa-solid fa-venus-mars"></i> {{animal.gender === 'female' ?
-              'Hembra' : 'Macho'}} </p>
+            <p class="font-text font-bold text-md">
+              <i class="fa-solid fa-venus-mars"></i>
+              {{ animal.gender === "female" ? "Hembra" : "Macho" }}
+            </p>
           </div>
           <div class="inline-flex my-6">
-            <p class="font-text font-bold text-md"><i class="fa-solid fa-worm"></i> {{ animal.dewormed ? 'Desparasitado'
-              : 'No desparasitado' }}</p>
+            <p class="font-text font-bold text-md">
+              <i class="fa-solid fa-worm"></i>
+              {{ animal.dewormed ? "Desparasitado" : "No desparasitado" }}
+            </p>
           </div>
         </div>
       </div>
       <div>
-        <button type="button" class="focus:outline-none 
-        text-white
-        w-96
-        mx-7 
-        mt-24
-        bg-green-primary 
-        hover:bg-green-800 
-        focus:ring-4 focus:ring-green-300 
-        font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
+        <button
+          type="button"
+          class="focus:outline-none text-white w-96 mx-7 mt-24 bg-green-primary hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
+          data-modal-toggle="popup-modal"
+        >
           Adoptame
         </button>
+        <div
+          id="popup-modal"
+          tabindex="-1"
+          class="fixed top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full"
+        >
+          <div class="relative w-full h-full max-w-md md:h-auto">
+            <div
+              class="relative bg-white rounded-lg shadow-2xl dark:bg-gray-700"
+            >
+              <button
+                type="button"
+                class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
+                data-modal-toggle="popup-modal"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="w-5 h-5"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span class="sr-only">Close modal</span>
+              </button>
+              <div class="p-6 text-center">
+                <img
+                  src="../../../../assets/dogPopUp.png"
+                  class="mx-auto -mb-5 text-gray-400 w-40 h-40 dark:text-gray-200"
+                />
+                <h3
+                  class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400"
+                >
+                  ¿Estás seguro que quieres Adoptar a <b>{{ animal.name }}</b
+                  >?
+                  <h5>Se enviará una petición a la protectora</h5>
+                </h3>
+                <button
+                  data-modal-toggle="popup-modal"
+                  type="button"
+                  class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"
+                  (click)="adopt(animal.id)"
+                >
+                  Si
+                </button>
+                <button
+                  data-modal-toggle="popup-modal"
+                  type="button"
+                  class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
+                >
+                  No
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-
-
     </div>
-
   </div>
 </div>
 <app-footer></app-footer>
