@@ -142,6 +142,7 @@ export class AuthService {
       return {
         username: shelter.email,
         id: shelterId.id,
+        rol: 'shelter',
       };
     }
 
@@ -154,6 +155,7 @@ export class AuthService {
     return {
       username: shelter.email,
       id: shelterId.id,
+      rol: 'shelter',
       access_token: this.jwtService.sign(payload, { secret: 'secret' }),
     };
   }
