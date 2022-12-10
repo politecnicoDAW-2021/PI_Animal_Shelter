@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Query } from '@nestjs/common';
+import { Controller, Get, Param, Post, Query } from '@nestjs/common';
 import { get } from 'http';
 import { ShelterService } from '../services/shelter.service';
 
@@ -8,5 +8,10 @@ export class ShelterController {
   @Get('shelter')
   shelters() {
     return this.shelterService.findCities();
+  }
+
+  @Get('shelter/:email')
+  async shelterInfo(@Param('email') email: any) {
+    return await this.shelterService.findOneByEmail(email);
   }
 }
