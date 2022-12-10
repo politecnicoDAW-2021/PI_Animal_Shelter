@@ -18,6 +18,9 @@ import { AuthInterceptor } from './shared/interceptors/authconfig.interceptor';
 import { AnimalFormModule } from './components/animal/animal-form/animal-form.module';
 import { NavbarComponent } from './components/general/navbar/navbar.component';
 import { NotFoundComponent } from './components/general/not-found/not-found.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [AppComponent, NavbarComponent, NotFoundComponent],
@@ -31,6 +34,9 @@ import { NotFoundComponent } from './components/general/not-found/not-found.comp
     LandingPageModule,
     SocialLoginModule,
     AnimalFormModule,
+    MatDialogModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
   ],
   providers: [
     {
