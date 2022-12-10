@@ -1,41 +1,52 @@
 <div class="flex flex-wrap flex-row justify-center gap-5">
   <div class="flex filter-nav w-w-hero h-16 bg-brown-tertiary items-center">
-    <form method="get" class="inline-flex items-center ml-4" [formGroup]="filterForm">
+    <form
+      method="get"
+      class="inline-flex items-center ml-4"
+      [formGroup]="filterForm"
+    >
       <label class="text-white dark:text-gray-200" for="city">Ciudad:</label>
-      <ng-select formControlName="city"
-        class="z-50 ml-2 block w-96 px-3 py-1.5 text-base font-normal text-gray-70 bg-clip-padding bg-no-repeat transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
+      <ng-select
+        formControlName="city"
+        class="z-50 ml-2 block w-96 px-3 py-1.5 text-base font-normal text-gray-70 bg-clip-padding bg-no-repeat transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+      >
         <ng-option *ngFor="let city of cities" [value]="city.id">
-          {{city.name}}
+          {{ city.name }}
         </ng-option>
       </ng-select>
 
       <label class="text-white dark:text-gray-200" for="specie">Especie:</label>
-      <ng-select formControlName="specie"
-        class="z-50 ml-2 block w-96 px-3 py-1.5 text-base font-normal text-gray-70 bg-clip-padding bg-no-repeat transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
+      <ng-select
+        formControlName="specie"
+        class="z-50 ml-2 block w-96 px-3 py-1.5 text-base font-normal text-gray-70 bg-clip-padding bg-no-repeat transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+      >
         <ng-option *ngFor="let specie of species" [value]="specie.id">
-          {{specie.name}}
+          {{ specie.name }}
         </ng-option>
       </ng-select>
 
       <label class="text-white dark:text-gray-200" for="breed">Raza</label>
-      <ng-select formControlName="breed"
-        class="z-50 ml-2 block w-96 px-3 py-1.5 text-base font-normal text-gray-700 bg-clip-padding bg-no-repeat transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
+      <ng-select
+        formControlName="breed"
+        class="z-50 ml-2 block w-96 px-3 py-1.5 text-base font-normal text-gray-700 bg-clip-padding bg-no-repeat transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+      >
         <ng-option *ngFor="let breed of breeds" [value]="breed.id">
-          {{breed.name}}
+          {{ breed.name }}
         </ng-option>
       </ng-select>
 
-      <button (click)="sendForm()"
-        class="mx-2 my-2 bg-green-secundary transition duration-150 ease-in-out text-brown-secundary hover:border-gray-900 hover:text-gray-900 rounded text-gray-800 px-8 py-3 text-sm">
+      <button
+        (click)="sendForm()"
+        class="mx-2 my-2 bg-green-secundary transition duration-150 ease-in-out text-brown-secundary hover:border-gray-900 hover:text-gray-900 rounded text-gray-800 px-8 py-3 text-sm"
+      >
         Buscar
       </button>
     </form>
   </div>
   <div class="flex flex-wrap bg-gray-100 gap-5 max-w-fit mx-5 justify-center">
-    <app-animal-card *ngFor="let animal of animals | async;" [animal]="animal">
+    <app-animal-card *ngFor="let animal of animals | async" [animal]="animal">
     </app-animal-card>
   </div>
 </div>
-
 
 <app-footer></app-footer>
