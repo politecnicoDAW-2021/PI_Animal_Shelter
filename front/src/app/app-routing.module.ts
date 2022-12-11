@@ -45,6 +45,7 @@ const routes: Routes = [
         (m) => m.AnimalViewComponent
       ),
   },
+
   {
     path: 'confirm',
     loadComponent: () =>
@@ -52,12 +53,21 @@ const routes: Routes = [
         (m) => m.AnimalAdoptComponent
       ),
   },
+
   {
     path: 'shelter',
     loadComponent: () =>
       import(
         './components/shelter/shelter-dashboard/shelter-dashboard.component'
       ).then((m) => m.ShelterDashboardComponent),
+  },
+
+  {
+    path: 'shelter-list',
+    loadComponent: () =>
+      import('./components/shelter/shelter-list/shelter-list.component').then(
+        (m) => m.ShelterListComponent
+      ),
   },
 
   {
