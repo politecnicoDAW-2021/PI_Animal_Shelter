@@ -1,1 +1,8 @@
-<p>shelter-list works!</p>
+<div class="flex flex-wrap bg-gray-100 gap-5 max-w-fit mx-5 justify-center">
+  <app-shelter-card
+    *ngFor="let shelter of shelters | async"
+    [shelter]="shelter"
+  >
+  </app-shelter-card>
+</div>
+<app-footer></app-footer>
