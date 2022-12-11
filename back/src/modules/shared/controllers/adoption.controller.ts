@@ -2,18 +2,11 @@ import {
   Controller,
   Get,
   Post,
-  Query,
-  UploadedFile,
-  UseInterceptors,
-  Body,
-  StreamableFile,
-  Req,
-  ParseIntPipe,
-  Res,
   Param,
-  BadRequestException,
   Delete,
   Put,
+  Body,
+  Query,
 } from '@nestjs/common';
 import { AdoptionService } from '../services/adoption.service';
 
@@ -23,19 +16,25 @@ export class AdoptionController {
 
   @Post()
   async addAdoption(@Body() adoption: any) {
-    console.log('adoption', adoption);
     return this.adoptionService.addAdoption(adoption);
   }
   @Get()
-  async getAdoptables() {
-    return this.adoptionService.getAdoptables();
+  async getAdoptables(@Query() query: any) {
+    return this.adoptionService.getAdoptables(query);
   }
-  @Put('/:id')
-  async adopt(@Param('id') id: number) {
-    return this.adoptionService.adopt(id);
+
+  @Get('/accepteds')
+  async getAcepteds(@Query() query: any) {
+    return this.adoptionService.getAcepteds(query);
   }
+
+  @Put()
+  async adopt(@Body() adoption: number) {
+    return this.adoptionService.adopt(adoption);
+  }
+
   @Delete('/:id')
-  async deleteAdoption(@Param('id') id: number) {
-    return this.adoptionService.deleteAdoption(id);
+  async deleteAdoption(@Param('id') id: any) {
+    return this.adoptionService.deleteAdoption(id.id);
   }
 }
