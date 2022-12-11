@@ -6,22 +6,23 @@ import * as moment from 'moment';
 import { FooterComponent } from '@components/general/footer/footer.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AdoptionService } from '@services/common/adopation.service';
+import { AnimalService } from '@services/animal/animal.service';
 @Component({
   selector: 'app-animal-view',
   standalone: true,
   imports: [CommonModule, FooterComponent],
   templateUrl: './animal-view.component.html',
-  styleUrls: ['./animal-view.component.css'],
 })
 export class AnimalViewComponent implements OnInit {
   @Input() animal!: any;
   animal$!: Observable<any | undefined> | any;
-
+  shelter: any[] = [];
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     public dialog: MatDialog,
-    private adoptionService: AdoptionService
+    private adoptionService: AdoptionService,
+    private animalService: AnimalService
   ) {}
 
   ngOnInit(): void {
@@ -29,6 +30,7 @@ export class AnimalViewComponent implements OnInit {
       this.animal = JSON.parse(params['animal']);
     });
     //location.reload();
+    this.getShelterByAnimal();
   }
 
   getAge = (date: string) => {
@@ -46,8 +48,14 @@ export class AnimalViewComponent implements OnInit {
     return moment(date).locale('es').format('D MMMM YYYY');
   };
   adopt(animal: number) {
-    console.log(animal);
-    this.adoptionService.postAdoptation(animal);
-    //this.router.navigate(['confirm']);
+    const id = this.shelter;
+    this.adoptionService.postAdoptation({ animal, id }).subscribe();
+    this.router.navigate(['confirm']);
+  }
+  getShelterByAnimal() {
+    this.animalService
+      .getShelterByAnimal(this.animal.id)
+      .subscribe((shelter) => (this.shelter = shelter));
+    console.log('shelter');
   }
 }
