@@ -7,7 +7,7 @@ import { AnimalEntity } from 'src/database/entities/animal/animal.entity';
 import { BreedEntity } from 'src/database/entities/animal/breed.entity';
 import { MediaEntity } from 'src/database/entities/animal/media.entity';
 import { SpecieEntity } from 'src/database/entities/animal/specie.entity';
-import WishlistEntity from 'src/database/entities/common/adoption.entity';
+import { AdoptionEntity } from 'src/database/entities/common/adoption.entity';
 import { ShelterEntity } from 'src/database/entities/shelter/shelter.entity';
 import { SocialMediaEntity } from 'src/database/entities/shelter/social_media.entity';
 import { CreditCardEntity } from 'src/database/entities/user/credit_card.entity';
@@ -24,7 +24,7 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
   entities: [
     CreditCardEntity,
     PasswordEntity,
-    WishlistEntity,
+    AdoptionEntity,
     UserEntity,
     SocialMediaEntity,
     ShelterEntity,
@@ -50,7 +50,7 @@ export const typeOrmConfigAsync: TypeOrmModuleAsyncOptions = {
       entities: [
         CreditCardEntity,
         PasswordEntity,
-        WishlistEntity,
+        AdoptionEntity,
         UserEntity,
         SocialMediaEntity,
         ShelterEntity,

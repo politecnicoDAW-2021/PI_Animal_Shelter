@@ -1,15 +1,10 @@
-import {
-  Entity,
-  Column,
-  PrimaryGeneratedColumn,
-  ManyToOne,
-  OneToMany,
-} from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 import { AnimalEntity } from '../animal/animal.entity';
+import { ShelterEntity } from '../shelter/shelter.entity';
 import { UserEntity } from '../user/user.entity';
 
 @Entity('adoption')
-export default class AdoptionEntity {
+export class AdoptionEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -25,4 +20,9 @@ export default class AdoptionEntity {
 
   @ManyToOne(() => AnimalEntity, (animal) => animal.id)
   animal: AnimalEntity;
+
+  @ManyToOne(() => ShelterEntity, (shelter) => shelter.id, {
+    onDelete: 'CASCADE',
+  })
+  shelter: ShelterEntity;
 }

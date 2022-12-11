@@ -1,5 +1,12 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToMany,
+  ManyToOne,
+} from 'typeorm';
 import { AnimalEntity } from '../animal/animal.entity';
+import { AdoptionEntity } from '../common/adoption.entity';
 import { UserEntity } from '../user/user.entity';
 import { SocialMediaEntity } from './social_media.entity';
 
@@ -23,4 +30,6 @@ export class ShelterEntity {
   animal: AnimalEntity;
   @OneToMany(() => SocialMediaEntity, (socialMedia) => socialMedia.id)
   socialMedia: SocialMediaEntity;
+  @OneToMany(() => AdoptionEntity, (adoption) => adoption.id)
+  adoption: AdoptionEntity;
 }

@@ -6,9 +6,7 @@ import {
   ManyToMany,
   ManyToOne,
 } from 'typeorm';
-import AdoptionEntity from '../common/adoption.entity';
-
-import WishlistEntity from '../common/adoption.entity';
+import { AdoptionEntity } from '../common/adoption.entity';
 import { ShelterEntity } from '../shelter/shelter.entity';
 import { CreditCardEntity } from './credit_card.entity';
 import { PasswordEntity } from './password.entity';

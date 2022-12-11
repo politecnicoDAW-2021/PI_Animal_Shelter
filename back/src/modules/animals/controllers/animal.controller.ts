@@ -105,6 +105,11 @@ export class AnimalController {
   async getPicture(@Param('filename') filename: any, @Res() res: Response) {
     res.sendFile(filename, { root: './uploads' });
   }
+  @Get('animal/shelter/:id')
+  getShelterByAnimal(@Param('id') id: any) {
+    console.log('ey', id);
+    return this.animalService.findShelterByAnimal(id);
+  }
 
   // @Get('file')
   // async getDatabaseFileById(@Query() query: any) {

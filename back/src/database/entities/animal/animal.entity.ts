@@ -5,8 +5,8 @@ import {
   OneToMany,
   ManyToOne,
 } from 'typeorm';
-import AdoptionEntity from '../common/adoption.entity';
-import WishlistEntity from '../common/adoption.entity';
+import { AdoptionEntity } from '../common/adoption.entity';
+
 import { ShelterEntity } from '../shelter/shelter.entity';
 import { BreedEntity } from './breed.entity';
 import { MediaEntity } from './media.entity';
