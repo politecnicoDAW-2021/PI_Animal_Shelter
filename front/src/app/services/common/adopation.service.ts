@@ -11,17 +11,32 @@ export class AdoptionService {
   constructor(private http: HttpClient) {}
 
   putAdoptation(id: number): Observable<any[]> {
-    return this.http.put<any[]>(`${this.endpoint}`, id);
+    console.log('putAdoptation');
+    const data: any = {};
+    data.shelter = localStorage.getItem('id');
+    data.id = id;
+    return this.http.put<any[]>(`${this.endpoint}`, data);
   }
-  postAdoptation(id: any): Observable<any[]> {
+  postAdoptation(adoption: any): Observable<any[]> {
     console.log('llego');
-    return this.http.post<any[]>(this.endpoint, id);
+    const data: any = {};
+    data.shelter = adoption.id[0].shelter_id;
+    data.animal = adoption.animal.id;
+    data.user = localStorage.getItem('id');
+    console.log(data);
+    return this.http.post<any[]>(`${this.endpoint}`, data);
   }
 
   getAdoptation(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.endpoint}`);
+    const id = localStorage.getItem('id');
+    return this.http.get<any[]>(`${this.endpoint}/?id=${id}`);
   }
-  deleteAdoptation(id: any): Observable<any> {
+  getAcepteds(): Observable<any[]> {
+    const id = localStorage.getItem('id');
+    return this.http.get<any[]>(`${this.endpoint}/accepteds/?id=${id}`);
+  }
+  deleteAdoptation(id: any) {
+    console.log('llego', id);
     return this.http.delete(`${this.endpoint}/${id}`);
   }
 }
