@@ -75,4 +75,13 @@ export class AnimalService {
     });
     return await this.mediaRepository.save(newFile);
   }
+  findShelterByAnimal(idAnimal: any) {
+    console.log('findShelterByAnimal', idAnimal);
+    return this.animalRepository
+      .createQueryBuilder('animal')
+      .leftJoinAndSelect('animal.shelter', 'shelter')
+      .select('shelter')
+      .where('animal.id = ' + idAnimal)
+      .getRawMany();
+  }
 }
