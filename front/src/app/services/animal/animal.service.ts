@@ -43,4 +43,8 @@ export class AnimalService {
   addAnimal(animal: any) {
     return this.http.post<any[]>(`${this.endpoint}`, animal);
   }
+  getShelterByAnimal(id: any) {
+    console.log('hola estoy aqui', id);
+    return this.http.get<any[]>(`${this.endpoint}/shelter/${id}`);
+  }
 }
