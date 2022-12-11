@@ -1,23 +1,42 @@
-<section class="max-w-4xl p-6 mx-auto bg-brown-tertiary rounded-md shadow-md dark:bg-gray-800 mt-20">
+<section
+  class="max-w-4xl p-6 mx-auto bg-brown-tertiary rounded-md shadow-md dark:bg-gray-800 mt-20"
+>
   <h1 class="text-xl font-bold text-white dark:text-white">Añade animal</h1>
   <form [formGroup]="animalForm">
     <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
       <div>
         <label class="text-white dark:text-gray-200" for="name">Nombre</label>
-        <input id="name" type="text" name="name" formControlName="name"
-          class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+        <input
+          id="name"
+          type="text"
+          name="name"
+          formControlName="name"
+          class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+        />
       </div>
 
       <div>
-        <label class="text-white dark:text-gray-200" for="birthdate">Fecha nacimiento</label>
-        <input id="birthdate" type="date" name="birthdate" formControlName="birthdate"
-          class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+        <label class="text-white dark:text-gray-200" for="birthdate"
+          >Fecha nacimiento</label
+        >
+        <input
+          id="birthdate"
+          type="date"
+          name="birthdate"
+          formControlName="birthdate"
+          class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+        />
       </div>
 
       <div>
         <label class="text-white dark:text-gray-200" for="weight">Peso</label>
-        <input id="weight" type="text" name="weight" formControlName="weight"
-          class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+        <input
+          id="weight"
+          type="text"
+          name="weight"
+          formControlName="weight"
+          class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+        />
       </div>
 
       <div>
@@ -25,7 +44,7 @@
 
         <ng-select formControlName="breed">
           <ng-option *ngFor="let breed of breeds" [value]="breed.id">
-            {{breed.name}}
+            {{ breed.name }}
           </ng-option>
         </ng-select>
       </div>
@@ -33,7 +52,7 @@
         <label class="text-white dark:text-gray-200" for="gender">Género</label>
         <ng-select formControlName="gender">
           <ng-option *ngFor="let gender of genders" [value]="gender">
-            {{gender}}
+            {{ gender }}
           </ng-option>
         </ng-select>
       </div>
@@ -41,59 +60,96 @@
         <label class="text-white dark:text-gray-200" for="gender">Tamaño</label>
         <ng-select formControlName="size">
           <ng-option *ngFor="let size of sizes" [value]="size">
-            {{size}}
+            {{ size }}
           </ng-option>
         </ng-select>
       </div>
       <div>
-        <label class="text-white dark:text-gray-200" for="shelter">Shelter</label>
+        <label class="text-white dark:text-gray-200" for="shelter"
+          >Shelter</label
+        >
         <ng-select formControlName="shelter">
           <ng-option *ngFor="let shelter of shelters" [value]="shelter.id">
-            {{shelter.name}}
+            {{ shelter.name }}
           </ng-option>
         </ng-select>
       </div>
       <div>
-        <label class="text-white dark:text-gray-200" for="description">Descripcion</label>
-        <textarea id="description" type="textarea" name="description" formControlName="description"
-          class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"></textarea>
+        <label class="text-white dark:text-gray-200" for="description"
+          >Descripcion</label
+        >
+        <textarea
+          id="description"
+          type="textarea"
+          name="description"
+          formControlName="description"
+          class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+        ></textarea>
       </div>
       <div>
-        <label class="block text-sm font-medium text-white">
-          Image
-        </label>
-        <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+        <label class="block text-sm font-medium text-white"> Image </label>
+        <div
+          class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md"
+        >
           <div class="space-y-1 text-center">
-            <svg class="mx-auto h-12 w-12 text-white" stroke="currentColor" fill="none" viewBox="0 0 48 48"
-              aria-hidden="true">
+            <svg
+              class="mx-auto h-12 w-12 text-white"
+              stroke="currentColor"
+              fill="none"
+              viewBox="0 0 48 48"
+              aria-hidden="true"
+            >
               <path
                 d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
             </svg>
             <div class="flex text-sm text-gray-600">
-              <label for="file-upload"
-                class="relative cursor-pointer bg-white rounded-md font-medium text-black hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+              <label
+                for="file-upload"
+                class="relative cursor-pointer bg-white rounded-md font-medium text-black hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
+              >
                 <span class="">Upload a file</span>
-                <input id="file-upload" formControlName="image" name="file-upload" type="file" class="sr-only">
+                <input
+                  id="file-upload"
+                  formControlName="image"
+                  name="file-upload"
+                  type="file"
+                  class="sr-only"
+                />
               </label>
               <p class="pl-1 text-white">or drag and drop</p>
             </div>
-            <p class="text-xs text-white">
-              PNG, JPG, GIF up to 10MB
-            </p>
+            <p class="text-xs text-white">PNG, JPG, GIF up to 10MB</p>
           </div>
         </div>
         <div class="flex items-center mb-4">
-          <input id="dewormed" formControlName="dewormed" type="checkbox"
-            class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-          <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+          <input
+            id="dewormed"
+            formControlName="dewormed"
+            type="checkbox"
+            class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+          />
+          <label
+            for="default-checkbox"
+            class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+          >
             Desparasitado
           </label>
         </div>
         <div class="flex items-center">
-          <input id="urgent" formControlName="urgent" type="checkbox"
-            class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-          <label for="checked-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+          <input
+            id="urgent"
+            formControlName="urgent"
+            type="checkbox"
+            class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+          />
+          <label
+            for="checked-checkbox"
+            class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+          >
             Urgente
           </label>
         </div>
@@ -101,8 +157,12 @@
     </div>
 
     <div class="flex justify-end mt-6">
-      <button (click)="saveValues()"
-        class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-green-secundary rounded-md hover:bg-green-primary focus:outline-none focus:bg-gray-600">Save</button>
+      <button
+        (click)="saveValues()"
+        class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-green-secundary rounded-md hover:bg-green-primary focus:outline-none focus:bg-gray-600"
+      >
+        Save
+      </button>
     </div>
   </form>
 </section>
