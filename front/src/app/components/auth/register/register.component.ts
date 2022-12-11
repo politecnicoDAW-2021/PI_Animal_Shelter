@@ -7,6 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { first } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -89,14 +90,24 @@ export class RegisterComponent implements OnInit {
     console.log(this.registerForm.status);
     if (this.registerForm.status === 'VALID') {
       this.submitted = true;
-      this.authService.register(this.registerForm.value).subscribe();
+      this.authService
+        .register(this.registerForm.value)
+        .subscribe(() => this.router.navigate(['/home']));
 
       this.registerForm.reset();
     }
   }
 
   registerShelter() {
-    this.authService.registerShelter(this.shelterForm.value).subscribe();
+    this.authService
+      .registerShelter(this.shelterForm.value)
+      .subscribe(() => this.router.navigate(['/home']));
     this.shelterForm.reset();
+  }
+
+  async loginGoogle() {
+    (await this.authService.googleGet()).subscribe(() =>
+      this.router.navigate(['/home'])
+    );
   }
 }
