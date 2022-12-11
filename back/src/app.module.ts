@@ -19,6 +19,7 @@ import { BreedEntity } from './database/entities/animal/breed.entity';
 import { SpecieEntity } from './database/entities/animal/specie.entity';
 import { AdminModule } from './modules/admin/modules/admin.module';
 import { AdoptionModule } from './modules/shared/modules/adoption.module';
+import { AdoptionEntity } from './database/entities/common/adoption.entity';
 
 @Module({
   imports: [
@@ -36,7 +37,7 @@ import { AdoptionModule } from './modules/shared/modules/adoption.module';
       MediaEntity,
       BreedEntity,
       SpecieEntity,
-      AdoptionModule,
+      AdoptionEntity,
     ]),
     UserModule,
     AuthModule,
