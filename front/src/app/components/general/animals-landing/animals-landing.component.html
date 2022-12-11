@@ -2,25 +2,48 @@
   <i class="fa-solid fa-triangle-exclamation text-brown-primary text-5xl"></i>
   Animales
 </div>
-<div class="flex items-center justify-center py-24 sm:py-8 px-4 w-carousel m-carousel">
+<div
+  class="flex items-center justify-center py-24 sm:py-8 px-4 w-carousel m-carousel"
+>
   <div class="w-full relative flex items-center justify-center">
-    <button aria-label="slide backward"
+    <button
+      aria-label="slide backward"
       class="absolute z-30 left-0 ml-8 focus:outline-none focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 cursor-pointer"
-      (click)="goPrev('slider')">
-      <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M7 1L1 7L7 13" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-      </svg>
+      (click)="goPrev('slider')"
+    >
+      <div
+        style="
+          display: inline-block;
+          border: solid black;
+          border-width: 0 6px 6px 0;
+          padding: 3px;
+          width: 20px;
+          height: 20px;
+          transform: rotate(135deg);
+        "
+      ></div>
     </button>
     <div class="w-full h-full mx-auto overflow-x-hidden overflow-y-hidden">
-      <div id="slider"
-        class="h-full flex lg:gap-8 md:gap-6 gap-14 items-center justify-start transition ease-out duration-700">
-        <div class="flex flex-shrink-0 relative w-full sm:w-auto h-card" *ngFor="let animal of animals">
-          <img src="../../../assets/perro2.jpg" alt="black chair and white table"
-            class="object-cover object-center w-96 h-carousel z-10" />
-          <div class="bg-brown-tertiary bg-opacity-30 absolute w-full h-full p-6">
+      <div
+        id="slider"
+        class="h-full flex lg:gap-8 md:gap-6 gap-14 items-center justify-start transition ease-out duration-700"
+      >
+        <div
+          class="flex flex-shrink-0 relative w-full sm:w-auto h-card"
+          *ngFor="let animal of animals"
+        >
+          <img
+            src="../../../assets/perro2.jpg"
+            alt="black chair and white table"
+            class="object-cover object-center w-96 h-carousel z-10"
+          />
+          <div
+            class="bg-brown-tertiary bg-opacity-30 absolute w-full h-full p-6"
+          >
             <div class="h-full items-end pb-6 font-text">
               <div
-                class="text-text-name text-2xl text-text-black text-card lg:text-card font-bold leading-5 lg:leading-6 absolute top-name">
+                class="text-text-name text-2xl text-text-black text-card lg:text-card font-bold leading-5 lg:leading-6 absolute top-name"
+              >
                 {{ animal.name }}, {{ getAge(animal.birthdate) }}
               </div>
               <div class="description line-clamp-3 font-bold mt-80">
@@ -31,12 +54,22 @@
         </div>
       </div>
     </div>
-    <button aria-label="slide forward"
+    <button
+      aria-label="slide forward"
       class="absolute z-30 right-0 mr-8 focus:outline-none focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400"
-      (click)="goNext('slider')">
-      <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M1 1L7 7L1 13" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-      </svg>
+      (click)="goNext('slider')"
+    >
+      <div
+        style="
+          display: inline-block;
+          border: solid black;
+          border-width: 0 6px 6px 0;
+          padding: 3px;
+          width: 20px;
+          height: 20px;
+          transform: rotate(-45deg);
+        "
+      ></div>
     </button>
   </div>
 </div>
@@ -44,25 +77,48 @@
   <i class="fa-solid fa-triangle-exclamation text-brown-primary text-5xl"></i>
   Adopción urgente
 </div>
-<div class="flex items-center justify-center py-24 sm:py-8 px-4 w-carousel m-carousel">
+<div
+  class="flex items-center justify-center py-24 sm:py-8 px-4 w-carousel m-carousel"
+>
   <div class="w-full relative flex items-center justify-center">
-    <button aria-label="slide backward"
+    <button
+      aria-label="slide backward"
       class="absolute z-30 left-0 ml-8 focus:outline-none focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 cursor-pointer"
-      (click)="goPrev('sliderEmergency')">
-      <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M7 1L1 7L7 13" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-      </svg>
+      (click)="goPrev('sliderEmergency')"
+    >
+      <div
+        style="
+          display: inline-block;
+          border: solid black;
+          border-width: 0 6px 6px 0;
+          padding: 3px;
+          width: 20px;
+          height: 20px;
+          transform: rotate(135deg);
+        "
+      ></div>
     </button>
     <div class="w-full h-full mx-auto overflow-x-hidden overflow-y-hidden">
-      <div id="sliderEmergency"
-        class="h-full flex lg:gap-8 md:gap-6 gap-14 items-center justify-start transition ease-out duration-700">
-        <div class="flex flex-shrink-0 relative w-full sm:w-auto h-card" *ngFor="let urgentAnimal of urgentAnimals">
-          <img src="../../../assets/perro2.jpg" alt="black chair and white table"
-            class="object-cover object-center w-96 h-carousel z-10" />
-          <div class="bg-brown-tertiary bg-opacity-30 absolute w-full h-full p-6">
+      <div
+        id="sliderEmergency"
+        class="h-full flex lg:gap-8 md:gap-6 gap-14 items-center justify-start transition ease-out duration-700"
+      >
+        <div
+          class="flex flex-shrink-0 relative w-full sm:w-auto h-card"
+          *ngFor="let urgentAnimal of urgentAnimals"
+        >
+          <img
+            src="../../../assets/perro2.jpg"
+            alt="black chair and white table"
+            class="object-cover object-center w-96 h-carousel z-10"
+          />
+          <div
+            class="bg-brown-tertiary bg-opacity-30 absolute w-full h-full p-6"
+          >
             <div class="h-full items-end pb-6 font-text">
               <div
-                class="text-text-name text-2xl text-text-black text-card lg:text-card font-bold leading-5 lg:leading-6 absolute top-name">
+                class="text-text-name text-2xl text-text-black text-card lg:text-card font-bold leading-5 lg:leading-6 absolute top-name"
+              >
                 {{ urgentAnimal.name }}, {{ getAge(urgentAnimal.birthdate) }}
               </div>
               <div class="description line-clamp-3 font-bold mt-80">
@@ -73,12 +129,22 @@
         </div>
       </div>
     </div>
-    <button aria-label="slide forward"
+    <button
+      aria-label="slide forward"
       class="absolute z-30 right-0 mr-8 focus:outline-none focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400"
-      (click)="goNext('sliderEmergency')">
-      <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M1 1L7 7L1 13" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-      </svg>
+      (click)="goNext('sliderEmergency')"
+    >
+      <div
+        style="
+          display: inline-block;
+          border: solid black;
+          border-width: 0 6px 6px 0;
+          padding: 3px;
+          width: 20px;
+          height: 20px;
+          transform: rotate(-45deg);
+        "
+      ></div>
     </button>
   </div>
 </div>
