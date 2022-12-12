@@ -1,68 +1,158 @@
 <div
-  class="container mx-auto my-5 p-9 bg-white h-screen max-w-6xl rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition duration-300"
+  class="container h-animal-view mx-auto my-5 p-9 bg-white max-w-6xl rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition duration-300"
   *ngIf="animal"
 >
   <div class="flex">
     <div class="flex-auto w-96 max-w-2xl">
       <img class="rounded-xl" src="../../../../assets/perro2.jpg" alt="" />
       <div class="mt-12">
-        <p class="font-text font-bold text-lg">
+        <div class="font-text font-bold text-lg w-animal-description ml-32">
           {{ animal.description }}
-        </p>
+        </div>
+        <div class="flex w-max">
+          <div
+            class="w-80 h-80 mt-12 ml-16 rounded-lg font-medium shadow-2xl bg-white-1 border-2 border-gray-2 mr-72"
+          >
+            <div class="text-center text-lg pt-6">Comparte en tus redes</div>
+            <div class="ml-6 mt-10">
+              <a
+                href="https://wa.me/?text={{
+                  animal.name
+                }}+est%C3%A1%20buscando%20un%20hogar+http://localhost:4200/animal-details/%5Bobject%20Object%5D%7D?animal=%7B%22id%22:30,%22name%22:%22Prueba%22,%22gender%22:%22male%22,%22weight%22:20,%22dewormed%22:true,%22size%22:%22medium%22,%22urgent%22:false,%22description%22:%22Lorem%20ipsum%20dolor%20sit%20amet,%20consectetur%20adipiscing%20elit.%20Pellentesque%20tincidunt%20nunc%20et%20tellus%20aliquam,%20id%20interdum%20nulla%20eleifend.%20Nam%20mattis%20mattis%20nulla,%20vitae%20aliquam%20ante%20porttitor%20sit%20amet.%20In%20sit%20amet%20metus%20finibus,%20suscipit%20odio%20et,%20ullamcorper%20libero.%20Pellentesque%20habitant%20morbi%20tristique%20senectus%20et%20netus%20et%20malesuada%20fames%20ac%20turpis%20egestas.%20Nullam%20commodo%20lectus%20elit,%20eget%20imperdiet%20orci%20sagittis%20pellentesque.%20Nunc%20vitae%20tincidunt%20metus.%20Donec%20nec%20imperdiet%20eros.%22,%22birthdate%22:%222021-03-22%22%7D&skipLocationChange=false
+            "
+              >
+                <div class="flex">
+                  <i
+                    class="fa-brands fa-whatsapp text-5xl text-green-500 mr-3"
+                  ></i>
+                  <div class="text-xl mt-3">Whatsapp</div>
+                </div></a
+              >
+              <a
+                href="https://www.facebook.com/sharer/sharer.php?u=http%3A//localhost%3A4200/animal-details/%255Bobject%2520Object%255D%257D?animal=%257B%2522id%2522%3A30,%2522name%2522%3A%2522Prueba%2522,%2522gender%2522%3A%2522male%2522,%2522weight%2522%3A20,%2522dewormed%2522%3Atrue,%2522size%2522%3A%2522medium%2522,%2522urgent%2522%3Afalse,%2522description%2522%3A%2522Lorem%2520ipsum%2520dolor%2520sit%2520amet,%2520consectetur%2520adipiscing%2520elit.%2520Pellentesque%2520tincidunt%2520nunc%2520et%2520tellus%2520aliquam,%2520id%2520interdum%2520nulla%2520eleifend.%2520Nam%2520mattis%2520mattis%2520nulla,%2520vitae%2520aliquam%2520ante%2520porttitor%2520sit%2520amet.%2520In%2520sit%2520amet%2520metus%2520finibus,%2520suscipit%2520odio%2520et,%2520ullamcorper%2520libero.%2520Pellentesque%2520habitant%2520morbi%2520tristique%2520senectus%2520et%2520netus%2520et%2520malesuada%2520fames%2520ac%2520turpis%2520egestas.%2520Nullam%2520commodo%2520lectus%2520elit,%2520eget%2520imperdiet%2520orci%2520sagittis%2520pellentesque.%2520Nunc%2520vitae%2520tincidunt%2520metus.%2520Donec%2520nec%2520imperdiet%2520eros.%2522,%2522birthdate%2522%3A%25222021-03-22%2522%257D%26skipLocationChange=false"
+                class=""
+                ><div class="flex my-5">
+                  <i
+                    class="fa-brands fa-facebook text-5xl text-blue-800 mr-3"
+                  ></i>
+                  <div class="text-xl mt-3">Facebook</div>
+                </div></a
+              >
+              <a
+                href="&quot;https://twitter.com/intent/tweet?url=&text=&quot;+{{
+                  animal.name
+                }}&quot;+&quot;Est%C3%A1%20buscando%20un%20hogar!&quot;"
+                ><div class="flex">
+                  <i
+                    class="fa-brands fa-twitter text-5xl text-blue-500 mr-3"
+                  ></i>
+                  <div class="text-xl mt-3">Twitter</div>
+                </div></a
+              >
+            </div>
+          </div>
+          <div
+            class="w-80 h-80 mt-12 rounded-lg font-medium shadow-2xl bg-white-1 border-2 border-gray-2"
+          >
+            <div class="text-center text-lg pt-6">
+              Contacta con la protectora
+            </div>
+            <div class="ml-6 mt-10">
+              <div class="text-lg w-max">{{ shelter[0].shelter_name }}</div>
+              <a
+                href="https://api.whatsapp.com/send?phone=%2B34+634712333&text=Hola%2C+Quiero+adoptar+a+{{
+                  animal.name
+                }}%21
+          "
+                class="z-10"
+              >
+                <div class="flex">
+                  <i
+                    class="fa-brands fa-whatsapp text-5xl text-green-500 mr-3"
+                  ></i>
+                  <div class="text-xl mt-3">Whatsapp</div>
+                </div></a
+              >
+              <a
+                href="mailto:{{
+                  shelter[0].shelter_email
+                }}?&subject=Informaci%C3%B3n&body=Me%20interesar%C3%ADa%20informaci%C3%B3n%20acerca%20de%20{{
+                  animal.name
+                }}
+        "
+                class="z-10"
+              >
+                <div class="flex">
+                  <i class="fa-solid fa-inbox text-5xl text-red-800 mr-3"></i>
+                  <div class="text-xl mt-3">Gmail</div>
+                </div></a
+              >
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="w-72">
+    <div class="w-72 h-12">
       <div class="flex flex-col">
         <div class="flex flex-row justify-start gap-2">
           <div class="inline-flex ml-5">
-            <p class="font-text text-4xl font-bold">{{ animal.name }}</p>
+            <div class="font-text text-4xl font-bold">{{ animal.name }}</div>
           </div>
           <div class="inline-flex mt-3">
-            <p class="font-text font-bold text-xl">
+            <div class="font-text font-bold text-xl">
               {{ this.getAge(animal.birthdate) }} años
-            </p>
+            </div>
           </div>
         </div>
       </div>
 
       <div class="flex flex-row ml-7 w-72">
         <div class="flex flex-col w-96">
-          <div class="inline-flex my-6">
-            <p class="font-text font-bold text-md">
-              <i class="fa-solid fa-cake-candles"></i>
-              {{ this.parseBirthdate(animal.birthdate) }}
-            </p>
+          <div class="inline-flex my-6 w-52">
+            <div class="font-text font-bold text-md flex text-gray-2">
+              <i class="fa-solid fa-cake-candles text-3xl"></i>
+              <div class="mt-2.5 ml-3">
+                {{ this.parseBirthdate(animal.birthdate) }}
+              </div>
+            </div>
           </div>
-          <div class="inline-flex my-6">
-            <p class="font-text font-bold text-md">
-              <i class="fa-solid fa-location-dot"></i> Malaga
-            </p>
+          <div class="inline-flex my-6 w-52">
+            <div class="font-text font-bold text-md flex text-gray-2">
+              <i class="fa-solid fa-location-dot text-3xl"></i>
+              <div class="mt-2.5 ml-3">{{ shelter[0].shelter_city }}</div>
+            </div>
           </div>
-          <div class="inline-flex my-6">
-            <p class="font-text font-bold text-md">
-              <i class="fa-solid fa-weight-scale"></i> {{ animal.weight }} kg
-            </p>
+          <div class="inline-flex my-6 w-52">
+            <div class="font-text font-bold text-md flex text-gray-2">
+              <i class="fa-solid fa-weight-scale text-3xl"></i>
+              <div class="mt-2.5 ml-3">{{ animal.weight }} kg</div>
+            </div>
           </div>
         </div>
 
         <div class="flex flex-col">
-          <div class="inline-flex my-6">
-            <p class="font-text font-bold text-md">
-              <i class="fa-solid fa-arrow-up-small-big"></i> {{ animal.size }}
-            </p>
+          <div class="inline-flex my-6 w-52">
+            <div class="font-text font-bold text-md flex text-gray-2">
+              <i class="fa-solid fa-maximize text-3xl"></i>
+              <div class="mt-2.5 ml-3">{{ animal.size }}</div>
+            </div>
           </div>
-          <div class="inline-flex my-6">
-            <p class="font-text font-bold text-md">
-              <i class="fa-solid fa-venus-mars"></i>
-              {{ animal.gender === "female" ? "Hembra" : "Macho" }}
-            </p>
+          <div class="inline-flex my-6 w-52">
+            <div class="font-text font-bold text-md flex text-gray-2">
+              <i class="fa-solid fa-venus-mars text-3xl"></i>
+              <div class="mt-2.5 ml-3">
+                {{ animal.gender === "female" ? "Hembra" : "Macho" }}
+              </div>
+            </div>
           </div>
-          <div class="inline-flex my-6">
-            <p class="font-text font-bold text-md">
-              <i class="fa-solid fa-worm"></i>
-              {{ animal.dewormed ? "Desparasitado" : "No desparasitado" }}
-            </p>
+          <div class="inline-flex my-6 w-52">
+            <div class="font-text font-bold text-md flex text-gray-2">
+              <i class="fa-solid fa-worm text-3xl"></i>
+              <div class="mt-2.5 ml-3">
+                {{ animal.dewormed ? "Desparasitado" : "No desparasitado" }}
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -56,6 +56,5 @@ export class AnimalViewComponent implements OnInit {
     this.animalService
       .getShelterByAnimal(this.animal.id)
       .subscribe((shelter) => (this.shelter = shelter));
-    console.log('shelter');
   }
 }
