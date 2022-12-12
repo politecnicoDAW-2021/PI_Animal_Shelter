@@ -40,13 +40,15 @@ module.exports = {
         'w-hero': '100%',
         'carousel': '1500px',
         'description': '323px',
+        'animal-description': '850px',
         'animal-info': '20px'
       },
       height: {
         'h-hero': '35rem',
         'carousel': '18rem',
         'card': '27rem',
-        'animal-card': '50px'
+        'animal-card': '50px',
+        'animal-view': '1100px'
       },
       spacing: {
         't-text': '15.5rem',
@@ -62,5 +64,5 @@ module.exports = {
     extend: {},
   },
   plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography'), require('@tailwindcss/line-clamp'), require('flowbite/plugin')
-],
+  ],
 };
