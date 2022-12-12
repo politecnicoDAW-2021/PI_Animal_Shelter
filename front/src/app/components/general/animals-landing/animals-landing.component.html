@@ -39,22 +39,24 @@
         "
       ></div>
     </button>
-    <div class="w-full h-full mx-auto overflow-x-hidden overflow-y-hidden">
+    <div
+      class="w-full h-full mx-auto overflow-x-hidden overflow-y-hidden rounded-t-lg"
+    >
       <div
         id="slider"
-        class="h-full flex lg:gap-8 md:gap-6 gap-14 items-center justify-start transition ease-out duration-700"
+        class="h-full flex lg:gap-8 md:gap-6 gap-14 items-center justify-start transition ease-out duration-700 rounded-t-lg"
       >
         <div
-          class="flex flex-shrink-0 relative w-full sm:w-auto h-card"
+          class="flex flex-shrink-0 relative w-full sm:w-auto h-card rounded-t-lg"
           *ngFor="let animal of animals"
         >
           <img
             src="../../../assets/perro2.jpg"
             alt="black chair and white table"
-            class="object-cover object-center w-96 h-carousel z-10"
+            class="object-cover object-center w-96 h-carousel z-10 rounded-t-lg"
           />
           <div
-            class="bg-brown-tertiary bg-opacity-30 absolute w-full h-full p-6"
+            class="bg-brown-tertiary bg-opacity-30 absolute w-full h-full p-6 rounded-lg"
           >
             <div class="h-full items-end pb-6 font-text">
               <div
@@ -126,10 +128,10 @@
           <img
             src="../../../assets/perro2.jpg"
             alt="black chair and white table"
-            class="object-cover object-center w-96 h-carousel z-10"
+            class="rounded-t-lg object-cover object-center w-96 h-carousel z-10"
           />
           <div
-            class="bg-brown-tertiary bg-opacity-30 absolute w-full h-full p-6"
+            class="bg-brown-tertiary bg-opacity-30 absolute w-full h-full p-6 rounded-lg"
           >
             <div class="h-full items-end pb-6 font-text">
               <div
