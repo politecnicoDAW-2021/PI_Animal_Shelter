@@ -5,30 +5,36 @@
       class="inline-flex items-center ml-4"
       [formGroup]="filterForm"
     >
-      <label class="text-white dark:text-gray-200" for="city">Ciudad:</label>
+      <label class="text-white dark:text-gray-200 font-bold" for="city"
+        >Ciudad:</label
+      >
       <ng-select
         formControlName="city"
-        class="z-50 ml-2 block w-96 px-3 py-1.5 text-base font-normal text-gray-70 bg-clip-padding bg-no-repeat transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+        class="my-3.5 z-50 ml-2 block w-96 px-3 py-1.5 text-base font-normal text-gray-70 bg-clip-padding bg-no-repeat transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
       >
         <ng-option *ngFor="let city of cities" [value]="city.id">
           {{ city.name }}
         </ng-option>
       </ng-select>
 
-      <label class="text-white dark:text-gray-200" for="specie">Especie:</label>
+      <label class="text-white dark:text-gray-200 font-bold" for="specie"
+        >Especie:</label
+      >
       <ng-select
         formControlName="specie"
-        class="z-50 ml-2 block w-96 px-3 py-1.5 text-base font-normal text-gray-70 bg-clip-padding bg-no-repeat transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+        class="my-3.5 z-50 ml-2 block w-96 px-3 py-1.5 text-base font-normal text-gray-70 bg-clip-padding bg-no-repeat transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
       >
         <ng-option *ngFor="let specie of species" [value]="specie.id">
           {{ specie.name }}
         </ng-option>
       </ng-select>
 
-      <label class="text-white dark:text-gray-200" for="breed">Raza</label>
+      <label class="text-white dark:text-gray-200 font-bold" for="breed"
+        >Raza:</label
+      >
       <ng-select
         formControlName="breed"
-        class="z-50 ml-2 block w-96 px-3 py-1.5 text-base font-normal text-gray-700 bg-clip-padding bg-no-repeat transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+        class="my-3.5 z-50 ml-2 block w-96 px-3 py-1.5 text-base font-normal text-gray-700 bg-clip-padding bg-no-repeat transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
       >
         <ng-option *ngFor="let breed of breeds" [value]="breed.id">
           {{ breed.name }}
