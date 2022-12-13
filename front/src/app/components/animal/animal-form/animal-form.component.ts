@@ -19,14 +19,13 @@ export class AnimalFormComponent implements OnInit {
   filteredBreeds: any;
   genders: any[] = ['Male', 'Female'];
   sizes: any[] = ['Large', 'Medium', 'Small'];
-  shelters: any[] = [];
 
   animalForm = this.fb.group({
     name: [''],
     birthdate: [''],
     weight: [''],
     breed: [''],
-    shelter: [],
+    shelter: [localStorage.getItem('id')],
     description: [''],
     gender: [''],
     size: [''],
@@ -37,7 +36,6 @@ export class AnimalFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.getBreeds();
-    this.getShelters();
     this.filteredBreeds = this.animalForm
       .get('breed')
       ?.valueChanges.pipe(
@@ -48,12 +46,6 @@ export class AnimalFormComponent implements OnInit {
   getBreeds() {
     return this.animalService.getBreeds().subscribe((breed) => {
       this.breeds = breed;
-    });
-  }
-
-  getShelters() {
-    return this.shelterService.getShelter().subscribe((shelter) => {
-      this.shelters = shelter;
     });
   }
 
