@@ -41,7 +41,8 @@ module.exports = {
         'carousel': '1500px',
         'description': '323px',
         'animal-description': '850px',
-        'animal-info': '20px'
+        'animal-info': '20px',
+        'upload': '460px'
       },
       height: {
         'h-hero': '35rem',
@@ -56,11 +57,13 @@ module.exports = {
         'carousel': '0 calc((100% - 1500px)/2)',
         'name': '19rem',
         'description': '340px',
-        'm-description': '30px calc((100% - 19rem)/2)'
+        'm-description': '30px calc((100% - 19rem)/2)',
+        'urgent': '63rem',
+        'upload': '190px',
+        'upload-top': '29px',
+        'textarea': '156px'
       },
-      margin: {
-        'profile': '780px'
-      }
+
     },
   },
   variants: {
