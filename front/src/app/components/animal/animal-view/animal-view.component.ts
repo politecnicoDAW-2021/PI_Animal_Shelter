@@ -17,6 +17,7 @@ export class AnimalViewComponent implements OnInit {
   @Input() animal!: any;
   animal$!: Observable<any | undefined> | any;
   shelter: any[] = [];
+  url: string = window.location.href;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
