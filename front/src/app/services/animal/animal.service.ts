@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -42,9 +42,38 @@ export class AnimalService {
 
   addAnimal(animal: any) {
     return this.http.post<any[]>(`${this.endpoint}`, animal);
+    // return this.http.post<any[]>('http://localhost:3000/upload-photo', {
+    //   body: animal,
+    //   'Content-Type': 'multipart/form-data',
+    // });
   }
+
   getShelterByAnimal(id: any) {
     console.log('hola estoy aqui', id);
     return this.http.get<any[]>(`${this.endpoint}/shelter/${id}`);
+  }
+
+  getAnimalImage() {
+    return this.http.get<any[]>('http://localhost:3000/photo');
+  }
+
+  upload(file: File): Observable<HttpEvent<any>> {
+    const formData: FormData = new FormData();
+    console.log('file', file);
+
+    formData.append('image', file);
+
+    const req = new HttpRequest(
+      'POST',
+      'http://localhost:3000/upload-photo',
+      formData,
+      {
+        responseType: 'json',
+      }
+    );
+    console.log('req', req);
+    console.log('formData', formData);
+
+    return this.http.request(req);
   }
 }
