@@ -1,0 +1,6 @@
+::ng-deep.ng-select-container {
+  margin-top: 8px;
+  height: 3rem !important;
+  border-radius: 5px !important;
+  border: none;
+}
