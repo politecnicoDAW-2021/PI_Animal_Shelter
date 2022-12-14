@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import {
+  DomSanitizer,
+  SafeResourceUrl,
+  SafeUrl,
+} from '@angular/platform-browser';
 import { AnimalService } from '@services/animal/animal.service';
 
 @Component({
@@ -7,16 +12,22 @@ import { AnimalService } from '@services/animal/animal.service';
   styleUrls: ['./animals-landing.component.css'],
 })
 export class AnimalsLandingComponent implements OnInit {
-  constructor(private animalService: AnimalService) {}
+  constructor(
+    private animalService: AnimalService,
+    private sanitizer: DomSanitizer
+  ) {}
 
   animals: any[] = [];
   urgentAnimals: any[] = [];
   slider: any;
   defaultTransform: any;
 
+  public safeImage?: SafeResourceUrl;
+
   ngOnInit(): void {
     this.getAnimals();
     this.defaultTransform = 0;
+    this.getImage();
   }
 
   getAnimals = () => {
@@ -50,5 +61,14 @@ export class AnimalsLandingComponent implements OnInit {
     if (Math.abs(this.defaultTransform) === 0) this.defaultTransform = 0;
     else this.defaultTransform = this.defaultTransform + 398;
     this.slider.style.transform = 'translateX(' + this.defaultTransform + 'px)';
+  };
+
+  getImage = () => {
+    return this.animalService.getAnimalImage().subscribe((image) => {
+      this.safeImage = this.sanitizer.bypassSecurityTrustResourceUrl(
+        'http://localhost:3000/photo'
+      );
+      console.log(this.safeImage);
+    });
   };
 }

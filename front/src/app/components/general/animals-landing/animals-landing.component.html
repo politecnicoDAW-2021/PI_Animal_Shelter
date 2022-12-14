@@ -1,34 +1,25 @@
 <div class="flex h-10 justify-center mt-20">
   <div class="inline-flex rounded-md shadow">
-    <a
-      href="http://localhost:4200/animal-list"
-      class="inline-flex items-center justify-center rounded-md border border-transparent bg-green-primary px-5 py-3 text-base font-medium text-white hover:bg-brown-primary"
-      ><i class="fa-solid fa-dog mr-4"></i> Ver animales</a
-    >
+    <a href="http://localhost:4200/animal-list"
+      class="inline-flex items-center justify-center rounded-md border border-transparent bg-green-primary px-5 py-3 text-base font-medium text-white hover:bg-brown-primary"><i
+        class="fa-solid fa-dog mr-4"></i> Ver animales</a>
   </div>
   <div class="ml-3 inline-flex rounded-md shadow">
-    <a
-      href="http://localhost:4200/shelter-list"
-      class="inline-flex items-center justify-center rounded-md border border-transparent bg-white px-5 py-3 text-base font-medium text-green-primary hover:bg-brown-tertiary"
-      ><i class="fa-solid fa-tent mr-4"></i> Ver protectoras</a
-    >
+    <a href="http://localhost:4200/shelter-list"
+      class="inline-flex items-center justify-center rounded-md border border-transparent bg-white px-5 py-3 text-base font-medium text-green-primary hover:bg-brown-tertiary"><i
+        class="fa-solid fa-tent mr-4"></i> Ver protectoras</a>
   </div>
 </div>
 <div class="title text-3xl m-carousel font-text font-extrabold mt-20">
   <i class="fa-solid fa-triangle-exclamation text-brown-primary text-5xl"></i>
   Animales
 </div>
-<div
-  class="flex items-center justify-center py-24 sm:py-8 px-4 w-carousel m-carousel"
->
+<div class="flex items-center justify-center py-24 sm:py-8 px-4 w-carousel m-carousel">
   <div class="w-full relative flex items-center justify-center">
-    <button
-      aria-label="slide backward"
+    <button aria-label="slide backward"
       class="absolute z-30 left-0 ml-8 focus:outline-none focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 cursor-pointer"
-      (click)="goPrev('slider')"
-    >
-      <div
-        style="
+      (click)="goPrev('slider')">
+      <div style="
           display: inline-block;
           border: solid black;
           border-width: 0 6px 6px 0;
@@ -36,32 +27,18 @@
           width: 20px;
           height: 20px;
           transform: rotate(135deg);
-        "
-      ></div>
+        "></div>
     </button>
-    <div
-      class="w-full h-full mx-auto overflow-x-hidden overflow-y-hidden rounded-t-lg"
-    >
-      <div
-        id="slider"
-        class="h-full flex lg:gap-8 md:gap-6 gap-14 items-center justify-start transition ease-out duration-700 rounded-t-lg"
-      >
-        <div
-          class="flex flex-shrink-0 relative w-full sm:w-auto h-card rounded-t-lg"
-          *ngFor="let animal of animals"
-        >
-          <img
-            src="../../../assets/perro2.jpg"
-            alt="black chair and white table"
-            class="object-cover object-center w-96 h-carousel z-10 rounded-t-lg"
-          />
-          <div
-            class="bg-brown-tertiary bg-opacity-30 absolute w-full h-full p-6 rounded-lg"
-          >
+    <div class="w-full h-full mx-auto overflow-x-hidden overflow-y-hidden rounded-t-lg">
+      <div id="slider"
+        class="h-full flex lg:gap-8 md:gap-6 gap-14 items-center justify-start transition ease-out duration-700 rounded-t-lg">
+        <div class="flex flex-shrink-0 relative w-full sm:w-auto h-card rounded-t-lg" *ngFor="let animal of animals">
+          <img src="http://localhost:3000/photo/{{animal.id}}" alt="black chair and white table"
+            class="object-cover object-center w-96 h-carousel z-10 rounded-t-lg" />
+          <div class="bg-brown-tertiary bg-opacity-30 absolute w-full h-full p-6 rounded-lg">
             <div class="h-full items-end pb-6 font-text">
               <div
-                class="text-text-name text-2xl text-text-black text-card lg:text-card font-bold leading-5 lg:leading-6 absolute top-name"
-              >
+                class="text-text-name text-2xl text-text-black text-card lg:text-card font-bold leading-5 lg:leading-6 absolute top-name">
                 {{ animal.name }}, {{ getAge(animal.birthdate) }}
               </div>
               <div class="description line-clamp-3 font-bold mt-80">
@@ -72,13 +49,10 @@
         </div>
       </div>
     </div>
-    <button
-      aria-label="slide forward"
+    <button aria-label="slide forward"
       class="absolute z-30 right-0 mr-8 focus:outline-none focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400"
-      (click)="goNext('slider')"
-    >
-      <div
-        style="
+      (click)="goNext('slider')">
+      <div style="
           display: inline-block;
           border: solid black;
           border-width: 0 6px 6px 0;
@@ -86,8 +60,7 @@
           width: 20px;
           height: 20px;
           transform: rotate(-45deg);
-        "
-      ></div>
+        "></div>
     </button>
   </div>
 </div>
@@ -95,17 +68,12 @@
   <i class="fa-solid fa-triangle-exclamation text-brown-primary text-5xl"></i>
   Adopción urgente
 </div>
-<div
-  class="flex items-center justify-center py-24 sm:py-8 px-4 w-carousel m-carousel"
->
+<div class="flex items-center justify-center py-24 sm:py-8 px-4 w-carousel m-carousel">
   <div class="w-full relative flex items-center justify-center">
-    <button
-      aria-label="slide backward"
+    <button aria-label="slide backward"
       class="absolute z-30 left-0 ml-8 focus:outline-none focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 cursor-pointer"
-      (click)="goPrev('sliderEmergency')"
-    >
-      <div
-        style="
+      (click)="goPrev('sliderEmergency')">
+      <div style="
           display: inline-block;
           border: solid black;
           border-width: 0 6px 6px 0;
@@ -113,30 +81,18 @@
           width: 20px;
           height: 20px;
           transform: rotate(135deg);
-        "
-      ></div>
+        "></div>
     </button>
     <div class="w-full h-full mx-auto overflow-x-hidden overflow-y-hidden">
-      <div
-        id="sliderEmergency"
-        class="h-full flex lg:gap-8 md:gap-6 gap-14 items-center justify-start transition ease-out duration-700"
-      >
-        <div
-          class="flex flex-shrink-0 relative w-full sm:w-auto h-card"
-          *ngFor="let urgentAnimal of urgentAnimals"
-        >
-          <img
-            src="../../../assets/perro2.jpg"
-            alt="black chair and white table"
-            class="rounded-t-lg object-cover object-center w-96 h-carousel z-10"
-          />
-          <div
-            class="bg-brown-tertiary bg-opacity-30 absolute w-full h-full p-6 rounded-lg"
-          >
+      <div id="sliderEmergency"
+        class="h-full flex lg:gap-8 md:gap-6 gap-14 items-center justify-start transition ease-out duration-700">
+        <div class="flex flex-shrink-0 relative w-full sm:w-auto h-card" *ngFor="let urgentAnimal of urgentAnimals">
+          <img src="../../../assets/perro2.jpg" alt="black chair and white table"
+            class="rounded-t-lg object-cover object-center w-96 h-carousel z-10" />
+          <div class="bg-brown-tertiary bg-opacity-30 absolute w-full h-full p-6 rounded-lg">
             <div class="h-full items-end pb-6 font-text">
               <div
-                class="text-text-name text-2xl text-text-black text-card lg:text-card font-bold leading-5 lg:leading-6 absolute top-name"
-              >
+                class="text-text-name text-2xl text-text-black text-card lg:text-card font-bold leading-5 lg:leading-6 absolute top-name">
                 {{ urgentAnimal.name }}, {{ getAge(urgentAnimal.birthdate) }}
               </div>
               <div class="description line-clamp-3 font-bold mt-80">
@@ -147,13 +103,10 @@
         </div>
       </div>
     </div>
-    <button
-      aria-label="slide forward"
+    <button aria-label="slide forward"
       class="absolute z-30 right-0 mr-8 focus:outline-none focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400"
-      (click)="goNext('sliderEmergency')"
-    >
-      <div
-        style="
+      (click)="goNext('sliderEmergency')">
+      <div style="
           display: inline-block;
           border: solid black;
           border-width: 0 6px 6px 0;
@@ -161,8 +114,7 @@
           width: 20px;
           height: 20px;
           transform: rotate(-45deg);
-        "
-      ></div>
+        "></div>
     </button>
   </div>
 </div>
