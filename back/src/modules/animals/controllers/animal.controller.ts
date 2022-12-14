@@ -13,6 +13,7 @@ import {
   Param,
   BadRequestException,
   Delete,
+  Request,
 } from '@nestjs/common';
 import { get } from 'http';
 import { AnimalService } from '../services/animal.service';
@@ -23,6 +24,13 @@ import { join } from 'path';
 import multer, { diskStorage } from 'multer';
 //import { multerConfig } from '../utils/file-upload.utils';
 import { Readable } from 'stream';
+import {
+  isFileExtensionSafe,
+  saveImageToStorage,
+  removeFile,
+} from '../../../helpers/image-storage.helper';
+import { map, Observable, of, switchMap } from 'rxjs';
+import { UpdateResult } from 'typeorm';
 
 @Controller()
 export class AnimalController {
@@ -50,80 +58,58 @@ export class AnimalController {
     return this.animalService.deleteAnimal(id);
   }
 
-  // @UseInterceptors(FileInterceptor('file', multerConfig))
-  // @Post('file')
-  // async uploadFile(@UploadedFile() file: Express.Multer.File, @Body() body) {
-  //   console.log('filename', file.originalname);
-  //   console.log('file', file);
-  //   return await this.animalService.uploadFiles(
-  //     body.idAnimal,
-  //     file.buffer,
-  //     file.originalname,
-  //   );
-  // }
+  @Post('/upload-photo')
+  @UseInterceptors(FileInterceptor('image', saveImageToStorage))
+  uploadImage(
+    @UploadedFile() file: Express.Multer.File,
+    @Request() req: any,
+  ): Observable<UpdateResult | { error: string }> {
+    //console.log('req', req.body);
 
-  @Post('upload-file')
-  @UseInterceptors(
-    FileInterceptor('file', {
-      storage: diskStorage({
-        destination: './uploads',
-        filename: (req: any, file, cb) => {
-          const name = file.originalname.split('.')[0];
-          const fileExtension = file.originalname.split('.')[1];
-          const newFileName =
-            name.split('').join('_') + '_' + Date.now() + '.' + fileExtension;
-
-          cb(null, newFileName);
-          const filesadfa = '../../';
-        },
-      }),
-      fileFilter: (req: any, file: any, cb) => {
-        if (!file.originalname.match(/\.(jpg|jpeg|png|gif)/)) {
-          return cb(null, false);
-        }
-        cb(null, true);
-      },
-    }),
-  )
-  uploadFoto(@UploadedFile() file: Array<Express.Multer.File> | any) {
     console.log(file);
 
-    if (!file) {
-      throw new BadRequestException('File is not an image');
-    } else {
-      const response = {
-        filePath: `http://localhost:3000/picture/${file.filename}`,
-      };
+    const fileName = file?.filename;
 
-      console.log(response);
+    if (!fileName) return of({ error: 'File must be a png, jpg/jpeg' });
 
-      return response;
-    }
+    const imagesFolderPath = join(process.cwd(), 'images');
+    const fullImagePath = join(imagesFolderPath + '/' + file.filename);
+
+    return isFileExtensionSafe(fullImagePath).pipe(
+      switchMap((isFileLegit: boolean) => {
+        if (isFileLegit) {
+          const photo = this.animalService.updateAnimalPhoto(8, fileName);
+          return photo;
+        }
+        removeFile(fullImagePath);
+        return of({ error: 'File content doest not match extension!' });
+      }),
+    );
+  }
+
+  @Get('photo/:id')
+  findImage(
+    @Param('id') id: any,
+    @Request() req: any,
+    @Res() res: any,
+  ): Observable<Object> {
+    return this.animalService.findImageByAnimalId(id).pipe(
+      switchMap((imageName: any) => {
+        console.log('image', imageName);
+
+        return of(res.sendFile(imageName, { root: './images' }));
+      }),
+    );
   }
 
   @Get('picture/:filename')
   async getPicture(@Param('filename') filename: any, @Res() res: Response) {
     res.sendFile(filename, { root: './uploads' });
   }
+
   @Get('animal/shelter/:id')
   getShelterByAnimal(@Param('id') id: any) {
     console.log('ey', id);
     return this.animalService.findShelterByAnimal(id);
   }
-
-  // @Get('file')
-  // async getDatabaseFileById(@Query() query: any) {
-  //   console.log('id', query.id);
-  //   const file = await this.animalService.getFileById(query.id);
-  //   console.log('file', file);
-  //   const stream = Readable.from(file.data);
-  //   console.log('stream', stream);
-  //   return new StreamableFile(stream);
-  // }
 }
-
-// @Get('file')
-// getFile(FileInterceptor('file')): StreamableFile {
-//   const file = createReadStream(join(process.cwd(), 'package.json'));
-//   return new StreamableFile(file);
-// }
