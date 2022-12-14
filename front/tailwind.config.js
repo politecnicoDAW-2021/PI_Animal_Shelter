@@ -61,7 +61,8 @@ module.exports = {
         'urgent': '63rem',
         'upload': '190px',
         'upload-top': '29px',
-        'textarea': '153px'
+        'textarea': '153px',
+        'profile': '770px'
       },
 
     },
