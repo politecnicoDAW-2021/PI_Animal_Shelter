@@ -9,7 +9,11 @@
   <form [formGroup]="animalForm">
     <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
       <div>
-        <label class="text-white dark:text-gray-200" for="name">Nombre</label>
+        <label
+          class="text-white font-bold font-text text-xl dark:text-gray-200"
+          for="name"
+          >Nombre</label
+        >
         <input
           id="name"
           type="text"
@@ -20,7 +24,9 @@
       </div>
 
       <div>
-        <label class="text-white dark:text-gray-200" for="birthdate"
+        <label
+          class="text-white dark:text-gray-200 font-bold font-text text-xl"
+          for="birthdate"
           >Fecha nacimiento</label
         >
         <input
@@ -33,18 +39,26 @@
       </div>
 
       <div>
-        <label class="text-white dark:text-gray-200" for="weight">Peso</label>
+        <label
+          class="text-white font-bold font-text text-xl dark:text-gray-200"
+          for="weight"
+          >Peso</label
+        >
         <input
           id="weight"
           type="number"
           name="weight"
           formControlName="weight"
-          class="block h-12 border-none w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+          class="block h-12 border-none w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600"
         />
       </div>
 
       <div>
-        <label class="text-white dark:text-gray-200" for="breed">Raza</label>
+        <label
+          class="text-white dark:text-gray-200 font-bold font-text text-xl"
+          for="breed"
+          >Raza</label
+        >
 
         <ng-select formControlName="breed" class="h-12 border-none">
           <ng-option *ngFor="let breed of breeds" [value]="breed.id">
@@ -54,7 +68,7 @@
       </div>
       <div>
         <label
-          class="text-white dark:text-gray-200 h-12 border-none"
+          class="text-white font-bold font-text text-xl dark:text-gray-200 h-12 border-none"
           for="gender"
           >Género</label
         >
@@ -65,7 +79,11 @@
         </ng-select>
       </div>
       <div>
-        <label class="text-white dark:text-gray-200" for="gender">Tamaño</label>
+        <label
+          class="text-white dark:text-gray-200 font-bold font-text text-xl"
+          for="gender"
+          >Tamaño</label
+        >
         <ng-select formControlName="size">
           <ng-option *ngFor="let size of sizes" [value]="size">
             {{ size }}
@@ -74,7 +92,9 @@
       </div>
 
       <div>
-        <label class="text-white dark:text-gray-200" for="description"
+        <label
+          class="text-white dark:text-gray-200 font-bold font-text text-xl"
+          for="description"
           >Descripcion</label
         >
         <textarea
@@ -107,7 +127,7 @@
             <div class="flex text-sm text-gray-600">
               <label
                 for="file-upload"
-                class="relative cursor-pointer bg-white rounded-md font-medium text-black hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
+                class="relative cursor-pointer bg-white rounded-md font-medium text-black"
               >
                 <span class="">Upload a file</span>
                 <input
@@ -129,7 +149,7 @@
           id="urgent"
           formControlName="urgent"
           type="checkbox"
-          class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+          class="w-4 h-4 bg-gray-100 rounded border-gray-300"
         />
         <label
           for="checked-checkbox"
@@ -142,7 +162,7 @@
             id="dewormed"
             formControlName="dewormed"
             type="checkbox"
-            class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+            class="w-4 h-4 bg-gray-100 rounded border-gray-300"
           />
           <label
             for="default-checkbox"
@@ -157,7 +177,7 @@
     <div class="flex justify-end mt-6">
       <button
         (click)="saveValues()"
-        class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-green-secundary rounded-md hover:bg-green-primary focus:outline-none focus:bg-gray-600"
+        class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-green-secundary rounded-md hover:bg-green-primary"
       >
         Save
       </button>
