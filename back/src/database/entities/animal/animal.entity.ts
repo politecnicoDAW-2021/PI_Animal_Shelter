@@ -36,6 +36,11 @@ export class AnimalEntity {
   dewormed: boolean;
 
   @Column({
+    nullable: true,
+  })
+  filename: string;
+
+  @Column({
     type: 'enum',
     enum: ['small', 'medium', 'large', 'giant'],
     default: ['medium'],
@@ -63,9 +68,10 @@ export class AnimalEntity {
     onUpdate: 'CASCADE',
   })
   shelter: ShelterEntity;
+
   @OneToMany(() => MediaEntity, (media) => media.id, {
-    onDelete: 'CASCADE',
-    onUpdate: 'CASCADE',
+    // onDelete: 'CASCADE',
+    // onUpdate: 'CASCADE',
   })
   media: MediaEntity;
 }
