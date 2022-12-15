@@ -14,6 +14,7 @@ import {
   BadRequestException,
   Delete,
   Request,
+  Put,
 } from '@nestjs/common';
 import { get } from 'http';
 import { AnimalService } from '../services/animal.service';
@@ -40,14 +41,17 @@ export class AnimalController {
   async breed() {
     return await this.animalService.findBreeds();
   }
+
   @Get('species')
   async specie() {
     return await this.animalService.findSpecies();
   }
+
   @Get('animal')
   async findAll(@Query() query: any) {
     return this.animalService.findAll(query);
   }
+
   @Post('animal')
   async addAnimals(@Body() animal: any) {
     return this.animalService.addAnimals(animal);
@@ -58,15 +62,42 @@ export class AnimalController {
     return this.animalService.deleteAnimal(id);
   }
 
-  @Post('/upload-photo')
+  // @Post('/upload-photo')
+  // @UseInterceptors(FileInterceptor('image', saveImageToStorage))
+  // uploadImage(
+  //   @UploadedFile() file: Express.Multer.File,
+  //   @Request() req: any,
+  // ): Observable<UpdateResult | { error: string }> {
+  //   console.log('req', req.body);
+
+  //   console.log('file', file);
+
+  //   const fileName = file?.filename;
+
+  //   if (!fileName) return of({ error: 'File must be a png, jpg/jpeg' });
+
+  //   const imagesFolderPath = join(process.cwd(), 'images');
+  //   const fullImagePath = join(imagesFolderPath + '/' + file.filename);
+
+  //   return isFileExtensionSafe(fullImagePath).pipe(
+  //     switchMap((isFileLegit: boolean) => {
+  //       if (isFileLegit) {
+  //         const photo = this.animalService.updateAnimalPhoto(8, fileName);
+  //         return photo;
+  //       }
+  //       removeFile(fullImagePath);
+  //       return of({ error: 'File content doest not match extension!' });
+  //     }),
+  //   );
+  // }
+
+  @Put('/upload-photo/:id')
   @UseInterceptors(FileInterceptor('image', saveImageToStorage))
   uploadImage(
     @UploadedFile() file: Express.Multer.File,
-    @Request() req: any,
+    @Param('id') id: any,
   ): Observable<UpdateResult | { error: string }> {
-    //console.log('req', req.body);
-
-    console.log(file);
+    console.log('file', file);
 
     const fileName = file?.filename;
 
@@ -78,8 +109,7 @@ export class AnimalController {
     return isFileExtensionSafe(fullImagePath).pipe(
       switchMap((isFileLegit: boolean) => {
         if (isFileLegit) {
-          const photo = this.animalService.updateAnimalPhoto(8, fileName);
-          return photo;
+          return this.animalService.updateAnimalPhoto(id, file.filename);
         }
         removeFile(fullImagePath);
         return of({ error: 'File content doest not match extension!' });
