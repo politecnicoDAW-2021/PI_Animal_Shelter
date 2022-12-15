@@ -42,14 +42,16 @@ module.exports = {
         'description': '323px',
         'animal-description': '850px',
         'animal-info': '20px',
-        'upload': '460px'
+        'upload': '460px',
+        'animal': '630px'
       },
       height: {
         'h-hero': '35rem',
         'carousel': '18rem',
         'card': '27rem',
         'animal-card': '50px',
-        'animal-view': '1100px'
+        'animal-view': '1100px',
+        'animal': '430px'
       },
       spacing: {
         't-text': '15.5rem',
