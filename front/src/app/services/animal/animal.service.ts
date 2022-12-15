@@ -49,7 +49,6 @@ export class AnimalService {
   }
 
   getShelterByAnimal(id: any) {
-    console.log('hola estoy aqui', id);
     return this.http.get<any[]>(`${this.endpoint}/shelter/${id}`);
   }
 
@@ -57,23 +56,45 @@ export class AnimalService {
     return this.http.get<any[]>('http://localhost:3000/photo');
   }
 
-  upload(file: File): Observable<HttpEvent<any>> {
-    const formData: FormData = new FormData();
-    console.log('file', file);
+  // upload(file: File): Observable<HttpEvent<any>> {
+  //   const formData: FormData = new FormData();
+  //   console.log('file', file);
 
-    formData.append('image', file);
+  //   formData.append('image', file);
 
-    const req = new HttpRequest(
-      'POST',
-      'http://localhost:3000/upload-photo',
-      formData,
-      {
-        responseType: 'json',
-      }
-    );
-    console.log('req', req);
-    console.log('formData', formData);
+  //   const req = new HttpRequest(
+  //     'POST',
+  //     'http://localhost:3000/upload-photo',
+  //     formData,
+  //     {
+  //       responseType: 'json',
+  //     }
+  //   );
+  //   console.log('req', req);
+  //   console.log('formData', formData);
 
-    return this.http.request(req);
+  //   return this.http.request(req);
+  // }
+
+  // upload(animal: any, image: File) {
+  //   const formData = new FormData();
+
+  //   formData.append('image', image);
+
+  //   return this.http.post('http://localhost:3000/upload-photo/', formData);
+  // }
+
+  upload(id: any, image: File) {
+    const formData = new FormData();
+
+    formData.append('image', image);
+
+    return this.http.put(`http://localhost:3000/upload-photo/${id}`, formData);
+  }
+
+  test(animal: any) {
+    console.log('animal');
+
+    return this.http.post('http://localhost:3000/animal', animal);
   }
 }

@@ -21,6 +21,7 @@ import { NotFoundComponent } from './components/general/not-found/not-found.comp
 import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
+import { FileSelectDirective } from 'ng2-file-upload';
 
 @NgModule({
   declarations: [AppComponent, NavbarComponent, NotFoundComponent],
