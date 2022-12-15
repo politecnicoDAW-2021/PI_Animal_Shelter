@@ -27,7 +27,7 @@ export class AnimalsLandingComponent implements OnInit {
   ngOnInit(): void {
     this.getAnimals();
     this.defaultTransform = 0;
-    this.getImage();
+    //this.getImage();
   }
 
   getAnimals = () => {

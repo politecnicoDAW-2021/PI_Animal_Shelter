@@ -66,7 +66,6 @@ export class NavbarComponent implements OnInit {
     this.authService.logout();
   }
   isShelter(): string | null {
-    console.log('hola', localStorage.getItem('rol'));
     return localStorage.getItem('rol');
   }
 }
