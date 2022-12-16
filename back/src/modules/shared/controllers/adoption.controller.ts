@@ -35,6 +35,6 @@ export class AdoptionController {
 
   @Delete('/:id')
   async deleteAdoption(@Param('id') id: any) {
-    return this.adoptionService.deleteAdoption(id.id);
+    return this.adoptionService.deleteAdoption(id);
   }
 }
