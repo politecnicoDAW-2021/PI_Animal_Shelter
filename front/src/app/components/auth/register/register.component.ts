@@ -30,6 +30,7 @@ export class RegisterComponent implements OnInit {
   emailShelter!: FormControl;
   cityShelter!: FormControl;
   passwordShelter!: FormControl;
+  phone_number!: FormControl;
 
   constructor(
     private fb: UntypedFormBuilder,
@@ -59,6 +60,7 @@ export class RegisterComponent implements OnInit {
       name: this.nameShelter,
       email: this.emailShelter,
       city: this.cityShelter,
+      phone_number: this.phone_number,
       password: this.passwordShelter,
     });
   }
