@@ -60,7 +60,7 @@ module.exports = {
         'name': '19rem',
         'description': '340px',
         'm-description': '30px calc((100% - 19rem)/2)',
-        'urgent': '63rem',
+        'urgent': '60rem',
         'upload': '190px',
         'upload-top': '29px',
         'textarea': '153px',
