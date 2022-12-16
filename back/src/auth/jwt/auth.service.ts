@@ -111,6 +111,7 @@ export class AuthService {
         name: shelter.name,
         email: shelter.email,
         city: shelter.city,
+        phone_number: shelter.phone_number,
       });
 
       const password = await this.passwordService.create({

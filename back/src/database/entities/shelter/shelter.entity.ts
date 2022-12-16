@@ -23,7 +23,10 @@ export class ShelterEntity {
 
   @Column()
   city: string;
-
+  @Column({
+    nullable: true,
+  })
+  phone_number: string;
   @OneToMany(() => UserEntity, (user) => user.id)
   user: UserEntity;
   @OneToMany(() => AnimalEntity, (animal) => animal.id)
