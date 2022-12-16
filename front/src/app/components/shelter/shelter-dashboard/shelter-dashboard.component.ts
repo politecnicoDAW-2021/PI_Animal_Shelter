@@ -31,11 +31,12 @@ export class ShelterDashboardComponent implements OnInit {
     });
   }
 
-  deleteAnimal(id: number) {
+  deleteAnimal(id: any) {
     return this.adoption.deleteAdoptation(id).subscribe(() => {
       this.adoptions.filter((adoption: any) => adoption.id !== id);
       this.accepteds.filter((adoption: any) => adoption.id !== id);
       this.getAnimals();
+      this.getAccepteds();
     });
   }
   accept(id: number) {
@@ -43,6 +44,7 @@ export class ShelterDashboardComponent implements OnInit {
       this.accepteds.filter((adoption: any) => adoption.id !== id);
       this.adoptions.filter((adoption: any) => adoption.id !== id);
       this.getAccepteds();
+      this.getAnimals();
     });
   }
 }
