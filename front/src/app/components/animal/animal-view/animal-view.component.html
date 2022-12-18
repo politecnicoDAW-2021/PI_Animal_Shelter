@@ -1,77 +1,116 @@
 <div
   class="container h-animal-view mx-auto my-5 p-9 bg-white max-w-6xl rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition duration-300"
-  *ngIf="animal">
+  *ngIf="animal"
+>
   <div class="flex">
     <div class="flex-auto w-96 max-w-2xl">
       <div class="text-6xl absolute top-32 left-urgent" *ngIf="animal.urgent">
         <i class="fa-solid fa-triangle-exclamation text-red-900"></i>
       </div>
-      <img class="rounded-xl object-cover w-animal h-animal" src="http://localhost:3000/photo/{{animal.id}}" alt="" />
+      <img
+        class="rounded-xl object-cover w-animal h-animal"
+        src="http://localhost:3000/photo/{{ animal.id }}"
+        alt=""
+      />
       <div class="mt-12">
         <div class="font-text font-bold text-lg w-animal-description ml-32">
           {{ animal.description }}
         </div>
         <div class="flex w-max">
-          <div class="w-80 h-80 mt-12 ml-16 rounded-lg font-medium shadow-2xl bg-white-1 border-2 border-gray-2 mr-72">
+          <div
+            class="w-80 h-80 mt-12 ml-16 rounded-lg font-medium shadow-2xl bg-white-1 border-2 border-gray-2 mr-72"
+          >
             <div class="text-center text-lg pt-6">Comparte en tus redes</div>
             <div class="ml-6 mt-10">
-              <a target="_blank" href="https://wa.me/?text={{
+              <a
+                target="_blank"
+                href="https://wa.me/?text={{
                   animal.name
                 }}+est%C3%A1%20buscando%20un%20hogar+{{
                   url
                 }}&skipLocationChange=false
-            ">
+            "
+              >
                 <div class="flex">
-                  <i class="fa-brands fa-whatsapp text-5xl text-green-500 mr-3"></i>
+                  <i
+                    class="fa-brands fa-whatsapp text-5xl text-green-500 mr-3"
+                  ></i>
                   <div class="text-xl mt-3">Whatsapp</div>
                 </div>
               </a>
-              <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ url }}" class="">
+              <a
+                target="_blank"
+                href="https://www.facebook.com/sharer/sharer.php?u={{ url }}"
+                class=""
+              >
                 <div class="flex my-5">
-                  <i class="fa-brands fa-facebook text-5xl text-blue-800 mr-3"></i>
+                  <i
+                    class="fa-brands fa-facebook text-5xl text-blue-800 mr-3"
+                  ></i>
                   <div class="text-xl mt-3">Facebook</div>
                 </div>
               </a>
-              <a target="_blank" href="&quot;https://twitter.com/intent/tweet?url=&text=&quot;+{{
+              <a
+                target="_blank"
+                href="&quot;https://twitter.com/intent/tweet?url=&text=&quot;+{{
                   animal.name
                 }}&quot;+&quot;Est%C3%A1%20buscando%20un%20hogar!&quot;+{{
                   url
-                }}">
+                }}"
+              >
                 <div class="flex">
-                  <i class="fa-brands fa-twitter text-5xl text-blue-500 mr-3"></i>
+                  <i
+                    class="fa-brands fa-twitter text-5xl text-blue-500 mr-3"
+                  ></i>
                   <div class="text-xl mt-3">Twitter</div>
                 </div>
               </a>
             </div>
           </div>
-          <div class="w-80 h-80 mt-12 rounded-lg font-medium shadow-2xl bg-white-1 border-2 border-gray-2">
+          <div
+            class="w-80 h-80 mt-12 rounded-lg font-medium shadow-2xl bg-white-1 border-2 border-gray-2"
+          >
             <div class="text-center text-lg pt-6 mb-10">
               Contacta con {{ shelter[0].shelter_name }}
             </div>
             <div class="ml-6">
               <div class="text-lg w-max"></div>
-              <a target="_blank" href="https://api.whatsapp.com/send?phone={{
+              <a
+                target="_blank"
+                href="https://api.whatsapp.com/send?phone={{
                   shelter[0].shelter_phone_number
                 }}&text=Hola%2C+Quiero+adoptar+a+{{ animal.name }}%21
-          " class="z-10">
+          "
+                class="z-10"
+              >
                 <div class="flex">
-                  <i class="fa-brands fa-whatsapp text-5xl text-green-500 mr-3"></i>
+                  <i
+                    class="fa-brands fa-whatsapp text-5xl text-green-500 mr-3"
+                  ></i>
                   <div class="text-xl mt-3">Whatsapp</div>
                 </div>
               </a>
-              <a target="_blank" href="mailto:{{
+              <a
+                target="_blank"
+                href="mailto:{{
                   shelter[0].shelter_email
                 }}?&subject=Informaci%C3%B3n&body=Me%20interesar%C3%ADa%20informaci%C3%B3n%20acerca%20de%20{{
                   animal.name
                 }}
-        " class="z-10">
+        "
+                class="z-10"
+              >
                 <div class="flex my-5">
                   <i class="fa-solid fa-inbox text-5xl text-red-800 mr-3"></i>
                   <div class="text-xl mt-3">Gmail</div>
                 </div>
               </a>
-              <a target="_blank" href="tel:{{ shelter[0].shelter_phone_number }}
-      " class="z-10">
+              <a
+                target="_blank"
+                href="tel:{{ shelter[0].shelter_phone_number }}
+      "
+                class="z-10"
+              >
                 <div class="flex">
                   <i class="fa-solid fa-phone text-5xl text-black mr-3"></i>
                   <div class="text-xl mt-3">
@@ -148,48 +187,86 @@
           </div>
         </div>
       </div>
-      <div>
-        <button type="button"
+      <div *ngIf="this.loggedIn(); then logged; else signUp"></div>
+      <ng-template #logged>
+        <button
+          type="button"
           class="focus:outline-none text-white w-96 mx-7 mt-24 bg-green-primary hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
-          data-modal-toggle="popup-modal">
+          data-modal-toggle="popup-modal"
+        >
           Adoptame
         </button>
-        <div id="popup-modal" tabindex="-1"
-          class="fixed top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
+        <div
+          id="popup-modal"
+          tabindex="-1"
+          class="fixed top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full"
+        >
           <div class="relative w-full h-full max-w-md md:h-auto">
-            <div class="relative bg-white rounded-lg shadow-2xl dark:bg-gray-700">
-              <button type="button"
+            <div
+              class="relative bg-white rounded-lg shadow-2xl dark:bg-gray-700"
+            >
+              <button
+                type="button"
                 class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
-                data-modal-toggle="popup-modal">
-                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd"
+                data-modal-toggle="popup-modal"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="w-5 h-5"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
                     d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                    clip-rule="evenodd"></path>
+                    clip-rule="evenodd"
+                  ></path>
                 </svg>
                 <span class="sr-only">Close modal</span>
               </button>
               <div class="p-6 text-center">
-                <img src="../../../../assets/dogPopUp.png"
-                  class="mx-auto -mb-5 text-gray-400 w-40 h-40 dark:text-gray-200" />
-                <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
-                  ¿Estás seguro que quieres Adoptar a <b>{{ animal.name }}</b>?
+                <img
+                  src="../../../../assets/dogPopUp.png"
+                  class="mx-auto -mb-5 text-gray-400 w-40 h-40 dark:text-gray-200"
+                />
+                <h3
+                  class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400"
+                >
+                  ¿Estás seguro que quieres Adoptar a <b>{{ animal.name }}</b
+                  >?
                   <h5>Se enviará una petición a la protectora</h5>
                 </h3>
-                <a target="_blank" data-modal-toggle="popup-modal" type="button"
+                <a
+                  target="_blank"
+                  data-modal-toggle="popup-modal"
+                  type="button"
                   class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"
-                  (click)="adopt(animal)">
+                  (click)="adopt(animal)"
+                >
                   Si
                 </a>
-                <button data-modal-toggle="popup-modal" type="button"
-                  class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
+                <button
+                  data-modal-toggle="popup-modal"
+                  type="button"
+                  class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
+                >
                   No
                 </button>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </ng-template>
+      <ng-template #signUp>
+        <button
+          type="button"
+          class="focus:outline-none text-white w-96 mx-7 mt-24 bg-green-primary hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
+          (click)="redirectionLogin()"
+        >
+          Debes iniciar sesión para adoptar
+        </button>
+      </ng-template>
     </div>
   </div>
 </div>

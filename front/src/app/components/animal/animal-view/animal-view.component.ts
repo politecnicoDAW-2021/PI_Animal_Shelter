@@ -7,6 +7,7 @@ import { FooterComponent } from '@components/general/footer/footer.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AdoptionService } from '@services/common/adopation.service';
 import { AnimalService } from '@services/animal/animal.service';
+import { AuthService } from '@services/auth.service';
 @Component({
   selector: 'app-animal-view',
   standalone: true,
@@ -23,7 +24,8 @@ export class AnimalViewComponent implements OnInit {
     private router: Router,
     public dialog: MatDialog,
     private adoptionService: AdoptionService,
-    private animalService: AnimalService
+    private animalService: AnimalService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -57,5 +59,12 @@ export class AnimalViewComponent implements OnInit {
     this.animalService
       .getShelterByAnimal(this.animal.id)
       .subscribe((shelter) => (this.shelter = shelter));
+  }
+
+  loggedIn() {
+    return this.authService.isLoggedIn();
+  }
+  redirectionLogin() {
+    this.router.navigate(['login']);
   }
 }
