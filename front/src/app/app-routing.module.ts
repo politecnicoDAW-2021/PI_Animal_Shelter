@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AnimalListComponent } from '@components/animal/animal-list/animal-list.component';
 import { NotFoundComponent } from '@components/general/not-found/not-found.component';
 import { AuthGuard } from './shared/interceptors/auth.guard';
+import { AdminGuard } from './shared/interceptors/admin.guard';
 
 const routes: Routes = [
   {
@@ -95,6 +96,19 @@ const routes: Routes = [
         loadChildren: () =>
           import('./components/animal/animal-form/animal-form.module').then(
             (m) => m.AnimalFormModule
+          ),
+      },
+    ],
+  },
+  {
+    path: '',
+    canActivate: [AdminGuard, AuthGuard],
+    children: [
+      {
+        path: 'admin',
+        loadComponent: () =>
+          import('./components/admin/dashboard/dashboard.component').then(
+            (m) => m.DashboardComponent
           ),
       },
     ],
