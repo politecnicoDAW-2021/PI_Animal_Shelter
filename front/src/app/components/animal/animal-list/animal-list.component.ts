@@ -101,7 +101,6 @@ export class AnimalListComponent implements OnInit {
   }
 
   private _filter(value: string, elements: any[]): string[] {
-    console.log(elements);
     const filterValue = value.toLowerCase();
     return elements.filter((elements) =>
       elements.name.toLowerCase().includes(filterValue)

@@ -68,7 +68,6 @@ export class AnimalsLandingComponent implements OnInit {
       this.safeImage = this.sanitizer.bypassSecurityTrustResourceUrl(
         'http://localhost:3000/photo'
       );
-      console.log(this.safeImage);
     });
   };
 }

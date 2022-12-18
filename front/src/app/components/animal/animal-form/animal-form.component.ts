@@ -49,8 +49,6 @@ export class AnimalFormComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    console.log(this.animalForm.value);
-
     this.getBreeds();
     this.getShelters();
     this.filteredBreeds = this.animalForm
@@ -93,7 +91,6 @@ export class AnimalFormComponent implements OnInit {
       .test({ ...this.animalForm.value, shelter, dewormed, urgent })
       .subscribe((animal: any) => {
         this.animalId = animal.raw.insertId;
-        console.log('lara', this.animalId);
         this.processFile(this.animalId, imageInput);
         this.animalForm.reset();
       });

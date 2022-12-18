@@ -14,7 +14,5 @@ export class ShelterCardComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
-    console.log('a', this.shelter);
-  }
+  ngOnInit(): void {}
 }

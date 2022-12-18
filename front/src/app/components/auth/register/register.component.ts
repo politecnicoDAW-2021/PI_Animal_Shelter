@@ -89,7 +89,6 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    console.log(this.registerForm.status);
     if (this.registerForm.status === 'VALID') {
       this.submitted = true;
       this.authService

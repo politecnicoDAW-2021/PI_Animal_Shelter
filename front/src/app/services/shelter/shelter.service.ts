@@ -15,8 +15,6 @@ export class ShelterService {
   };
 
   async getShelterByEmail(email: any) {
-    console.log(email);
-
     return await this.http.get<any[]>(`${this.endpoint}/${email}`);
   }
 }

@@ -11,19 +11,16 @@ export class AdoptionService {
   constructor(private http: HttpClient) {}
 
   putAdoptation(id: number): Observable<any[]> {
-    console.log('putAdoptation');
     const data: any = {};
     data.shelter = localStorage.getItem('id');
     data.id = id;
     return this.http.put<any[]>(`${this.endpoint}`, data);
   }
   postAdoptation(adoption: any): Observable<any[]> {
-    console.log('llego');
     const data: any = {};
     data.shelter = adoption.id[0].shelter_id;
     data.animal = adoption.animal.id;
     data.user = localStorage.getItem('id');
-    console.log(data);
     return this.http.post<any[]>(`${this.endpoint}`, data);
   }
 
@@ -36,7 +33,6 @@ export class AdoptionService {
     return this.http.get<any[]>(`${this.endpoint}/accepteds/?id=${id}`);
   }
   deleteAdoptation(id: any) {
-    console.log('llego', id);
     return this.http.delete(`${this.endpoint}/${id}`);
   }
 }

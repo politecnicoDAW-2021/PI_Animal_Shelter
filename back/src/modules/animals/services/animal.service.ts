@@ -78,7 +78,6 @@ export class AnimalService {
     return await this.mediaRepository.save(newFile);
   }
   findShelterByAnimal(idAnimal: any) {
-    console.log('findShelterByAnimal', idAnimal);
     return this.animalRepository
       .createQueryBuilder('animal')
       .leftJoinAndSelect('animal.shelter', 'shelter')
@@ -102,65 +101,14 @@ export class AnimalService {
   }
 
   updateAnimalPhoto(id: any, imagePath: any) {
-    // const blob = new Uint8Array();
-    // const media = new MediaEntity();
-    // (media.id = 1), (media.filename = imagePath);
-
-    // return this.mediaRepository.insert({
-    //   animal: { id: 3 },
-    //   filename: imagePath,
-    // });
-    // return this.animalRepository.insert({
-    //   id: id,
-    //   filename: imagePath,
-    // });
     return this.animalRepository.update(id, { filename: imagePath });
   }
 
-  // async findImageByAnimalId(): Promise<Observable<any>> {
-  //   // return from(await this.dataSource.query(
-  //   //   `select filename from media where animalId = '${1}'`,
-  //   // ));
-  //   const id: any = 1;
-  //   return from(this.mediaRepository.findOneBy({ id: 1 })).pipe(
-  //     map((animal: any) => {
-  //       return animal.imagePath;
-  //     }),
-  //   );
-  // }
-
   findImageByAnimalId(id: any): Observable<string> | any {
-    // return from(this.mediaRepository.findOneBy({ id: 32 })).pipe(
-    //   map((animal: any) => {
-    //     //delete user.password;
-    //     console.log('animal', animal);
-
-    //     return animal.filename;
-    //   }),
-    // );
-
-    // return from(this.animalRepository.findBy({ id: id })).pipe(
-    //   map((animal: any) => {
-    //     console.log('animal', animal);
-
-    //     return animal.filename;
-    //   }),
-    // );
-
-    // return from(this.animalRepository.findBy({ id: id })).pipe(
-    //   map((animal: any) => {
-    //     console.log('animal', animal);
-    //     return animal.filename;
-    //   }),
-    // );
-    console.log('id', id);
-
     const animal = this.animalRepository.findOneBy({ id: id });
-    console.log('animal', animal);
 
     return from(animal).pipe(
       map((an: any) => {
-        console.log('an', an);
         return an.filename;
       }),
     );

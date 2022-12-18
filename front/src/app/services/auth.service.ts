@@ -67,8 +67,6 @@ export class AuthService {
       GoogleLoginProvider.PROVIDER_ID
     );
 
-    console.log(user);
-
     return this.http.post<any>(`${this.endpoint}/googleLogin`, user).pipe(
       take(1),
       mergeMap(() => this.setTokens(user.idToken, user.email, 'user'))

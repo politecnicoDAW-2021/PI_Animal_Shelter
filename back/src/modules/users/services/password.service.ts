@@ -29,8 +29,6 @@ export class PasswordService {
   }
 
   async findOneByGoogleId(condition: any): Promise<PasswordEntity | any> {
-    console.log('findOneByGoogleId', condition);
-
     return await this.passwordRepository.findOneBy({ userId: condition });
   }
 
@@ -60,9 +58,6 @@ export class PasswordService {
   }
 
   async createWithGoogle(data: any): Promise<PasswordEntity> {
-    console.log('dataCreateWithGoogle', data);
-    console.log('data.uiser.id', data.user.id);
-
     return await this.passwordRepository.save({
       google_tk: data.google_tk,
       userId: data.user.id,

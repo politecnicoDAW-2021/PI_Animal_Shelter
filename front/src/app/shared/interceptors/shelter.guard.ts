@@ -23,9 +23,7 @@ export class ShelterGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    console.log('hey');
     if (this.authService.getRol() !== 'shelter') {
-      console.log('entro');
       alert('access not allowed');
       this.router.navigate(['/home']);
     }

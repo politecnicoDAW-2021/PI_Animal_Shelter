@@ -33,8 +33,6 @@ export class AuthController {
 
   @Post('loginShelter')
   async loginShelter(@Request() req: any) {
-    console.log(req.body);
-
     return this.authService.loginShelter({
       email: req.body.email,
       password: req.body.password,

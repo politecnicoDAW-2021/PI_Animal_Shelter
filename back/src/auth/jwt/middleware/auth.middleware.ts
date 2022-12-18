@@ -13,8 +13,6 @@ export class AuthMiddleware implements NestMiddleware {
     let userEmail;
 
     if (!bearerHeader || !accessToken) {
-      console.log('no hay tokens');
-
       return next();
     }
 

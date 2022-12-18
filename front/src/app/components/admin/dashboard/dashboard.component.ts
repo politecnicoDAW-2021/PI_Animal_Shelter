@@ -38,7 +38,6 @@ export class DashboardComponent implements OnInit {
   getAnimals() {
     return this.adminService.getAnimalsData().subscribe((animal) => {
       this.animals = animal;
-      console.log(this.animals);
     });
   }
 
@@ -57,7 +56,6 @@ export class DashboardComponent implements OnInit {
   getUsers() {
     return this.adminService.getUsersData().subscribe((users) => {
       this.users = users;
-      console.log(this.users);
     });
   }
 

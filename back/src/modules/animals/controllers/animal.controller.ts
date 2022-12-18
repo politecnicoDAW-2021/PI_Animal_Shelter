@@ -62,43 +62,12 @@ export class AnimalController {
     return this.animalService.deleteAnimal(id);
   }
 
-  // @Post('/upload-photo')
-  // @UseInterceptors(FileInterceptor('image', saveImageToStorage))
-  // uploadImage(
-  //   @UploadedFile() file: Express.Multer.File,
-  //   @Request() req: any,
-  // ): Observable<UpdateResult | { error: string }> {
-  //   console.log('req', req.body);
-
-  //   console.log('file', file);
-
-  //   const fileName = file?.filename;
-
-  //   if (!fileName) return of({ error: 'File must be a png, jpg/jpeg' });
-
-  //   const imagesFolderPath = join(process.cwd(), 'images');
-  //   const fullImagePath = join(imagesFolderPath + '/' + file.filename);
-
-  //   return isFileExtensionSafe(fullImagePath).pipe(
-  //     switchMap((isFileLegit: boolean) => {
-  //       if (isFileLegit) {
-  //         const photo = this.animalService.updateAnimalPhoto(8, fileName);
-  //         return photo;
-  //       }
-  //       removeFile(fullImagePath);
-  //       return of({ error: 'File content doest not match extension!' });
-  //     }),
-  //   );
-  // }
-
   @Put('/upload-photo/:id')
   @UseInterceptors(FileInterceptor('image', saveImageToStorage))
   uploadImage(
     @UploadedFile() file: Express.Multer.File,
     @Param('id') id: any,
   ): Observable<UpdateResult | { error: string }> {
-    console.log('file', file);
-
     const fileName = file?.filename;
 
     if (!fileName) return of({ error: 'File must be a png, jpg/jpeg' });
@@ -125,8 +94,6 @@ export class AnimalController {
   ): Observable<Object> {
     return this.animalService.findImageByAnimalId(id).pipe(
       switchMap((imageName: any) => {
-        console.log('image', imageName);
-
         return of(res.sendFile(imageName, { root: './images' }));
       }),
     );
@@ -139,7 +106,6 @@ export class AnimalController {
 
   @Get('animal/shelter/:id')
   getShelterByAnimal(@Param('id') id: any) {
-    console.log('ey', id);
     return this.animalService.findShelterByAnimal(id);
   }
 }

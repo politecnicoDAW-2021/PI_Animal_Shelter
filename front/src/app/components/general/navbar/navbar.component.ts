@@ -39,7 +39,6 @@ export class NavbarComponent implements OnInit {
 
     return this.userService.findByEmail(email).subscribe((data) => {
       this.user = data;
-      console.log(this.user);
     });
   }
 
@@ -49,7 +48,6 @@ export class NavbarComponent implements OnInit {
     return (await this.shelterService.getShelterByEmail(email)).subscribe(
       (data: any) => {
         this.user = data;
-        console.log(this.user);
       }
     );
   }

@@ -64,7 +64,6 @@ export class AuthService {
       );
 
       const jwt: string = sign(payload, 'secret', { expiresIn: 3600 });
-      console.log(jwt);
 
       return {
         username: user.email,
